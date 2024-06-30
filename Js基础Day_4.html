@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黑马程序员前端JavaScript入门到精通全套视频教程，javascript核心进阶ES6语法、API、js高级等基础知识和实战教程Day-4</title>
+</head>
+
+<style>
+  span {
+    display: inline-block;
+    width: 80px;
+    border: solid 1px black;
+    text-align: center;
+    margin: 3px;
+    border-radius: 5px;
+  }
+</style>
+
+<body>
+
+  <button>匿名函数</button>
+
+  <script>
+    //🅿️50-函数的基本使用和封装；function()打包相似的代码,实现复用；
+    // 1-函数声明：
+    // function 函数名(){   函数名最好为动词；
+    //   函数体
+    // }
+    function syaHi() {
+      console.log('hi~~~');
+    }
+    // 2-函数调用：alet();prompt();pop();console.log();
+    syaHi();
+
+    document.write(`<br>`);
+
+    // 🛑案例-函数 99乘法表函数;
+    function sheet99() {
+      for (let i = 1; i <= 9; i++) {
+        for (let j = 1; j <= i; j++) {
+          document.write(`<span>${j}X${i}=${i * j}</span>`)
+        }
+        document.write(`<br>`);
+      }
+    }
+    sheet99();
+
+    // 🛑案例-函数计算两个数的和;
+    function getSum() {
+      let num1 = +prompt("请输入第一个数：")
+      let num2 = +prompt("请输入第二个数：")
+      console.log(`${num1} + ${num2} = ${num1 + num2}`);
+    }
+    // getSum();
+
+    // 🛑案例-函数计算1-100的和;
+    function getSum100() {
+      let sum = 0;
+      for (let i1 = 1; i1 <= 100; i1++) {
+        sum = sum + i1;
+      }
+      console.log(`1-100的和为：${sum}`);
+    }
+    getSum100(); //5050
+
+    //🅿️51-函数的传参及默认参数；
+    //🛑案例-函数计算 1-任意值 的和;
+    function getSumTo(end) {
+      let sum = 0;
+      for (let i1 = 1; i1 <= end; i1++) {
+        sum = sum + i1;
+      }
+      console.log(`1-${end}的和为：${sum}`);
+    }
+    getSumTo(50); //1275
+    getSumTo(100); //1275
+
+    //🛑案例-函数计算 任意值-任意值 的和;
+    function getSumFromTo(start, end) {
+      if (start > end) {
+        console.log(`值不合法，请重新输入`);
+      } else {
+        let sum = 0;
+        for (let i1 = start; i1 <= end; i1++) {
+          sum = sum + i1;
+        }
+        console.log(`${start}-${end}的和为：${sum}`);
+      }
+    }
+    getSumFromTo(50, 60); //9
+
+    //函数默认参数
+    function moRen(num1 = 0, num2 = 0) {
+      console.log(`${num1} + ${num2} = ${num1 + num2}`);
+    }
+    moRen() //默认值为传参0，0
+    moRen(2, 3)
+
+    //🅿️52-🛑函数封装案例-求学生总分；
+    let sum = 0;
+    function getSudSum(arr = []) { //默认值:空数组
+      for (var i = 0; i < arr.length; i++) {
+        sum += arr[i];
+      }
+      console.log(`总成绩为：${sum}`);
+    }
+    getSudSum(); //默认值，传递空数组 //0
+    let grade1 = [1, 2, 3, 4, 5, 6, 7, 8]
+    getSudSum(grade1); //参数可以是变量
+    let grade2 = [4, 5, 6, 7, 8]
+    getSudSum(grade2);
+    getSudSum([3, 4, 3, 5, 6]);
+
+
+    // 🛑函数封装案例-求输入m-n的和；
+    function getMNSum() {
+      let num1 = +prompt(`请输入第一个值`);
+      let num2 = +prompt(`请输入第二个值`);
+      let sum = 0;
+      if (num1 > num2) {
+        alert(`输入值不合法`);
+      } else {
+        for (let i = num1; i <= num2; i++) {
+          sum += i;
+        }
+        alert(`${num1}-${num2}的和为${sum}`);
+      }
+    }
+    // getMNSum();
+
+    //🅿️53-函数返回值；return
+    // 复习
+    let result = parseInt('12px')//把数字留下 //12
+    console.log(result);
+
+    //retuen返回值
+    function fn() {
+      return 20
+    }
+    //相当于执行了fn()=20
+    console.log(fn()); //20 一般不这么写
+    let re = fn();
+    console.log(re); //20
+
+    //🅿️54-函数返回值细节；
+    // ✅return直接结束当前函数体；
+    // ✅无return返回undefined
+    function sum2(x, y) {
+      return x + y;
+    }
+    let re2 = sum2(2, 3);
+    console.log(re2);
+
+    //🅿️55-🛑函数返回值案例；求任意两数中最大值
+    function getMax(a, b) {
+      // if (a > b) {
+      //   return a;
+      // } else {
+      //   return b;
+      // }
+      return a > b ? a : b;
+
+    }
+    let max = getMax(3, 5)
+    console.log(`最大值是${max}`);
+
+    //🛑求任意数组中的最大值和最小值;✅用数组返回多个数据
+    function getArrMax(arr) {
+      let max = arr[0];
+      let min = arr[0];
+      for (let i = 1; i <= arr.length - 1; i++) {
+        max = max < arr[i] ? arr[i] : max;
+        min = min > arr[i] ? arr[i] : min;
+      }
+      return [max, min]; //✅返回数组，数组可以装多个数据
+    }
+    let arr = [4, 5, 3, 7]
+    let newArr = getArrMax(arr)
+    console.log(newArr);
+    console.log(`arr数组最大值是${newArr[0]}`);
+    console.log(`arr数组最小值是${newArr[1]}`);
+    let arr2 = [4, 9, 3, 7]
+    let newArr2 = getArrMax(arr2)
+    console.log(`arr2数组最大值是${newArr2[0]}`);
+    console.log(`arr2数组最大值是${newArr2[1]}`);
+
+    //🅿️56-函数断点debug以及细节；
+    //相同函数名，后面会覆盖前面；
+    //实参多余形参，剩余的实参不参与运算；
+    //实参少于形参，NaN；
+    //实参过多，形参不好接，用arguement 、...x 剩余参数；
+    //break与return的区别，return结束函数，break结束循环和switch；
+    function fn1(a, b) {
+      console.log(a + b);
+    }
+    function fn2(a, b, c) {
+      console.log(a + b + c);
+    }
+
+    fn1(1, 2, 3)//实参多于形参，剩余的实参不参与运算；3
+    fn2(1, 2);  //实参少于形参，NaN；
+
+    //🅿️57-作用域；
+    // for循环中，变量i之作用在for循环中，for也是函数局部作用域；
+    //全局作用域：script标签javascript文件内的属于全局作用域-全局变量，局部可用；
+    //局部作用域：函数内部的属于局部作用域-局部变量；
+    for (let i = 0; i <= 3; i++) {
+      console.log(i);
+    }
+    for (let i = 3; i <= 5; i++) {
+      console.log(i);
+    }
+
+    //🅿️58-变量的访问原则；
+    //⚠️函数体内变量不声明，外部可访问；❌不允许这样写！
+    //⚠️形参可以看做函数的局部变量；
+    let num = 7;
+    function fn3() {
+      num = 10; //❌不允许这样写,不声明！
+    }
+    fn3();
+    console.log(num);
+
+    //⚠️变量访问原则，局部作用域中访问变量，就近原则；先找局部，后找全局
+    let num2 = 11;
+    function fn4() {
+      let num2 = 10;
+      console.log(num2);
+    }
+    fn4();
+
+    let num3 = 10;
+    function fn5() {
+      let num3 = 20;
+      console.log(num3);
+      function fn6() {
+        let num3 = 30;
+        console.log(num3);
+      }
+      fn6();
+    }
+    fn5();
+
+    //🅿️59-匿名函数；没有函数名的函数； （为了方便写代码） 
+    //将匿名函数赋值给一个变量，通过变量名调用，称为函数表达式；
+    let a = 5;
+    //✅1️⃣写法1-函数表达式:
+    let fn7 = function (x, y) {
+      console.log("我是谢龙");
+      console.log(x + y);
+    }
+    console.log(fn7);
+    fn7(1, 2);
+
+    //具名函数与匿名函数的区别：
+    //⚠️1-具名函数的调用可以写在任何位置；
+    //⚠️2-函数表达式必须先声明，才能调用；
+
+    // 🛑匿名函数经常用的案例-点击按钮事件（老写法kotlin）
+    //获取button元素然后给元素注册点击事件
+    let btn = document.querySelector('button')
+    btn.onclick = function () {
+      alert('我是匿名函数')
+    }
+
+    //新写法（java）
+    let btn2 = document.querySelector('button')
+    btn2.addEventListener('click', function () {
+      alert('我是匿名函数新写法')
+    });
+
+    //🅿️60-✅2️⃣写法2-匿名函数之立即执行函数（你之前自己领悟过的）;常用！
+    //作用：防止变量污染；
+
+    //⚠️得加分号；
+    //✅1-写法一：第二个小括号就是在调用fun();括号内是实参；
+    (function () { })();
+    (function () { console.log(11); })(); //保存就执行
+
+    (function () { let num = 10 })();
+    //✅可以加名字：
+    (function fn() { let num = 10 })();
+
+    //第二个小括号就是在调用fun();括号内是实参；
+    (function re(x, y) {
+      console.log(x + y);
+    })(2, 3);
+
+    //✅2-写法二：
+    (function (x, y) {
+      console.log(x + y);
+    }(1, 3));
+
+    //✅立即执行函数写法总结：哪个都行
+    (function () { })();
+    (function () { }()); //flexible.js用的这种
+
+    //🅿️61-综合案例：封装计算时间案例(为后面做倒计时做铺垫)
+    console.log(65 / 60);       //1.083
+    console.log(parseInt(65 / 60)); //1
+
+    function getTime(t) {
+      let h = parseInt(t / 60 / 60 % 24);
+      let m = parseInt(t / 60 % 60);
+      let s = parseInt(t % 60);
+      h = h < 10 ? '0' + h : h;
+      m = m < 10 ? '0' + m : m;
+      s = s < 10 ? '0' + s : s;
+      return `${t}秒转换完毕之后是${h}:${m}:${s}`;
+    }
+    // let str = getTime(+prompt("请输入秒数："));
+    // console.log(str);
+
+    //🅿️62-逻辑中断
+    //逻辑与中断（一假则假）： false && 1+1;返回false，false后面的1+1不会执行；
+    //逻辑或中断（一真则真）： true || 1+1;返回true，true后面的+1不会执行；
+    function fn8(x, y) {
+      x = x || 0; //类似于参数默认值
+      y = y || 0;
+      console.log(x + y);
+    }
+    fn8(1, 2);
+    fn8();
+
+    let age = 18;
+    //逻辑与中断（一假则假）： false && 1+1; false后面的1+1不会执行；
+    console.log(false && age++); //false ✅第一个为false，后面的1+1不会执行；⚠️短路
+    console.log(age);//18
+
+    console.log(true && age++); //18 ✅与前后都是真，则返回最后一个真值
+    console.log(age);//19
+
+    console.log(true && false); //false
+    //辑与中断练习
+    console.log(false && 20); //false
+    console.log(5 < 3 && 20); //false
+    console.log(undefined && 20); //undefined⚠️
+    console.log(null && 20); //null⚠️
+    console.log(0 && 20); //0
+    console.log(10 && 20); //20
+
+
+    //逻辑或中断（一真则真）： true && 1+1; true后面的+1不会执行；
+    console.log(false || age++); //19 或一真则真，返回真值； 
+    console.log(age); //20
+
+    console.log(true || age++); //true ✅或两侧都是真，返回第一个真值，后面代码不执行；⚠️短路
+    console.log(age); //20
+
+    console.log(11 && 22); //22  与前后都是真，则返回最后一个真值
+    console.log(11 || 22); //11  ✅或两侧都是真，则返回第一个真值；
+
+    //逻辑或中断练习
+    console.log(false || 20);//20
+    console.log(false || undefined);//undefined
+    console.log(5 < 3 || 20);//20
+    console.log(undefined || 20);//20
+    console.log(null || 20);//20
+    console.log(0 || 20);//20
+    console.log(10 || 20);//20
+
+    //🛑总结起来就是：
+    // ⚠️&&（看左边，假的后面短路（取第一个值），真的后面执行（取第二个值））
+    // ⚠️||（看左边，真的后面短路（取第一个值），假的后面执行（取第二个值））
+
+    //🅿️63-转换为布尔型以及作业
+    console.log(Boolean('pink')); //true
+    console.log(Boolean('')); //false✅
+    console.log(Boolean(0)); //false✅
+    console.log(Boolean("0")); //false
+    console.log(Boolean(90)); //true
+    console.log(Boolean(-1)); //true
+    console.log(Boolean(undefined)); //false
+    console.log(Boolean(null)); //false✅
+    console.log(Boolean(NaN)); //false✅
+    console.log(Boolean(false)); //false✅
+    if (undefined) { console.log(11); }
+    if (null) { console.log(11); }
+
+    //隐式转换：
+    console.log('' - 3); //-3 ✅空字符串变为0
+    console.log('0' - 3); //-3
+    console.log('long' - 3); //NaN
+    console.log(undefined - 3); //NaN ✅undefined变为NaN
+    console.log(NaN - 3); //NaN
+    console.log(null - 3); //-3 ✅null转为0；
+    console.log(null == undefined); //true  ⚠️当0看，值相同；
+    console.log(null === undefined); //false  值相同；类型不同
+    console.log(NaN === NaN); //false
+
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebAPIs-day2</title>
+  <link rel="stylesheet" type="text/css" href="WebAPIs_Day_2.css">
+</head>
+
+<style>
+  /* 🅿️94-🛑综合案例：关闭广告 */
+
+
+  .pos {
+    margin: auto;
+    width: 500px;
+    height: 200px;
+    /* border: solid 1px black; */
+    position: relative;
+  }
+
+  .adv {
+    width: 500px;
+    height: 200px;
+    background-color: pink;
+    border-radius: 10px;
+    margin: auto;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all .5s;
+  }
+
+  .close {
+    height: 20px;
+    padding: 2px;
+    color: white;
+    background-color: rgb(170, 170, 170);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  .showactive {
+    /* display: none; */
+    opacity: 0;
+  }
+
+  /* 🅿️95-🛑综合案例：随机点名系统  */
+  .p95 {
+    width: 480px;
+    border: solid 1px black;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .p95 h4 {
+    text-align: center;
+    margin: 10px;
+    font-size: 1.5rem;
+  }
+
+  .info {
+    display: flex;
+    margin: 20px 10px;
+  }
+
+  .name {
+    color: red;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+
+  .btns button {
+    width: 100px;
+    height: 50px;
+  }
+
+
+
+
+  /* 🅿️97-🛑综合案例：轮播图完整版 */
+  .swiper-box {
+    width: 500px;
+    height: 250px;
+    background-color: rgb(220, 220, 220);
+    border-radius: 10px;
+    margin: auto;
+    position: relative;
+  }
+
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-box .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 25%;
+    background-color: rgb(76, 70, 69, .7);
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .left {
+    margin-left: 25px;
+    /* border: solid 1px black; */
+  }
+
+  .footer .left span {
+    color: white;
+    margin-left: 10px;
+  }
+
+  .footer .left ul {
+    display: flex;
+    align-items: center;
+    margin-left: -40px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .footer .left ul li {
+    list-style: none;
+    margin: 0 10px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: rgb(186, 186, 186);
+  }
+
+  .footer .left ul .li-active {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+  }
+
+  .right {
+    margin-right: 40px;
+    display: flex;
+
+  }
+
+  .prev,
+  .next {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(0, 0, 0, .5);
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    opacity: 1;
+    border-radius: 8px;
+    border: solid 1px white;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  .color {
+    color: red;
+  }
+
+  /* tap栏切换用li-display */
+  .tab-box {
+    width: 500px;
+    margin: auto;
+  }
+
+  .index {
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+  }
+
+  .index li {
+    margin: 0 30px;
+    cursor: pointer;
+    width: 50px;
+    border: solid 1px rgb(224, 224, 224);
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .tab {
+    width: 500px;
+    height: 250px;
+    padding: 0;
+  }
+
+  .tab li {
+    width: 500px;
+    height: 250px;
+    list-style: none;
+    display: none;
+    background-color: yellow;
+    text-align: center;
+
+  }
+
+  .tab li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .tab .li_show {
+    display: block;
+  }
+
+  .background {
+    width: 500px;
+    height: 250px;
+    border-radius: 10px;
+    background-image: url(./P97轮播图图片/5.JPG);
+    background-size: 100px;
+  }
+</style>
+
+<body>
+  <!-- 🅿️94-🛑综合案例：点击弹窗 -->
+  <h4>🅿️94-🛑综合案例：点击弹窗</h4>
+  <button class="b1">点击弹出广告</button>
+  <script>
+    const b1 = document.querySelector('.b1');
+    b1.addEventListener('click', function () {
+      b1.innerHTML = '叫你不要点！';
+      alert('这是一则广告');
+    });
+  </script>
+
+  <br>
+  <br>
+  <hr>
+
+
+  <!-- 🅿️94-🛑综合案例：关闭广告-->
+  <h4>🅿️94-🛑综合案例：关闭广告</h4>
+  <div class="pos">
+    <div class="adv">这是一则广告</div>
+    <div class="close">关闭</div>
+  </div>
+
+  <script>
+    const adv = document.querySelector('.adv');
+    const close = document.querySelector('.close');
+    close.addEventListener('click', function () {
+      adv.classList.toggle('showactive');
+      //开关交替
+      if (close.innerHTML === '关闭') {
+        close.innerHTML = '显示';
+      } else {
+        close.innerHTML = '关闭';
+      }
+    })
+  </script>
+
+  <br>
+  <hr>
+
+  <!-- 🅿️95-🛑综合案例：随机点名系统 -->
+  <h4>🅿️95-🛑综合案例：随机点名系统</h4>
+  <div class="p95">
+    <div class="title"></div>
+    <h4>点名系统</h4>
+    <div class="info">
+      <span>名字是：</span>
+      <div class="name">这是显示姓名</div>
+    </div>
+    <div class="btns">
+      <button class="start">开始按钮</button>
+      <button class="end">结束按钮</button>
+    </div>
+  </div>
+  <script>
+    let arr = ['谢龙', '乐乐', '陈博', '谢凤', '晨晨', '欢欢', '豆豆',];
+    // 开始点名
+    let timeID = 0;
+    let random = 0;
+    let flag = true;
+    const start = document.querySelector('.start');
+    const end = document.querySelector('.end');
+    const name = document.querySelector('.name');
+
+    end.disabled = true;
+
+    start.addEventListener('click', function () {
+      timeID = setInterval(function () {
+        random = Math.floor(Math.random() * arr.length);
+        name.innerHTML = arr[random];
+      }, 90);
+      flag = false;
+      end.disabled = false;
+
+      //防止狂按开始
+      if (flag === false) {
+        start.disabled = true;
+      } else {
+        start.disabled = false;
+      }
+
+      if (arr.length <= 1) {
+        start.disabled = true;
+        end.disabled = true;
+      }
+    });
+
+    // 结束点名
+    end.addEventListener('click', function () {
+      clearInterval(timeID);
+      arr.splice(random, 1)
+      console.log(arr);
+      start.disabled = false;
+      end.disabled = true;
+      flag = true;
+    });
+
+  </script>
+
+  <br>
+  <hr>
+
+  <!-- 🅿️97-🛑综合案例：轮播图完整版 -->
+  <h4>🅿️97-🛑综合案例：轮播图完整版</h4>
+  <!-- 1-先写左右按钮业务右++与左-- -->
+
+  <div class="swiper-box">
+    <div class="img">
+      <img src="./P97轮播图图片/1.JPG" alt="图片加载失败">
+    </div>
+    <div class="footer">
+      <div class="left">
+        <span>黄山游记,人生第一次说走就走的旅行</span>
+        <ul>
+          <li class="li-active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+
+        </ul>
+      </div>
+      <div class="right">
+        <div class="prev">&lt
+        </div>
+        <div class="next">&gt</div>
+      </div>
+    </div>
+
+    <script>
+      const data = [
+        {
+          url: "./P97轮播图图片/1.JPG",
+          title: "黄山游记,人生第一次说走就走的旅行",
+          color: "rgb(76, 70, 69,.7)"
+        },
+        {
+          url: "./P97轮播图图片/2.JPG",
+          title: "华科青年园的荷花池，拍照留念",
+          color: "rgb(42, 52, 31,.7)"
+        },
+        {
+          url: "./P97轮播图图片/3.JPG",
+          title: "在泰国与Nick和Melissa的花市合影",
+          color: "rgb(83, 58, 24,.7)"
+        },
+        {
+          url: "./P97轮播图图片/4.JPG",
+          title: "谢凤在许昌曹魏邺城的汉服拍照",
+          color: "rgb(107, 17, 11,.7)"
+        },
+        {
+          url: "./P97轮播图图片/5.JPG",
+          title: "在泰国椰树池的露营，吃了很多",
+          color: "rgb(58, 57, 51, .7)"
+        },
+        {
+          url: "./P97轮播图图片/6.JPG",
+          title: "在武汉某个商场里逛街买了几件gap的衣服",
+          color: "rgb(176, 136, 122,.7)"
+        },
+        {
+          url: "./P97轮播图图片/7.JPG",
+          title: "在汉口的某个咖啡卡拍了一些照片",
+          color: "rgb(85, 98, 38, .7)"
+        },
+        {
+          url: "./P97轮播图图片/8.JPG",
+          title: "去年冬天在汉口的某个枫树下拍照",
+          color: "rgb(103, 66, 3 ,.7)"
+        }]
+
+      // 点击next会播放下一张图片；
+      let i = 0;
+      const next = document.querySelector('.next');
+      const img = document.querySelector(".swiper-box .img img");
+      const footerColor = document.querySelector('.footer');
+      const text = document.querySelector('.footer .left span');
+      next.addEventListener('click', function () {
+        i++;
+        if (i >= data.length) {
+          i = 0;
+        }
+        img.src = data[i].url;
+        text.innerHTML = data[i].title;
+        footerColor.style.backgroundColor = data[i].color;
+
+        // 点点跟着动 排他思想
+        // 先删除旧点点
+        document.querySelector('.footer .left ul .li-active').classList.remove('li-active');
+        // 给新的li添加点点
+        document.querySelector(`.footer .left ul li:nth-child(${i + 1}) `).classList.add('li-active');
+      });
+
+      // 点击prev会回到前一张图片；
+      const prev = document.querySelector('.prev');
+      prev.addEventListener('click', function () {
+        i--;
+        if (i < 0) {
+          i = data.length - 1;
+        }
+        img.src = data[i].url;
+        text.innerHTML = data[i].title;
+        footerColor.style.backgroundColor = data[i].color;
+
+        // 点点跟着动 排他思想
+        // 先删除旧点点
+        document.querySelector('.footer .left ul .li-active').classList.remove('li-active');
+        // 给新的li添加点点
+        document.querySelector(`.footer .left ul li:nth-child(${i + 1}) `).classList.add('li-active');
+      });
+
+    </script>
+
+  </div>
+
+  <br>
+  <hr>
+
+  <!-- 事件冒泡学习 -->
+  <!-- 排他思想+冒泡 -->
+  <h4>🅿️109-🛑排他思想+冒泡</h4>
+  <ul class="father" style="cursor: pointer;">
+    <li class="color">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+
+  <script>
+    const father = document.querySelector('.father');
+    father.addEventListener('click', function (e) {
+      if (e.target.tagName === 'LI') {
+        // e.target.classList.toggle('color');
+        // console.log(e.target);
+        document.querySelector(".father .color").classList.remove("color");
+        e.target.classList.add("color");
+      }
+    })
+  </script>
+
+  <hr>
+  <!-- tab栏切换用浮动 -->
+  <h4>🅿️109-APIs-day3🛑排他思想(内容用li标签：display:none与block' none的话不占用空间，所以下一个就占据了原来的位置)+冒泡 tab栏切换；div也可以，因为display不占用位置；
+  </h4>
+  <div class="tab-box">
+    <ul class="index">
+      <li class="color" data-id="1">LONG</li>
+      <li data-id="2">FENG</li>
+      <li data-id="3">LE</li>
+    </ul>
+    <ul class="tab">
+      <li class="li_show">
+        <img src="./P97轮播图图片/1.JPG" alt="">
+      </li>
+      <li>
+        <img src="./P97轮播图图片/4.JPG" alt="">
+      </li>
+      <li>
+        <img src="./P97轮播图图片/5.JPG" alt="">
+      </li>
+    </ul>
+  </div>
+
+
+  <script>
+    const index = document.querySelector('.index');
+    index.addEventListener('click', function (e) {
+      if (e.target.tagName === 'LI') {
+        document.querySelector(".index .color").classList.remove('color');
+        e.target.classList.add('color');
+
+        // 获取tab标签的id
+        const i = e.target.dataset.id;
+        // console.log(i);
+        document.querySelector(`.tab .li_show`).classList.remove('li_show');
+        document.querySelector(`.tab li:nth-child(${i}`).classList.add('li_show');
+      }
+    });
+  </script>
+
+  <br>
+  <hr>
+  <h4>🅿️125-APIs-day5-🛑学生信息表上下集</h4>
+  <div class="day5">
+    <h3>新增学员</h3>
+    <form action="" class="info" autocomplete="off">
+      姓名:
+      <input type="text" class="name" name="name">
+      年龄:
+      <input type="text" class="age" name="age">
+      性别:
+      <select name="gender" id="" class=="gender">
+        <option value="boy">男</option>
+        <option value="girl">女</option>
+      </select>
+      薪资:
+      <input type="text" class="salary" name="salary">
+      就业城市:
+      <select name="city" id="" class="city">
+        <option value="beijing">北京</option>
+        <option value="shanghai">上海</option>
+      </select>
+      <button class="add">录入</button>
+    </form>
+    <h3>就业榜</h3>
+    <table class="tab">
+      <thead>
+        <tr>
+          <th>学号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>性别</th>
+          <th>薪资</th>
+          <th>就业城市</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1001</td>
+          <td>欧阳霸天</td>
+          <td>19</td>
+          <td>男</td>
+          <td>1500</td>
+          <td>北京</td>
+          <td>操作</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <hr>
+  <h4>🅿️133-APIs-day5-🛑读取本地存储数据</h4>
+  <br>
+  <hr>
+  <h4>🅿️136-🛑提交表单为何要用冒泡,preventDefault()是Event方法，用event对象调用</h4>
+  <form action="" class="info_form">
+    姓名：<input required type="text" name="姓名" class="uname" value="谢龙"><br>
+    密码：<input type="password" name="密码" class="pas" value="123"><br>
+    sumit提交：<input type="submit"><br>
+    <button class='btn_form'>提交</button>
+  </form>
+
+  <script>
+    // ❌preventDefault()错误行写法    
+    // const btn = document.querySelector('.btn_form');
+    // btn.preventDefault();
+    // ✅正确写法 获取表单，用事件冒泡调用preventDefault
+    const ele = document.querySelector('.info_form');
+    const uname = document.querySelector('.uname');
+    const pas = document.querySelector('.pas');
+    ele.addEventListener('submit', function (e) {
+      e.preventDefault();
+      //打印input中的值;内容是name命名，用name.value获取
+      console.log(uname.value);
+      console.log(pas.value);
+      //检测输入内容是否为空（！是非的意思  其中一个为空就是false，!false就是true,一true全true程序中断执行alert）
+      if (!uname.value || !pas.value) {
+        alert("输入内容不能为空")
+      }
+      // 重置表单，用this也可以
+      this.reset();
+      ele.reset();
+    })
+  </script>
+
+  <!-- required是提示请输入字段 -->
+  <h4>🅿️136-🛑input表单中required是提示请输入字段,autocomplete是关闭历史记录</h4>
+  <form action="">
+    <input type="text" required autocomplete="off">
+    <button>提交</button>
+  </form>
+  <br>
+
+  <!-- obj对象写法 -->
+  <script>
+    let person = {
+      name: 'xielong',
+      age: 18
+    }
+    console.log(person);
+  </script>
+
+  <hr>
+
+  <!-- 正则表达式 -->
+  <script>
+    // []表示多选一，位置不限；{}表示选几个紧挨在前面的元素
+    const reg = /^[a-zA-Z0-9-_]{6,16}$/
+    console.log(reg.test('xielong')); //true
+    console.log(reg.test('-xielong')); //true
+    console.log(reg.test('-_Xielong')); //true
+    console.log(reg.test('xie')); //false
+
+    // 检测日期格式
+    // 无中括号[],表示只能按顺序选；以\d{4}开头，以\d{1,2}结尾；
+    const reg2 = /^\d{4}-\d{1,2}-\d{1,2}$/
+    console.log(reg2.test('2002-1-2')); //true
+    console.log(reg2.test('-2002-1-2')); //false
+  </script>
+
+
+
+  <!-- background-img size -->
+  <h4>🅿️136-🛑background-img size 练习，size就是背景图的像素尺寸</h4>
+  <div class="background">
+  </div>
+
+
+
+  <script>
+    // 常规对象
+    const obj1 = { name: "huanhuan", age: 15 }
+    console.log(obj1);
+    console.log(obj1.name);
+    // 构造函数
+    function Animal(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    const obj2 = new Animal("huanghuang", 10)
+    console.log(obj2);
+    console.log(obj2.name);
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黑马程序员前端JavaScript入门到精通全套视频教程，javascript核心进阶ES6语法、API、js高级等基础知识和实战教程Day-2</title>
+</head>
+
+<body>
+
+  <script>
+    //🅿️ 20-赋值运算符=，+=，-=，*=，
+    let num = 1;
+    num += 1; //num = num + 1
+    console.log(num);
+
+    //🅿️ 21-一元运算符（多用于计数），二元，三元
+    let num2 = 10 + 20; //二元
+    let num3 = +123; //一元（正负号）
+    num3 += 1; //一元（加等）
+
+    let num4 = 1;
+    ++num4; //前置自增，num4值加1变2（先自增后运算）
+    console.log(num4); //2
+    console.log(++num4 + 1); //4(先++num4再+1)
+
+    let num5 = 1;
+    num5++; //✅ 后置自增，num4值加1变2（先运算后自增） 
+    console.log(num5); //2
+    console.log(num5++ + 1);//3(先num5+1再num5++)(后置自增 最常用)
+    console.log(num5); //3
+
+
+    let i = 1;
+    console.log(i++ + ++i + i); //1+3+3=7(需要注意的是，后置自增在参与运算时，不是等到整个运算公式结束之后才自增，而是自己参加运算后就立刻自增)
+
+    //🅿️ 22-比较运算符（返回true或false）<,>,>=,<=,==判断值相等,===判断全等（类型+值）型,!==不全等
+    console.log(3 > 5);
+    console.log("3" > 5); //隐式转换，字符转数字
+    console.log(2 == 2);
+    console.log(2 == '2');//值相等true 隐式转换，✅值比较会把string换位number
+    console.log(2 === '2');//值和数据类型false，值一样，类型不一样（✅ 用的最多）
+
+    console.log(undefined == null); //true
+    console.log(undefined === null); //false
+    console.log(NaN === NaN); //false
+    console.log(2 !== '2');//true 不全等，为true
+
+    console.log('--------------------------------');
+    console.log('a' < 'b'); //true ✅ ASCII比较a-97 < b-98
+    console.log('ab' < 'cd'); //true ASCII比较 a<a然后b<d 都是true
+    console.log('aa' < 'aac'); //true ASCII比较 a<a然后a<a 剩下c最大 true
+    console.log('ab' < 'a'); //true ASCII比较 a<a然后b<0 false
+
+    //🅿️ 23-逻辑运算符，与(&&)，或(||)，非(!)
+    console.log(true && true);
+    console.log(false && true); //逻辑与：一假则假 二元
+    console.log(3 < 5 && 3 < 2); //逻辑与：一假则假
+    console.log(false || true); //逻辑或：一真则真  二元
+    console.log(3 < 5 || 3 < 2); //逻辑或：一真则真
+    console.log(!true);//逻辑非：取反 一元
+    console.log(!false);//逻辑非：取反
+
+    let num6 = 6;
+    console.log(num > 5 && num < 10);
+
+    // let num7 = +prompt("请输入一个数字：");
+    // alert(num7 % 4 === 0 && num7 % 100 !== 0);
+
+    //🅿️ 23-运算符优先级，✅比较大于逻辑(!>&&>||)，先!再&&后||
+    console.log(3 > 5 === 2 < 1); //false===false => true
+    console.log(3 > 5 === 2 < 5); //false===true => false
+
+    console.log(3 > 5 && 2 < 7 && 3 == 4); //false && true && false => false
+    console.log(3 <= 4 || 3 > 1 || 3 != 2);//true || true ||true => true
+    console.log(c = 2 === '2'); //false
+    console.log(!c || true && true); //true； 先 && 后 ||
+
+    //️🅿️ 24 表达式和语句
+    let num8 = 3 + 4; //表达式-求值
+    console.log(num8); //语句-执行
+
+    //️🅿️ 24 分支语句：if语句，三元运算符， switch语句
+    //✅if(a===1) 判断用全等
+    if (true) {
+      console.log("执行语句");
+    }
+    if (3 < 5) {
+      console.log("执行语句");
+    }
+    if (3) {      //✅除了0，所有数字都为真
+      console.log("执行语句3");
+    }
+    if ("long") { //✅除了空string，所有string都为真
+      console.log("执行语句long");
+    }
+    if ("long") console.log("long"); //简写
+
+    //案例-成绩验证
+    // let num9 = +prompt("请输入高考成绩：");
+    // if (num9 > 700) {
+    //   alert("恭喜考入黑马程序员");
+    // } else {
+    //   alert("对不起你没有考上");
+    // }
+
+    //案例-登录验证
+    // let uname = prompt("请输入用户名");
+    // let psd = prompt("请输入密码");
+    // if (uname === 'long' && psd === '123') { 
+    //   alert("登录成功");
+    // } else {
+    //   alert("登录失败");
+    // }
+
+    //案例-闰年判断
+    // let year = +prompt("请输入年份：");
+    // if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
+    //   alert(`${year}是闰年`)
+    // } else {
+    //   alert(`${year}是平年`)
+    // }
+
+    //🅿️ 27-分支语句：三元运算符；条件1?  代码1：代码2;比if更简单；两刀三段；
+    console.log(3 > 5 ? 3 : 5); //5
+
+    let num10 = 3 > 5 ? 3 : 5; //赋值操作
+    console.log(`num10=${num10}`); //5
+
+    //案例-判断最大值
+    // 1-用户输入
+    // 2-判断
+    // 3-输出
+    // let num11 = +prompt("请输入第一个数：");
+    // let num12 = +prompt("请输入第一个数：");
+    // num11 > num12 ? alert(`最大值是${num11}`) : alert(`最大值是${num12}`);
+
+    //D-28案例-数字补0案例，数字小于10，前面补0:时间 00:06:18
+    // let num13 = prompt("请输入一 个数字：")
+    // num13 = num13 < 10 ? '0' + num13 : num13;
+    // alert(`这个数字是${num13}`);
+
+    //🅿️ 29-switch语句：执行效率比if else高 ✅break退出Switch语句
+    // ✅switch处理确定值，（链表）效率高，处理分支多；
+    // ✅if处理范围判断，每个情况都判断，效率低些，处理分支小；
+    // switch (+prompt("请输入：")) {
+    //   case 1: //✅全等===； 值与类型都得相等
+    //     console.log("您选择的是1");
+    //     break
+    //   case 2:
+    //     console.log("您选择的是2");
+    //     break
+    //   case 3:
+    //     console.log("您选择的是3");
+    //     break
+    //   default:
+    //     console.log("没有符合条件的");
+    //     break //可省略
+    // }
+
+    // 案例：简单计算器
+    //1-用户输入 两个数字+加减乘除
+    //2-判断计算
+    //3-输出
+    // let num14 = +prompt("请输入第一个数字: ");
+    // let num15 = +prompt("请输入第二个数字: ");
+    // let sp = prompt("请输入+ - * / ");
+    // switch (sp) {
+    //   case '+':
+    //     alert(`两个数字相加：${num14}+${num15}=${num14 + num15}`);
+    //     break // break退出Switch语句
+    //   case '-':
+    //     alert(`两个数字相减：${num14}-${num15}=${num14 - num15}`);
+    //     break
+    //   case '*':
+    //     alert(`两个数字相乘：${num14}*${num15}=${num14 * num15}`);
+    //     break
+    //   case '/':
+    //     alert(`两个数字相除：${num14}/${num15}=${num14 / num15}`);
+    //     break
+    //   default:
+    //     alert(`请重新操作`);
+    // }
+
+    //🅿️ 30-断点演示 html调试
+    //🅿️ 31-循环语句 while（与if语句像，先判断后循环,✅适合循环次数不确定时候） 不用do while了，常用for循环；
+    // while循环三要素：
+    // 1-起始值
+    // 2-终止条件
+    // 2-变化量
+    let i1 = 1    // 1-起始值
+    while (i1 <= 3) {    // 2-终止条件
+      document.write("i love you <br>"); //循环体
+      i1++;       // 2-变化量
+    }
+
+    // let end = +prompt("请输入遍数：") //用户输入遍数
+    // let i2 = 1
+    // while (i2 <= end) {
+    //   document.write("发财致富 <br>");
+    //   i2++;
+    // }
+
+    //案例：输出5个数
+    let i3 = 1;
+    while (i3 <= 5) {
+      document.write(`第${i3++}个数<br>`)
+    }
+    //🅿️ 32 案例：计算1-5的和
+    let i4 = 1;
+    let sum = 0;
+    while (i4 <= 3) {
+      sum += i4++;
+      // i4++;
+    }
+    document.write(`1-5累加得${sum}`)
+
+    //案例：计算1-10的偶数和
+    let i5 = 1;
+    let sum2 = 0;
+    while (i5 <= 5) {
+      if (i5 % 2 === 0) { //偶数和  //(i5 % 2 !== 0)奇数和
+        sum2 += i5;
+      }
+      i5++;
+    }
+    document.write(`1-10的偶数和为：${sum2}。<br>`);
+
+    //🅿️ 33 while退出循环 break退出整个循环 continue退出当前循环，继续下个循环
+
+    //break退出整个循环 
+    let i6 = 1;
+    while (i6 <= 5) {
+      if (i6 === 3) {
+        document.write(`发现一条虫子，全部不吃了<br>`)
+        break;
+      }
+      document.write(`我在吃第${i6}个包子。<br>`)
+      i6++;
+    }
+
+    document.write(`<br>`)
+
+    //continue退出当前循环，继续下个循环
+    let i7 = 1;
+    while (i7 <= 5) {
+      if (i7 === 3) {
+        document.write(`发现一条虫子，不吃这个了<br>`)
+        i7++;
+        continue;
+      }
+      document.write(`我在吃第${i7}个包子。<br>`)
+      i7++;
+    }
+
+    //案例 你爱我吗？ break
+    // while (true) {
+    //   let str = prompt("你爱我吗？");
+    //   if (str === '爱') {
+    //     break;
+    //   }
+    // }
+
+    //🅿️ 34 综合案例；ATM取款机
+    // 1、开始循环，输入框写到循环体中
+    // 2、用户输入4，则退出操作
+    // 3、准备一个总的金额,放在循环体外
+    // 4、根据输入做操作
+    let money = 100;
+    while (true) {
+      //模板字面量支持换行
+      let re = +prompt(`
+      请选择的您的操作：
+      1、存钱
+      2、取钱
+      3、查看余额
+      4、退出操作
+      `)
+      //3、用户输入4，则退出操作
+      if (re === 4) { //✅if判断用全等
+        break;
+      }
+      // 4、根据输入做操作
+      switch (re) {
+        case 1:
+          let cun = +prompt("请输入存款金额：");
+          money = money + cun
+          break;
+        case 2:
+          let qu = +prompt("请输入取款金额：");
+          //判断余额是否充足
+          if (qu <= money) {
+            money = money - qu
+          } else {
+            alert(`余额不足,请重新操作`);
+          }
+          break;
+        case 3:
+          alert(`您的余额为：${money}元。`)
+          break;
+      }
+
+
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

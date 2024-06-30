@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黑马程序员前端JavaScript入门到精通全套视频教程，javascript核心进阶ES6语法、API、js高级等基础知识和实战教程Day-3</title>
+</head>
+
+<style>
+  /* 🅿️39-九九乘法表span样式 */
+  /* ✅span是行内元素，无宽高；得转为行块元素才行；块元素独占一行 */
+  span {
+    display: inline-block;
+    border: solid 1px hotpink;
+    box-shadow: 2px 2px 2px rgba(255, 192, 203, .4);
+    width: 100px;
+    margin: 2px;
+    padding: 5px 8px;
+    border-radius: 7px;
+    text-align: center;
+    color: hotpink;
+  }
+
+  /* 🅿️47-🛑综合案例数组-生成柱形图（顶部） */
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .box {
+    height: 200px;
+    width: 600px;
+    border-left: solid 2px black;
+    border-bottom: solid 2px black;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+  }
+
+  .box>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px hotpink;
+    width: 40px;
+    border-radius: 7px 7px 0 0;
+    background-color: hotpink;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+    border-bottom: none;
+  }
+
+  .box div main {
+    margin-top: -20px;
+  }
+
+  .box div h4 {
+    width: 70px;
+    text-align: center;
+    margin-bottom: -20px;
+  }
+</style>
+
+<body>
+
+  <!-- <div style="height:120px;">
+    <main>120</main>
+    <h4>第一季度</h4>
+  </div>
+  <div style="height:120px;">
+    <main>120</main>
+    <h4>第一季度</h4>
+  </div>
+  <div style="height:120px;">
+    <main>120</main>
+    <h4>第一季度</h4>
+  </div>
+  <div style="height:120px;">
+    <main>120</main>
+    <h4>第一季度</h4>
+  </div> -->
+
+  <script>
+    //🅿️47-🛑综合案例数组-生成柱形图
+    document.write(`<h5 style = "text-align:center;">🅿️47-🛑综合案例数组-生成柱形图<h5>`)
+    //准备arr数据
+    let arr15 = [];
+    for (let i20 = 1; i20 <= 4; i20++) {
+      let jidu = prompt(`请输入第${i20}季度产值（小于120）：`)
+      arr15.push(jidu);
+    }
+    //把数据绘制到html上
+    document.write(`<div class="box">`)
+    for (let i21 = 0; i21 < arr15.length; i21++) {
+      document.write(`
+        <div style="height:${arr15[i21]}px;"> 
+          <main>${arr15[i21]}万</main>
+          <h4>第${i21 + 1}季度</h4>
+        </div>
+      `)
+    }
+    document.write(`</div>`)
+    // console.log(arr15);
+    // 🅿️35-for循环（为了数组做准备）
+    // 复习while循环三要素：
+    // 1-起始值
+    // 2-终止条件
+    // 3-变化量
+    document.write(`<br>`)
+    let i1 = 1            // 1-起始值
+    while (i1 <= 3) {     // 2-终止条件
+      document.write(`while${i1}-i love you <br>`);
+      //循环体
+      i1++;               // 4-变化量
+    }
+
+    // for循环（起始值，终止条件，变化量）{
+    //循环体
+    //}
+    for (let i2 = 1; i2 <= 3; i2++) { //分好隔开是三行代码
+      document.write(`for${i2}-i love you <br>`);
+    }
+
+    //案例 for循环输出1-100岁
+    for (let i3 = 1; i3 <= 3; i3++) {
+      document.write(`我今年${i3}岁了。 <br>`);
+    }
+
+    //🛑案例 求1-100偶数和
+    let sum = 0;
+    for (let i4 = 1; i4 <= 100; i4++) {
+      if (i4 % 2 === 0) {
+        sum = sum + i4
+      }
+    }
+    document.write(`1-100偶数和为：${sum}。 <br>`);
+
+    // let i =1;
+    // let i =2;
+
+    //🛑案例-页面打印5个小星星
+    for (let i = 1; i <= 5; i++) {
+      document.write(`⭐️`);
+    }
+
+    //换行
+    document.write(`<br>`)
+
+    // 🅿️36-for循环遍历数组（for循环的最大价值：循环数组）
+    let arr = ["陈博", "谢龙", "乐乐", "谢凤"];
+    document.write(`${arr[0]}<br>`);
+    for (let i6 = 0; i6 <= arr.length - 1; i6++) {
+      document.write(arr[i6])
+    }
+    //undefined无值-声明变量未赋值 
+    let arr2 = [];
+    document.write(`${arr2}<br>`);
+    document.write(`${arr2[0]}<br>`); //声明变量未给值就是undefined
+
+    //null空值 是 object-声明变量给个空值；
+    let obj = null;
+    document.write(`${obj}<br>`); //声明对象，不确定放什么，先给null
+
+    // 🅿️37-for循环退出循环break和continue
+    for (i8 = 1; i8 <= 5; i8++) {
+      if (i8 === 3) {
+        document.write(`我靠，第${i8}个包子有虫子，剩下的不吃了！<br>`);
+        break;
+      }
+      document.write(`我正在吃第${i8}个包子。<br>`);
+    }
+
+
+    //continue 结束当前循环
+    for (i7 = 1; i7 < 5; i7++) {
+      if (i7 === 3) {
+        document.write(`不能第${i7}个包子，有虫子。<br>`);
+        continue;
+      }
+      document.write(`我在吃第${i7}个包子。<br>`);
+    }
+
+    //✅while(true)无限循环-ATM取款机，用break结束无限循环
+    //✅for(;;)无限循环
+    //✅确定循环次数用for，遍历数组（长度）；✅循环优先用for；
+    //✅不确定循环次数用while，无限弹窗ATM取款机；
+
+    //🅿️38-for循环嵌套（一个for不难，嵌套循环难）
+    //外面for执行一次，内部for执行所有次
+
+    //🛑案例-每天记5个单词，3天一共记几个单词？
+    // 第一天：5个单词；
+    // 第二天：5个单词；
+    // 第三天：5个单词；
+    for (i9 = 1; i9 <= 3; i9++) {
+      document.write(`第${i9}天：<br>`);
+      for (j = 1; j <= 5; j++) {
+        document.write(`记住了第${j}个单词。<br>`);
+      }
+    }
+
+    //🅿️39-for嵌套循环大练习：
+    //🛑案例一：打印5行5列小星星；
+    //外层循环打印行数
+    // document.write(`<br>`)
+    document.write(`for嵌套循案例一：打印5行5列小星:<br>`);
+    for (let i10 = 1; i10 <= 5; i10++) {
+      //内层循环打印个数(列数)
+      for (let j1 = 1; j1 <= 5; j1++) {
+        document.write("⭐️");
+      }
+      //打印完一行就换个行
+      document.write(`<br>`);
+    }
+
+    //🛑案例二：用户决定打印几行几列小星星；
+    // document.write(`for嵌套循案例二：用户决定打印几行几列小星星:<br>`);
+    // let row = +prompt("请输入行数：")
+    // let col = +prompt("请输入列数：")
+    // for (let i11 = 1; i11 <= row; i11++) { //比较运算符有隐式转换
+    //   //内层循环打印个数(列数)
+    //   for (let j2 = 1; j2 <= col; j2++) {
+    //     document.write("⭐️");
+    //   }
+    //   //打印完一行就换个行
+    //   document.write(`<br>`);
+    // }
+
+    //🛑案例三：打印直角三角形的星星；
+    document.write(`for嵌套循案例三：打印直角三角形的星星；<br>`);
+    for (let i12 = 1; i12 <= 5; i12++) {
+      for (let j3 = 1; j3 <= i12; j3++) {
+        document.write("⭐️");
+      }
+      document.write(`<br>`);
+    }
+
+    //🅿️39-🛑for嵌套循环大练习：九九乘法表；
+    for (let i13 = 1; i13 <= 9; i13++) {
+      for (let j4 = 1; j4 <= i13; j4++) {
+        document.write(`<span>${j4} X ${i13} = ${i13 * j4}</span>`);
+      }
+      document.write(`<br>`);
+    }
+
+    //🅿️41-数组的基本及其案例（数据（增删改查）驱动视图dom），✅数组好处，把多个数据储存在单个变量中；
+    let arr3 = [1, 2, 'pink', true]//✅字面量声明数组(常用)
+    let arr4 = new Array(1, 2, 'pink', true); //构造函数声明数组；
+    console.log(arr3[1]); //2
+    // for循环遍历数组
+    for (let i14 = 0; i14 < arr3.length; i14++) {
+      console.log(arr3[i14]);
+    }
+
+    //案例-求和与平均分
+    let arr5 = [2, 6, 1, 7, 4];
+    let sum3 = 0;
+
+    for (let i15 = 0; i15 <= arr5.length - 1; i15++) {
+      sum3 = sum3 + arr5[i15];
+    }
+    console.log(`arr5元素和为:${sum3}。`); //
+    console.log(`arr5元素平均值为:${sum3 / arr5.length}。`); //
+
+    //✅undefined + 任何数num = NaN
+    let sum4;         //无值undefined：声明未赋值
+    console.log(sum4); //undefined
+    console.log(sum4 + 5);//NaN
+    console.log(sum4 + "5");//undefined5
+
+
+    //🅿️42-数组最大值和最小值(冒泡排序)-查
+    let arr6 = [2, 6, 1, 77, 52, 25, 7]
+    let max = arr6[0];
+    let min = arr6[0];
+    // 不用嵌套循环
+    for (let i16 = 1; i16 < arr6.length; i16++) {
+      // 如果max比数组元素里的值小，我们就把这个数组元素赋值给max
+      max = max < arr6[i16] ? arr6[i16] : max;
+      min = min > arr6[i16] ? arr6[i16] : min;
+    }
+    console.log(`arr6最大值${max}。`);
+    console.log(`arr6最小值${min}。`);
+
+    //🅿️43-数组操作-修改
+    let arr7 = [];
+    console.log(arr7);
+    console.log(arr7[0]); //undefined
+    arr7[0] = 7;
+    console.log(arr7[0]); //7
+    arr7[2] = 5;
+    console.log(arr7[2]); //5
+    console.log(arr7[1]); //undefined
+    console.log(arr7); //[7,enpty,5]
+    arr7[0] = "long";
+    arr7[2] = "5";
+    console.log(arr7); //[7,enpty,5]
+
+    let arr8 = ["long", "le", "bo"]
+    console.log(arr8); //
+    for (let i17 = 0; i17 < arr8.length; i17++) {
+      arr8[i17] = arr8[i17] + '老师' // ✅ + 字符串拼接
+      // arr8[i17] += '老师' 
+    }
+    console.log(arr8); //
+
+    //🅿️44-数组操作-曾值 push与unshift
+    //✅用的多push()末尾加一个新元素，返回数组长度；
+    let arr9 = ["long", "le", "bo"]
+    console.log(arr9);
+    arr9.push('feng');
+    console.log(arr9);
+    console.log(arr9.push('huan')); //返回数组长度；
+    console.log(arr9);
+    arr9.push('dog', 'cat');
+    console.log(arr9);
+
+    //unshift()开头加一个新元素，返回数组长度；
+    arr9.unshift('xiang');
+    console.log(arr9);
+
+    //🅿️45-✅🛑案例-数组筛选; 选出大于等于10的元素，放入新数组
+    let arr10 = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+    console.log(arr10);
+    let newArr = [];
+    for (let i18 = 0; i18 < arr10.length; i18++) {
+      if (arr10[i18] >= 10) {
+        newArr.push(arr10[i18]);
+      }
+    }
+    console.log(newArr);
+    console.log(`arr10大于等于10的元素是：${newArr}`);
+
+    // ✅🛑案例-数组筛选; 把0去掉，形成一个不包含0的新数组；
+    let arr11 = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+    console.log(arr11);
+    let newArr2 = [];
+    for (let i19 = 0; i19 < arr11.length; i19++) {
+      if (arr11[i19] !== 0) {
+        newArr2.push(arr11[i19]);
+      }
+    }
+    console.log(newArr2);
+    console.log(`arr11去除0元素后是：${newArr2}`);
+
+
+    //🅿️46-数组操作-删除 pop(),shift(),splice()
+    // pop(不要参数)删除最后一个元素，返回该元素的值，
+    let arr12 = ["red", "green", "blue"];
+    console.log(arr12);
+    arr12.pop();
+    console.log(arr12.pop()); //✅green
+
+    //shift(不要参数);删除第一个元素
+    let arr13 = ["red", "green", "blue"];
+    console.log(arr13);
+    arr13.shift();        //shift删除第一个元素
+    arr13.unshift("dog"); //unshift在第一个位置添加元素
+    console.log(arr13);
+    console.log(arr13.shift()); //✅dog
+
+    //✅splice(起始位置index，删除几个元素)删除指定元素；
+    //✅抽奖，删除指定商品
+    let arr14 = ["red", "green", "blue", "yellow", "black"];
+    arr14.splice(1, 1);//✅把green删除,从索引为1的位置开始删，删一个；
+    console.log(arr14);
+    arr14.splice(1);  //✅从索引为1的位置开始删，后面全部删除；
+    console.log(arr14);
+
+    //🅿️47-🛑综合案例数组-生成柱形图（顶部）
+
+    //🅿️49-冒 泡排序与sort()
+
+
+    //sort()
+    arr16 = [4, 5, 2, 6, 9, 1];
+    //升序
+    arr16.sort(function (a, b) {
+      return a - b
+    });
+    //降序
+    arr16.sort(function (a, b) {
+      return b - a
+    });
+
+
+  </script>
+</body>
+
+</html>

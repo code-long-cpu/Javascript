@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebAPIs-day1</title>
+</head>
+
+<style>
+  .wrapper {
+    border: solid 1px black;
+  }
+
+  strong {
+    display: block;
+    text-align: center;
+    /* border: solid 1px black; */
+  }
+
+  .imgBox {
+    width: 200px;
+    height: 150px;
+    /* border: solid 1px rgb(225, 225, 225); */
+  }
+
+  img {
+    border-radius: 8px;
+    /* 图片最大尺寸宽高都不会超过父级盒子的尺寸 */
+    /* max-width: 100%;
+    max-height: 100%; */
+    /* ✅图片尺寸会撑满父级盒子的尺寸，图片会变形，因为长宽分别等于父级盒子的长宽 */
+    width: 100%;
+    height: 100%;
+    /* ✅图片不会变形，撑满整个父级盒子，多余部分会裁掉 */
+    object-fit: cover;
+    /* 图片不会变形，撑满整个父级盒子，多余部分不会裁掉 */
+    /* object-fit: contain; */
+    border: solid 2px white;
+
+  }
+
+  .feng {
+    width: 200px;
+    height: 150px;
+    border: solid 2px white;
+  }
+
+  body {
+    /* background: url(https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_6530.JPG)no-repeat top center/cover; */
+    /* <background-size> 只能紧接着 <position> 出现，以"/"分割，如： "center/80%". */
+  }
+
+  .box0 {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    color: rgb(0, 0, 0);
+  }
+
+  .box1 {
+    width: 200px;
+    height: 200px;
+    background-color: yellow;
+    color: aqua;
+  }
+
+  .newbox1 {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+
+  .old {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+  }
+
+  .new {
+    color: blue;
+    font-weight: bold;
+    border-radius: 10px;
+    border: solid 1px black
+  }
+
+  /* 🅿️93-综合案例：轮播图案例 */
+  .slide {
+    margin: auto;
+    width: 300px;
+    /* height: 150px; */
+    /* border: solid 1px black; */
+    overflow: hidden;
+  }
+
+  .imgs {
+    width: 100%;
+    height: 200px;
+  }
+
+  .imsItem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .infoArea {
+    background-color: rgb(107, 72, 37);
+    padding: 10px 10px;
+  }
+
+  .slide .infoArea p {
+    color: white;
+    margin: 0;
+    margin-left: 5px;
+
+  }
+
+  .lis {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .slide .infoArea .lis li {
+    list-style: none;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 5px 8px;
+    opacity: 0.5;
+  }
+
+  .slide .infoArea .lis li.active {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+  }
+</style>
+
+<body>
+  <div>123</div>
+  <div id="id">456</div>
+  <div class='d'>456</div>
+  <div class='d'>789</div>
+  <p id="nav">导航栏</p>
+  <ul class='nav'>
+    <li>测试1</li>
+    <li>测试2</li>
+    <li>测试3</li>
+  </ul>
+  <hr>
+  <div class="box" style="border:solid 1px black;border-radius: 10px;padding: 10px; ">
+    🅿️82-修改DOM元素内容；innerText属性,innerHTML属性；我是文字内容
+  </div>
+  <br>
+  <!-- 🅿️82案例🛑-年会抽奖 -->
+  <div class="wrapper">
+    <strong>🅿️82案例🛑-年会抽奖</strong>
+    <h1>一等奖：<span id='one'>？？？</span></h1>
+    <h2>二等奖：<span id='two'>？？？</span></h2>
+    <h3>三等奖：<span id='three'>？？？</span></h3>
+  </div>
+  <br>
+  <div style="display: flex;">
+    <div
+      style="border:solid 1px black;border-radius: 10px; margin-right:10px;display: flex;flex-direction: column;align-items: center;">
+      <strong>🅿️83-修改DOM元素属性；常见属性href,title,src,</strong>
+      <img class='feng' src="https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_0125.JPG" alt="">
+    </div>
+    <div style="border:solid 1px black;border-radius: 10px;display: flex;flex-direction: column;align-items: center;"">
+      <strong>🅿️83案例🛑-刷新页面，随机更改图片</strong>
+      <div class=" imgBox">
+      <img class='ranImg' src="https://raw.githubusercontent.com/code-long-cpu/long_pic/main//EnDeSPwUUAEDBCF.jpeg"
+        alt="找不到图片">
+    </div>
+  </div>
+
+  </div>
+
+  <br>
+  <!-- 🅿️85-通过类名className修改样式 -->
+  <div style="display: flex;border: solid 1px black;border-radius: 10px;padding : 10px">
+    <div class="box0" style="margin-right:10px;">🅿️84-通过类名style修改单个样式 </div>
+    <div class="box1" style="margin-right:10px;">🅿️85-通过类名className覆盖原样式 </div>
+    <div class="old" style="margin-right:10px;">🅿️86-通过类名classList追加和删除样式；</div>
+  </div>
+  <br>
+
+
+
+
+  <script>
+    //🅿️78-WebAPIs 阶段说明；
+    // Day-1 DOM获取元素：获取元素(querrySelector)，修改内容(innerHTML)，属性(href与style)
+    // Day-2 事件基础：注册事件，tab栏切换
+    // Day-3 事件进阶：事件对象，事件委托
+    // Day-4 DOM节点操作：节点的增删改查
+    // Day-5 BOM操作浏览器：BOM、插件、本地存储(本地小数据库)-学生信息表
+    // Day-6 正则表达式：正则表达式(表单验证)，综合案例(小兔鲜儿)
+
+    //🅿️79-声明变量 ⚠️const优先；少用let；不用var；
+    //const声明后不会再变；react中都是const声明变量
+    //✅变量先声明const，之后需要修改再改let；
+    //栈内值会变化用let；反之用const,const存地址，地址不变
+    //✅基本类型int string，值存在栈中，如果变动用let声明；
+    //✅引用类型array，obj，地址存在栈中，值存在堆中，地址不会变，用const声明，值随便修改；
+
+    const arr = ['red', 'green']
+    arr.push('red')//数组栈地址没变，只是堆数值新增。所以不报错
+    console.log(arr);
+
+    // arr = [1,2,4];//新数组会有新地址，新地址改变了原栈地址，报错；
+    // console.    log(arr);
+
+    //⚠️⚠️⚠️今后数组和对象尽量用const声明！
+    const names = []; //对象数组names的栈地址不变，堆的值在新增
+    names[0] = 1
+    names[1] = 2
+    console.log(names);
+
+    const obj = {} //对象obj的栈地址不变，堆的值在新增
+    obj.name = 'pink老师';
+    console.log(obj);
+
+    //🅿️80-WebAPIs基本认知；
+
+    // 作用：用js去操作html和浏览器；
+
+    //分类:
+    //DOM(文档对象模型，标签，图片，显示隐藏，盒子滚动)
+    //BOM(浏览器对象模型 promopt和alert弹出页面)
+
+    // DOM：
+    //DOM(Document Object Model)-通过JS操作网页内容，标签的；开发网页特效，实现用户交互；
+
+    // DOM树：
+    //文档用树形结构直观的体现标签与标签的关系；
+
+    // ⚠️⚠️DOM对象：浏览器根据HTML标签生成的JavaScript对象（DOM核心思想，把网站内容当对象来处理，修改对象属性与方法而已）；
+    //任何一个html标签都是一个JS对象：有属性和方法
+    const div = document.querySelector('div');
+    //dir打印对象
+    console.dir(div); //⚠️在html中叫div标签，在js中叫DOM对象
+    console.dir(typeof div); //object
+    div.innerHTML = '456'; //页面的123会变成456
+    div.style.color = 'blue';
+
+    //document是DOM中的最大对象，它提供的属性和方法是用来访问和操作页面内容的；例如document.write(); 
+    //⚠️网页所有内容都在document里面；
+
+    //🅿️81-获取DOM元素； 第一步：查找获取；第二步：修改；
+    //css通过选择器获取标签，js通过js的方式获取标签
+
+    //✅js借助css选择器获取dom  ；
+    //1-获取第一个元素(可直接修改)
+    // ✅语法：document.querySelector('css选择器') 选择器必须加引号，否则当变量来看
+    const d = document.querySelector('div') //标签选择器
+    console.log(div); //返回div对象
+    const d1 = document.querySelector('.d') //类选择器
+    console.log(d1); //返回div对象
+    d1.style.color = 'yellow' //直接修改：d1对象.style属性.color.属性 = 'yellow';
+    const p = document.querySelector('#nav') //id选择器
+    console.log(p);
+    const li = document.querySelector('ul li:first-child')//复合选择器  first-child在这里不加也行 
+    console.log(li); //返回li对象
+
+    //3-获取多个元素(需遍历后，修改)
+    // ✅语法：document.querySelectorAll('css选择器') 
+    const lis = document.querySelectorAll('ul li')
+    console.log(lis); //返回数组对象lis NodeList(3) 伪数组；不能pop(),push(); 可通过for遍历；
+    for (let i = 0; i < lis.length; i++) {
+      console.log(lis[i]);
+    }
+
+    //3-其他方法：用得少 ❌
+    //通过id获取元素（单个）
+    document.getElementById('nav') //不加#
+    //获取页面所有div标签
+    document.getElementsByTagName('div');
+    //根据类型获取元素，获取所有类名为w的标签
+    document.getElementsByClassName('w');
+
+    //🅿️82-修改DOM元素内容；innerText属性,innerHTML属性；
+    // innerText不解析标签。只识别文字文本
+    const box = document.querySelector('.box');
+    console.log(box.innerText);
+    box.innerText = '我是一个盒子';
+    box.innerText = '<strong>我是一个盒子</strong>';//不识别strong标签
+
+    // innerHTML 可解析标签，并识别文字文本
+    box.innerHTML = '<strong>🅿️82-修改DOM元素内容；innerText属性,innerHTML属性；innerHTML我识别加粗标签</strong>';//识别strong标签
+
+    //🅿️82案例🛑-年会抽奖
+    const personArr = ['谢龙', '沈乐', '谢凤', '陈博', '敦敦', '豆豆']
+    // // 先抽一等奖（获取0-5的随机数）
+    // let random = Math.floor(Math.random() * personArr.length);
+    // console.log(personArr[random]);
+    // // 获取一等奖标签,给标签赋值抽到的元素
+    // const one = document.querySelector('#one');
+    // one.innerHTML = personArr[random];
+    // // 删除一等奖的名字
+    // personArr.splice(random, 1);
+    // console.log(personArr);
+
+    //用循环来写(✅自己写的)
+    // 抽三次奖，循环三次
+    for (let i = 1; i <= 3; i++) {
+      //获取0-5随机数
+      let random = Math.floor(Math.random() * personArr.length);
+      //获取中奖名字
+      const lists = document.querySelector(`h${i} span`);
+      //填写中奖名字
+      lists.innerHTML = personArr[random];
+      //删除中奖名字
+      personArr.splice(random, 1);
+    }
+    console.log(personArr);
+
+    //🅿️83-修改DOM元素属性；常见属性href,title,src,
+    // ✅语法：对象.属性 = 值
+    // 获取img标签
+    const img = document.querySelector('.feng');
+    img.src = 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_6530.JPG'
+    img.title = 'Feng'
+
+    //案例🛑随机刷新页面随机生成一张图片
+    const randomImages = ['https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_1674.JPG', 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_6530.JPG', 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_0125.JPG', 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//EnDeSPwUUAEDBCF.jpeg', 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//dragonball.png']
+    //生成0-3的随机数
+    const imgNum = Math.floor(Math.random() * randomImages.length)
+    //获取img标签
+    const ranImg = document.querySelector('.ranImg')
+    // 修改img的src属性，重新赋图片路径
+    ranImg.src = randomImages[imgNum];
+
+    //🅿️84-修改DOM元素样式属性； 大小颜色位置；
+    // ✅语法：对象.style.样式属性 = 值；
+    //1-通过style操作css
+    //2-通过类名className操作css
+    //3-通过类名classList操作css
+
+    //1-通过style操作css（修改单个样式值：代码长，style每条都要写，代码会很多）
+    // ✅元素.style.属性=值
+    const wrapper = document.querySelector('.wrapper');
+    wrapper.style.width = '300px';
+    wrapper.style.color = 'red';
+    // 用-链接的多组单词的采取小驼峰命名：background-color->backgroundColor
+    wrapper.style.backgroundColor = 'yellow';
+    wrapper.style.border = 'solid 1px red';
+    wrapper.style.borderRadius = '10px';
+
+    //🅿️84-通过类名style修改单个样式
+    const box0 = document.querySelector(`.box0`);
+    box0.style.color = `red`;
+    box0.style.fontWeight = `bold`;
+
+    //案例🛑随机更换背景图片，即body的背景图片，html中body只有一个，
+    console.log(document.querySelector('body'));
+    //生成0-3的随机数 获取随机数匹配的图片地址
+    const imgNum1 = Math.floor(Math.random() * randomImages.length)
+    //去除图片地址的引号
+    let str = randomImages[imgNum1]
+    str = str.replace(/^"(.+(?="$))"$/, '$1')
+    // 修改body的style央视的Background，重新赋图片路径
+    // document.body.style.backgroundImage = `url(${str})`;
+
+    //🅿️85-通过类名className修改样式；（修改多个样式值，直接写一个新的class类，赋给标签元素，得检查标签是否已有class，否则会全部覆盖）；
+    // ✅元素.className=’style类名‘ 用新class='box1'覆盖旧class='box1'
+    const box2 = document.querySelector('.box1');
+    // 添加新类名，如果原来有就的样式，可把旧的也写上，这样两个样式共存;
+    box2.className = 'box1 newbox1' //用下面的classList可完美达成此目的；
+
+    //🅿️86-通过类名classList修改样式； ✅配合事件就是交互
+    //为了防止className容易覆盖旧类名，可通过classList追加和删除类名；
+    //追加/删除/切换一个类
+    // 元素.classList.add('类名')
+    // 元素.classList.remove('类名')
+    // 元素.classList.toggle('类名') 切换
+    const box3 = document.querySelector('.old');
+    // ⚠️⚠️classList类名不加点
+    box3.classList.add('new');  //old与new两个类样式同时存在，不会存在覆盖导致的样式丢失；
+    //移除类
+    box3.classList.remove('new') //移除new样式
+    //切换类
+    box3.classList.toggle('new');//✅开关；有new类，就删除new，无new类，就添加new；用作网页黑白界面切换
+
+
+    //🅿️87-案例🛑随机轮播图案例，上
+    //🅿️88-案例🛑随机轮播图案例，下
+    //🅿️89-获取操作表单-操作表单属性 input的value修改输入内容，type修改眼睛密码，checkbox修改勾选框状态，disabled是否禁用input属性，button按钮是否可按。
+    //🅿️90-自定义属性
+    //🅿️91-定时器-间歇函数
+    //🅿️92-用户倒计时效果；10秒阅读完毕后同意
+    //🅿️92-综合案例-轮播图定时版
+  </script>
+
+  <!-- 🅿️92-🛑用户倒计时效果；10秒阅读完毕后同意 -->
+  <div class="P92" style="border:solid 1px black;border-radius: 10px; padding: 10px;">
+    <strong>🅿️92-用户倒计时效果；10秒阅读完毕后方可同意</strong>
+    <textarea name="" id="" cols="20" rows="5">
+      用户注册协议 
+      用户：在手机、平板电脑、电脑等注册成为平台（以下简称“平台”或“平台方”）的使用者，通过平台发布、查看、接收图文/音频/视频信息或其他文件，或与其他用户进行延时/实时交流的用户（以下简称“用户”）。  
+      </textarea>
+    <br>
+    <button class="btn" disabled>我已阅读用户协议(10s)</button>
+    <script>
+      const btn = document.querySelector('.btn');
+      console.log(btn);
+      //倒计时秒数
+      let i = 10;
+      //开启定时器
+      let btnId = setInterval(function () {
+        i--;
+        btn.innerHTML = `我已阅读用户协议(${i}s)`;
+        if (i === 0) {
+          //关闭定时器
+          clearInterval(btnId);
+          btn.disabled = false;
+          btn.innerHTML = `同意`;
+        }
+      }, 1000);
+    </script>
+    <br>
+  </div>
+  <br>
+
+  <!-- 🅿️93-🛑综合案例：轮播图案例 -->
+  <div class="P93" style="border:solid 1px black;border-radius: 10px; padding: 10px;">
+    <strong>🅿️93-综合案例：轮播图案例</strong>
+    <div class="slide">
+      <div class="imgs">
+        <img class="imsItem" src="https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_0125.JPG" alt="">
+      </div>
+      <div class="infoArea">
+        <p>跟铁四院老友相聚</p>
+        <ul class="lis">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    //初始数组对象准备，照片，信息等
+    const sliderData = [
+      { url: 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_0125.JPG', title: '跟铁四院老友相聚', color: 'rgb(107,72,37)' },
+      { url: 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_1674.JPG', title: '欢欢的幸福生活', color: 'rgb(207,172,129)' },
+      { url: 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//IMG_6530.JPG', title: '谢凤的曹魏故都之旅', color: 'rgb(33,71,56)' },
+      { url: 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//EnDeSPwUUAEDBCF.jpeg', title: '好听的anna sun歌曲', color: 'rgb(61,101,32)' },
+      { url: 'https://raw.githubusercontent.com/code-long-cpu/long_pic/main//Nick.jpg', title: '与NICK的泰国之行', color: 'rgb(65,54,32)' }
+    ];
+    //轮播图片自动播放，字体切换，先要获取
+    const images = document.querySelector('.imsItem');
+    console.log(images);
+    const text = document.querySelector('.slide .infoArea p');
+    const color = document.querySelector(`.infoArea`);
+
+
+    // console.log(point);
+    // 开始计时器
+    let n = 0;
+    setInterval(function () {
+      n++;
+      if (n === sliderData.length) {
+        n = 0;
+      }
+      images.src = sliderData[n].url;
+      text.innerHTML = sliderData[n].title;
+      //⚠️去除图片地址的引号(用style的方式修改标签单个样式)
+      color.style.backgroundColor = sliderData[n].color;
+
+      //✅正常逻辑写法
+      //获取标记了active点点的li
+      const point = document.querySelector('.slide .infoArea .lis li.active');
+      //删除有acrive的点点的active
+      point.classList.remove('active');
+      //获取第n个li
+      const point1 = document.querySelector(`.slide .infoArea .lis li:nth-child(${n + 1})`);
+      //给第n个li添加上active
+      point1.classList.add('active');
+
+      //✅更简洁写法：
+      // document.querySelector('.slide .infoArea .lis li.active').classList.remove('active');
+      // document.querySelector(`.slide .infoArea .lis li:nth-child(${n + 1})`).classList.add('active');
+    }, 2000)
+
+
+  </script>
+</body>
+
+</html>

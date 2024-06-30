@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>黑马程序员前端JavaScript入门到精通全套视频教程，javascript核心进阶ES6语法、API、js高级等基础知识和实战教程Day-5</title>
+</head>
+
+<style>
+  table {
+    margin: 0 auto;
+    width: 600px;
+    text-align: center;
+  }
+
+  table,
+  th,
+  td {
+    border: solid 1px #ccc;
+    border-collapse: collapse;
+  }
+
+  caption {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  tr {
+    height: 40px;
+    cursor: pointer;
+  }
+
+  table tr:nth-child(1) {
+    background-color: #ddd;
+  }
+
+  table tr:not(:first-child):hover {
+    background-color: #eee;
+  }
+
+  div {
+    width: 100px;
+    height: 100px;
+    border: solid 1px black;
+    margin: auto;
+    border-radius: 20px;
+  }
+</style>
+
+<body>
+  <table>
+    <caption>🅿️70-🛑渲染学生信息表案例-学生列表</caption>
+    <tr>
+      <th>序号</th>
+      <th>姓名</th>
+      <th>年龄</th>
+      <th>性别</th>
+      <th>家乡</th>
+    </tr>
+
+    <script>
+      //1-数据准备
+      let studentsList = [
+        { name: '小明', age: 18, gender: '男', hometown: '河北省' },
+        { name: '小红', age: 19, gender: '女', hometown: '河南省' },
+        { name: '小刚', age: 17, gender: '男', hometown: '山西省' },
+        { name: '小丽', age: 18, gender: '女', hometown: '山东省' },
+      ];
+      //2-数据渲染
+      for (let i = 0; i < studentsList.length; i++) {
+        document.write(`
+        <tr>
+          <td>${i + 1}</td>
+          <td>${studentsList[i].name}</td>
+          <td>${studentsList[i].age}</td>
+          <td>${studentsList[i].gender}</td>
+          <td>${studentsList[i].hometown}</td>
+        </tr>
+        `)
+      }
+
+    </script>
+
+  </table>
+
+  ❌
+  <!-- 单词：<input type="text" name="单词" value="11">
+  <script>
+    let a = document.getElementById("input");
+    console.log(a.);
+  </script> -->
+  <div></div>
+
+  <script>
+    //🅿️64-任务安排
+    //🅿️65-对象（python字典）是一个数据类型；数组保存数据不好用，得用新数据类型对象保存数据。可以用对象详细的描述某个事物，描述一个人；
+    //用数组对象渲染页面（正常是ajax获取后端数据）。
+
+    let arr = [180, 180, 180] //数组中三个180意义不明确；
+
+    //储存姓名，年龄，电话等，得用对象数据类型。
+    //✅对象是无序数据集合；ul无序；
+    //✅数组是有序数据集合；ol有序；
+
+    // 小括号()：优先级，中括号[]：数组，大括号{}：对象;
+    //声明对象：
+    let obj = {};   //✅常用
+    let obj2 = new Object(); //构造函数方式
+    // 声明数组:
+    let arr1 = [];  //✅常用
+    let arr2 = new Array(); //构造函数方式
+
+    // let 对象 = {
+    //  属性名：属性值；名词-静态特征；数字，字符串，数组，布尔类型；
+    //  方法名：函数；动词-动态行为；；
+    // }
+
+    let obj3 = {
+      uname: "pink老师",  //对象属性无顺序；
+      age: 18,            //属性用逗号隔开
+      gender: '女'
+    }
+    console.log(obj3);
+    console.log(typeof obj3);
+
+    //🅿️66-对象操作，增删改查；（Day—3 数组的增删改查）
+    // 1-声明
+    let goods = {
+      "good-name": "小米10青春版", //对象中不建议用name，会和window重点name冲突；name换成字符串属性名；遍历对象用的多；
+      num: "100012816024",
+      weight: "0.55kg",
+      address: "中国大陆"
+    }
+
+    //2-查-对象属性：对象名.属性名；
+    console.log(goods.address); // "中国大陆"
+
+    //3-改-对象名.属性名=新值；
+    goods.num = '1234567';
+    console.log(goods.num);
+    console.log(goods);
+
+    //4-增-对象名.属性名=新值；（跟改一样）
+    goods.price = "3999元" //增
+    console.log(goods);
+
+    //5-删-delete；（了解即可）
+    delete goods.address;
+    console.log(goods);
+
+    //🅿️67-查的两种方式；⚠️都要记住；
+    console.log(goods.num); //⚠️⚠️访问数组对象的属性值
+    console.log(goods['good-name']); //访问字符串属性名，⚠️遍历对象用的多；for in遍历对象用的多；
+    console.log(goods['weight']); //访问字符串属性名，⚠️for in遍历对象用的多；
+
+    //🅿️68-对象的方法 （匿名函数写法）
+    let obj4 = {
+      //属性
+      uname: "刘德华",
+      //方法
+      sing: function (x, y) {
+        console.log("刘德华会唱冰雨");
+        console.log(x + y);
+      },
+      //多个方法用逗号隔开
+      dance: function () {
+        console.log("刘德华会跳舞");
+      }
+    }
+    //方法调用：对象名.方法名；
+    obj4.sing(1, 2);
+    obj4.dance();
+    //与这个类似，document是个对象
+    document.write();
+
+    //方法同样支持增删：
+    //增加方法
+    obj4.eat = function () {
+      console.log("刘德华会吃饭");
+    }
+    obj4.eat();
+    //改变方法
+    obj4.sing = function () {
+      console.log("刘德华哑巴了");
+    }
+    obj4.sing();
+
+    console.log(obj4);
+
+
+
+    //🅿️69-⚠️⚠️遍历对象；
+    //对象是无序的键值对，无规律，不能用数组的for循环；
+    //对象没有数组的长度length，不能确定长度，不能用for循环；
+
+    //for in 遍历数组；✅少用；⚠️不推荐遍历数组，应该遍历对象；
+    let arr3 = ['a', 'b', 'c']
+    for (k in arr3) {
+      console.log(k);  //✅k是数组的下标index(黑)，是字符串'0','1','2'；
+      console.log(arr3[k]); //‘a’,'b','c'
+
+    }
+    //for in 遍历对象；⚠️⚠️k是字符串；
+    //获得对象属性是k;（k是字符串）
+    //获得对象值是obj[k];
+    let person = {
+      uname: "pink老师",  //对象属性无顺序；
+      age: 18,            //属性用逗号隔开
+      gender: '女'
+    }
+    for (let k in person) {
+      console.log(k); //属性名 字符串型(黑)；'uname','age','gender'
+      //[]访问字符串属性名；
+      console.log(person['gender']); //输出属性值：‘女’
+      console.log(person[k]);//输出属性值，‘pink老师’，18，’女‘
+    }
+
+    //🅿️70-🛑渲染学生信息表案例；
+    // for循环遍历数组
+    // for in遍历对象
+    // ⚠️⚠️⚠️数组对象(数组里包对象)-此数据开发中异常常见
+    let students = [
+      { name: '小明', age: 18, gender: '男', hometown: '河北省' },
+      { name: '小红', age: 19, gender: '女', hometown: '河南省' },
+      { name: '小刚', age: 17, gender: '男', hometown: '山西省' },
+      { name: '小丽', age: 18, gender: '女', hometown: '山东省' },
+    ];
+    for (let i = 0; i < students.length; i++) {
+      console.log(students[i]);  //数组中的每个对象
+      console.log(students[i].name);
+      console.log(students[i].age);
+      for (let k in students[i]) {    //遍历每个对象的元素,k是属性名 ’name‘
+        // console.log(k);               //对象的属性名
+        console.log(students[i][k]);  //对象的属性值
+      }
+    }
+
+    //🅿️71-内置对象；Math数学对象（属性，方法）；能直接用的对象方法；
+    document.write();
+    console.log();
+    // Math属性(✅符号是蓝色立方体)
+    console.log(Math.PI);
+    // Manth方法(✅符号是白色立方体)  
+    console.log(Math.ceil(1.1)); //2 ceil天花板，向上取整；
+    console.log(Math.floor(1.9)); //1 floor地板，向上取整；
+    console.log(Math.round(1.9)); //2 四舍五入；
+
+    //取整函数
+    console.log(parseInt(1.99)); //1
+    console.log(parseInt("1.99")); //1  可填字符串
+
+    // 求极值 多参数，数组得展开为参数
+    console.log(Math.max(1, 2, 3, 4, 5, 6)); //6 最大值；
+    console.log(Math.min(1, 2, 3, 4, 5, 6)); //1 最小值；
+    console.log(Math.max(...[1, 2, 3, 4, 5, 6])); //1 求数组最大值；
+
+    console.log(Math.abs(-1.9)); //1.9 绝对值；
+
+
+    //🅿️72-内置对象；随机数函数；
+    //Math.random()返回0-1随机小数；左闭右开[0,1);
+    console.log(Math.random());
+
+    //取 0-11 的随机数；
+    //[0,1)*11=>[0,11)
+    console.log(Math.random() * 11);
+
+    //取 0-10 的随机整数；
+    console.log(Math.floor(Math.random() * 11));
+
+    //取 1-10 的随机整数；
+    //[0,1)*10=>[0,10)+1=>[1,11); 
+    //用floor 向下取整；8.6->8; 9.6->9
+    console.log(Math.floor(Math.random() * 10 + 1));
+
+    // ⚠️数组中随机抽取
+    let arr4 = ['red', 'green', 'blue']
+    let random = Math.floor(Math.random() * arr4.length);  //[0-3);
+    console.log(random);
+    console.log(arr4[random]);
+
+    //取 [5-10] 的随机整数；
+    console.log(Math.floor(Math.random() * (5 + 1) + 5));
+
+    //⚠️取N-M的随机整数
+    // console.log(Math.floor(Math.random() * (M - N + 1) + N));
+
+    //取[4-8]的整数
+    function getRandom(N, M) {
+      return Math.floor(Math.random() * (M - N + 1) + N)
+    }
+    console.log(getRandom(4, 8))
+
+    //🅿️73-🛑案例-随机点名，不允许重复点名（多次点到同一人），跟抽奖活动一样，得了一等奖就得剔除该人；用到数组的增删改查，删splice(指定删)/pop(删末尾)/shift(删第一个)
+    let arr5 = ['赵云', '黄忠', '关羽', '张飞', '马超', '刘备', '曹操']
+    //取随机数索引值为0~6; 即[0,6)*7=>[0,7) 可取到[0,6]
+    let random2 = Math.floor(Math.random() * arr5.length);
+    console.log(arr5[random2]);
+
+    //✅Day-3课程数组splice(起始位置index，删除几个元素)删除指定元素；
+    arr5.splice(random2, 1);
+    console.log(arr5);
+
+    //🅿️74-🛑案例-猜数字游戏：随机生成1-10之间的数字，用户输入一个数字，如果大于该数字，就提示数字大了；反之提示小了；如果猜对了，就提示猜对了，程序结束。
+
+    // 🛑游戏一：无次数限制
+    //1-生成一个1-10的随机数
+    //取[N-M]的整数
+    // function getRandom(N, M) {
+    //   return Math.floor(Math.random() * (M - N + 1) + N)
+    // }
+    // let random3 = getRandom(1, 10)
+
+    //2-判断并输出
+    function guessGame() {
+      //1-生成一个N-M的随机数 (立即执行函数(传参)，无需调用)
+      let random3 = (function (N, M) { return Math.floor(Math.random() * (M - N + 1) + N) })(1, 20);
+
+      while (true) {
+        //2-用户输入一个值
+        let num = +prompt('请您输入一个数：');
+
+        //3-判断输出
+        if (num > random3) {
+          alert('您猜大了')
+        } else if (num < random3) {
+          alert('您猜小了')
+        } else {
+          alert('您猜对了')
+          break;
+        }
+      }
+    }
+    //启动数字数字游戏
+    // guessGame();
+
+    // 🛑游戏二：有次数限制：猜三次；（设置flag开关）
+    function guessGame2() {
+      //1-生成一个N-M的随机数 (立即执行函数(传参)，无需调用)
+      let random3 = (function (N, M) { return Math.floor(Math.random() * (M - N + 1) + N) })(1, 50);
+
+      let flag = true; //设置开关，开启（for循环次数用完，就if执行次数用完）
+      for (let i = 1; i <= 3; i++) {
+        //2-用户输入一个值
+        let num = +prompt('请您输入一个数：');
+
+        //3-判断输出
+        if (num > random3) {
+          alert('您猜大了，继续')
+        } else if (num < random3) {
+          alert('您猜小了，继续')
+        } else {
+          flag = false; //猜对了，开关=false（退出for循环）
+          alert('您猜对了')
+          break;
+        }
+      }
+      if (flag) {  //for循环完了，执行if-flag语句；猜对了就flag=false，不执行；
+        alert('次数已经用完，挑战失败')
+      }
+    }
+    //启动数字数字游戏
+    // guessGame2();
+
+    //🅿️75-🛑生成随机颜色案例；如果true则生成16进制，如果false则生成rgb
+    function getRandomColor(flag = true) {
+      if (flag) {
+        if (flag) {
+          let str = '#';
+          //#ffffff - 建立16进制颜色取值范围0-f的数组；
+          let arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+          //随机提取数组元素（点名系统）6次，
+          for (let i = 1; i <= 6; i++) {
+            let random = Math.floor(Math.random() * arr.length);
+            str = str + arr[random];  //不能用push，数组才用push
+          }
+          return str;
+        }
+      } else {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+        return `rgb(${r},${g},${b})`;
+      }
+
+    }
+    console.log(getRandomColor(true));
+    console.log(getRandomColor(false));
+
+
+    const div = document.querySelector('div');
+    div.style.backgroundColor = getRandomColor();
+
+    //🔁return值可以直接打印函数
+    function ret(a, b) {
+      let num4 = a + b;
+      return num4;
+    }
+    console.log(ret(1, 3));
+    let num4 = ret(1, 3);
+    console.log(num4);
+
+    //🔁数组可以存的不同的值类型
+    let arr11 = [1, 2, 'long', 'feng', true, 1.22, false]
+    console.log(arr11);
+
+    //🅿️76-🛑综合案例-渲染学成在线
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

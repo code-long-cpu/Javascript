@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑马程序员前端JavaScript入门到精通全套视频教程，javascript核心进阶ES6语法、API、js高级等基础知识和实战教程Day-1</title>
+</head>
+
+<style>
+    h2 {
+        /* border: solid 1px black; */
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        height: 100px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    th {
+        padding: 5px 40px;
+    }
+
+    table,
+    td,
+    th {
+        border: solid 1px black;
+    }
+</style>
+
+<body>
+    <!-- P19综合案例，用户订单案例 -->
+    <h2>综合案例：订单确认</h2>
+
+    <!-- P19综合案例，用户订单案例 -->
+    <script>
+        // 1-用户输入
+        let price = +prompt('请输入商品价格：');
+        let num = +prompt('请输入商品数量：');
+        let adress = prompt('请输入收货地址：');
+        // 2-计算总额
+        let total = price * num;
+        // 3-页面打印渲染
+        document.write(`
+        <table>
+            <tr>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>商品数量</th>
+                <th>总价</th>
+                <th>收货地址</th>
+            </tr>
+            <tr>
+                <td>小米手机PLUS</td>
+                <td>${price}元</td>
+                <td>${num}个</td>
+                <td>${total}元</td>
+                <td>${adress}</td>
+            </tr>
+         </table>
+        `);
+
+    </script>
+
+
+    <script>
+        // P15-字符串拼接变量
+        let age = 25;
+        document.write('我今年' + age + '岁了。<br>');
+        document.write('我今年' + age + '岁了。<br>');
+        // P16-模板字符串（字符串拼接变量）
+        document.write(`我今年${age}岁了。<br>`)
+        // 案例
+        // let name = prompt("请输入你的名字：");
+        // let age2 = prompt("请输入你的年龄：");
+        // document.write(`大家好，我叫${name}，今年${age2}岁了。<br>`);
+
+        // P17-数据类型
+        console.log(typeof name);
+
+        console.log(typeof +"123"); //+"123"表示正12；
+
+        //P18-隐式 显式数据转换
+        // let num = prompt("请输入金额："); 
+        // console.log(Number(num));
+
+        // let num2 = Number(prompt("请输入金额："));
+        // console.log(num2);
+
+        // let num3 = +prompt("请输入金额："); // 隐式
+        // console.log(num3);
+
+        console.log("long" - 1);
+
+        // let num1 = Number(prompt("请输入第一个数："));  //案例两数相加；
+        // let num2 = Number(prompt("请输入第二个数："));
+        // let num3 = num1 + num2;
+        // alert(`两数相加为：${num1 + num2}`);
+
+
+
+
+    </script>
+</body>
+
+</html>
