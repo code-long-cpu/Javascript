@@ -10,12 +10,16 @@
 
 <body>
   <h4>🅿️105-🛑API-day3-104-表单全选反选案例(css input的checked选择器，勾选谁，谁变大)</h4>
+  <h4>✅改进：扩大了checkbox勾选范围</h4>
   <div class="P105">
     <table class="P_105">
       <thead>
         <tr>
           <th>
-            <input type="checkbox" class="bigcheck"><span>全选</span>
+            <label for="quanxuan">
+              <input type="checkbox" class="bigcheck" id="quanxuan"><span>全选</span>
+            </label>
+
           </th>
           <th>商品</th>
           <th>商家</th>
@@ -24,7 +28,7 @@
       </thead>
       <tbody class="zonggou">
         <tr>
-          <td>
+          <td data-id="0">
             <input type="checkbox" class="check">
           </td>
           <td>小米手机</td>
@@ -32,15 +36,15 @@
           <td>￥4000</td>
         </tr>
         <tr>
-          <td>
-            <input type="checkbox" class="check">
+          <td data-id="1">
+            <input type="checkbox" class="check" id="check1">
           </td>
           <td>华为手机</td>
           <td>华为</td>
           <td>￥5000</td>
         </tr>
         <tr>
-          <td>
+          <td data-id="2">
             <input type="checkbox" class="check">
           </td>
           <td>三星手机</td>
@@ -61,7 +65,11 @@
     // 冒泡思想：给tbody添加时间，监听每一个input的事件
     zonggou.addEventListener("click", function (e) {
       // console.log(check.tagName); //INPUT
-      if (e.target.tagName === 'INPUT') {
+      // console.log(e.target.tagName); //
+      if (e.target.tagName === 'TD' && e.target.hasAttribute('data-id')) {
+        // console.log(e.target);
+        // ⚠️控制checkbox，如果选中，点击就是取消；如果没选中，点击就是反选
+        cks[e.target.dataset.id].checked = !cks[e.target.dataset.id].checked;
         // console.log(document.querySelectorAll(".check:checked").length === document.querySelectorAll(".check").length);
         bigcheck.checked = document.querySelectorAll(".check:checked").length === cks.length;
       }
@@ -81,9 +89,33 @@
 
   <br>
   <hr>
-  <h4>🅿️114-🛑API-day3-114-仿京东滑动以及bilibili导航滑动案例</h4>
+  <h4>🅿️114-🛑API-day3-114-仿京东滑动(stiky)以及bilibili导航滑动案例</h4>
+  <h4>✅改进了head栏的fixed位置，不用参照浏览器窗口，而是参照div父元素</h4>
+  <div class="P114">
+    <div class="head">posiiton:sticky</div>
+    <div class="content">显示head位置</div>
+    <div class="background"></div>
+  </div>
+  <script>
+    const P114 = document.querySelector('.P114');
+    const head = document.querySelector('.head');
+    const content = document.querySelector('.content');
+    P114.addEventListener('scroll', function (e) {
+      // console.log(11);
+      const n = P114.scrollTop;
+      // console.log(n);
+      // console.log(content.offsetTop)
+      if (n > content.offsetTop) {
+        head.classList.add('fixed')
+      } else {
+        head.classList.remove('fixed')
 
 
+      }
+
+
+    });
+  </script>
 
   <br>
   <hr>

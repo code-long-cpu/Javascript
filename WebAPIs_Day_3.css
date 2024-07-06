@@ -1,3 +1,4 @@
+/* 🅿️105-🛑API-day3-104-表单全选反选案例(css input的checked选择器，勾选谁，谁变大) */
 .P_105 {
   margin: auto;
   border: solid 1px black;
@@ -26,4 +27,70 @@ td {
 
 .P_105 tr:hover {
   background-color: rgb(243, 243, 243);
+}
+
+.label {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+
+
+/* 🅿️114-🛑API-day3-114-仿京东滑动以及bilibili导航滑动案例 */
+.P114 {
+  height: 200px;
+  width: 500px;
+  border: solid 1px rgb(135, 135, 135);
+  border-radius: 10px;
+  margin: auto;
+  position: relative;
+  overflow: scroll;
+}
+
+/* 未用absolute绝对定位，head直接显示在盒子顶，就是正常排布*/
+.head {
+  height: 30px;
+  width: 500px;
+  background-color: rgb(72, 182, 233);
+  /* position: absolute; */
+  top: -30px;
+  box-shadow: 1px 0px 5px .1px rgb(214, 214, 214);
+  z-index: 1;
+  text-align: center;
+  line-height: 1.8;
+  color: white;
+  transition: all .2s;
+}
+
+.fixed {
+  top: 0px;
+  position: sticky;
+}
+
+
+.content {
+  height: 30px;
+  width: 160px;
+  position: absolute;
+  border: solid 1px black;
+  background-color: rgb(255, 181, 112);
+  color: white;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 130px;
+  text-align: center;
+  line-height: 2;
+}
+
+.background {
+  height: 500px;
+  width: 300px;
+  background-color: rgb(244, 244, 244);
+  margin: auto;
+  position: absolute;
+  z-index: -10;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
