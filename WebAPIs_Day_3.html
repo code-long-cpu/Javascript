@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebAPIs-day3</title>
+  <link rel="stylesheet" href="WebAPIs_Day_3.css">
+</head>
+
+<body>
+  <h4>🅿️105-🛑API-day3-104-表单全选反选案例(css input的checked选择器，勾选谁，谁变大)</h4>
+  <div class="P105">
+    <table class="P_105">
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" class="bigcheck"><span>全选</span>
+          </th>
+          <th>商品</th>
+          <th>商家</th>
+          <th>价格</th>
+        </tr>
+      </thead>
+      <tbody class="zonggou">
+        <tr>
+          <td>
+            <input type="checkbox" class="check">
+          </td>
+          <td>小米手机</td>
+          <td>小米</td>
+          <td>￥4000</td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" class="check">
+          </td>
+          <td>华为手机</td>
+          <td>华为</td>
+          <td>￥5000</td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" class="check">
+          </td>
+          <td>三星手机</td>
+          <td>三星</td>
+          <td>￥3000</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+  <script>
+    const bigcheck = document.querySelector('.bigcheck');
+    const zonggou = document.querySelector(".zonggou")
+    const check = document.querySelector(".check")
+    const cks = document.querySelectorAll(".check")
+
+    // ①小框全选，大框选
+    // 冒泡思想：给tbody添加时间，监听每一个input的事件
+    zonggou.addEventListener("click", function (e) {
+      // console.log(check.tagName); //INPUT
+      if (e.target.tagName === 'INPUT') {
+        // console.log(document.querySelectorAll(".check:checked").length === document.querySelectorAll(".check").length);
+        bigcheck.checked = document.querySelectorAll(".check:checked").length === cks.length;
+      }
+    })
+    // ②大框选了,小框也得逐个所有勾选，用for循环
+    bigcheck.addEventListener("click", function () {
+      for (let i = 0; i < cks.length; i++) {
+        cks[i].checked = bigcheck.checked;
+      }
+    })
+  </script>
+  <br>
+  <hr>
+
+  <h4>✅Day2已做🅿️112-🛑APIs-day3-111-小仙兔显示导航和返回顶部案例</h4>
+  <h4>✅Day2已做🅿️115/116-🛑API-day3-115/116-电梯导航上下集</h4>
+
+  <br>
+  <hr>
+  <h4>🅿️114-🛑API-day3-114-仿京东滑动以及bilibili导航滑动案例</h4>
+
+
+
+  <br>
+  <hr>
+
+</body>
+
+</html>

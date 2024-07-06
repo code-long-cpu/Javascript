@@ -1,0 +1,29 @@
+.P_105 {
+  margin: auto;
+  border: solid 1px black;
+  border-collapse: collapse;
+  cursor: pointer;
+}
+
+.P_105 tr th,
+td {
+  width: 120px;
+  text-align: center;
+}
+
+.P_105 tr th {
+  background-color: rgb(72, 182, 233);
+  color: white;
+  height: 25px;
+
+}
+
+.P_105 tr td {
+  border: solid 1px rgb(167, 167, 167);
+  height: 35px;
+  text-align: center;
+}
+
+.P_105 tr:hover {
+  background-color: rgb(243, 243, 243);
+}

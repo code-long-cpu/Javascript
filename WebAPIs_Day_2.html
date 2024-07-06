@@ -245,7 +245,7 @@
 
 <body>
   <!-- 🅿️94-🛑综合案例：点击弹窗 -->
-  <h4>🅿️94-🛑综合案例：点击弹窗</h4>
+  <h4 id="P94">🅿️94-🛑综合案例：点击弹窗</h4>
   <button class="b1">点击弹出广告</button>
   <script>
     const b1 = document.querySelector('.b1');
@@ -261,7 +261,7 @@
 
 
   <!-- 🅿️94-🛑综合案例：关闭广告-->
-  <h4>🅿️94-🛑综合案例：关闭广告</h4>
+  <h4 id="p94">🅿️94-🛑综合案例：关闭广告</h4>
   <div class="pos">
     <div class="adv">这是一则广告</div>
     <div class="close">关闭</div>
@@ -285,7 +285,7 @@
   <hr>
 
   <!-- 🅿️95-🛑综合案例：随机点名系统 -->
-  <h4>🅿️95-🛑综合案例：随机点名系统</h4>
+  <h4 id="P95">🅿️95-🛑综合案例：随机点名系统</h4>
   <div class="p95">
     <div class="title"></div>
     <h4>点名系统</h4>
@@ -347,7 +347,7 @@
   <hr>
 
   <!-- 🅿️97-🛑综合案例：轮播图完整版 -->
-  <h4>🅿️97-🛑综合案例：轮播图完整版</h4>
+  <h4 id="P97">🅿️97-🛑综合案例：轮播图完整版</h4>
   <!-- 1-先写左右按钮业务右++与左-- -->
 
   <div class="swiper-box">
@@ -460,14 +460,192 @@
       });
 
     </script>
-
   </div>
+  <br>
+  <hr>
+
+  <h4 id="P99">🅿️99-🛑焦点事件及小米搜索框案例（input才有鼠标焦点事件，div没有）</h4>
+  <div class="xiaomi">
+    <form action="" class="sousuo">
+      <input type="text" class="search" placeholder="请输入搜索内容">
+      <button class="sear">搜索</button>
+    </form>
+    <ul class="result">
+      <li><a href="#" data-id="0">抽水机</a></li>
+      <li><a href="#" data-id="1">苹果电脑</a></li>
+      <li><a href="#" data-id="2">华为手机</a></li>
+      <li><a href="#" data-id="3">电冰箱</a></li>
+      <li><a href="#" data-id="4">电动车</a></li>
+      <li><a href="#" data-id="5">水杯</a></li>
+    </ul>
+  </div>
+  <script>
+    // ①获取元素
+    const search = document.querySelector('.search');
+    const result = document.querySelector('.result');
+
+    // ②获取鼠标焦点
+    search.addEventListener('focus', function (event) {
+      // result.style.display = 'block';
+      result.style.opacity = 1;
+      search.classList.add('alert');
+      // console.log(11)
+    });
+
+    // ③失去鼠标焦点
+    search.addEventListener('blur', function (event) {
+      // result.style.display = 'none';
+      result.style.opacity = 0;
+
+      search.classList.remove('alert');
+    });
+    // ④把搜索按钮取消跳转
+    const sousuo = document.querySelector('.sousuo')
+    sousuo.addEventListener('submit', function (e) {
+      e.preventDefault();
+    })
+    // ⑤把点击的选项填充到输入框，给result添加事件冒泡
+    result.addEventListener('click', function (e) {
+      e.preventDefault();
+      // 查看事件对象的tagName是否是a标签
+      if (e.target.tagName === 'A') {
+        // console.log(e.target.dataset.id)
+        // sousuo.innerHTML = '';
+        // 获取所有的a标签数组
+        const As = document.querySelectorAll('.result li a')
+        // 用自定义属性锁定a标签某个元素
+        search.value = As[e.target.dataset.id].innerHTML;
+        // LIs[e.target.dataset.id]
+      }
+    })
+
+
+  </script>
+
+  <br>
+  <hr>
+  <h4 id="P100">🅿️100-🛑键盘事件以及发布评论案例（输入框变高css中focus伪类选择器，与P99课程Javascript中focus事件不一样）</h4>
+  <h4 id="P102">🅿️102-🛑回车发布评论案例（trim()方法去除字符串左右空格）</h4>
+  <div class="P100">
+    <div class="wapper_1">
+      <div class="touxiang">
+        <img
+          src="https://raw.githubusercontent.com/code-long-cpu/long_pic/main//245E6CC5-970A-47FF-B726-7DB3B0371F3A.jpeg"
+          alt="" class="avatar">
+      </div>
+      <textarea class="area" placeholder="请发一条友善的评论……"></textarea>
+      <button class="fasong">发送</button>
+    </div>
+    <div class="wapper_2">
+      <span class="zishu">0/300字数</span>
+    </div>
+
+    <div class="comment">
+      <div class="Aname">铲屎官</div>
+      <div class="message">说得好</div>
+      <div class="date">
+        <span class="year">2024-7-4</span>
+        <span class="time">12:25:35</span>
+        <span class="del"><a href="javascript:;">删除</a></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    // P100
+    // ①获取元素
+    const area = document.querySelector('.area');
+    const zishu = document.querySelector('.zishu');
+
+    // ②获取焦点，显现
+    area.addEventListener('focus', function () {
+      zishu.style.opacity = 1;
+    })
+    // ③失去焦点，消失
+    area.addEventListener('blur', function () {
+      zishu.style.opacity = 0;
+    })
+    // ④修改字数
+    area.addEventListener('input', function () {
+      // console.log(area.value.length);
+      zishu.innerHTML = `${area.value.length}/300字数`
+    })
+
+    // P102
+    // 获取评论
+    // 获取日期方法
+    // var myDate = new Date();
+    // myDate.toLocaleString();
+    // console.log(myDate.toLocaleDateString(), myDate.toLocaleTimeString());
+
+    const comment = document.querySelector('.comment');
+    const message = document.querySelector('.message');
+    const date = document.querySelector('.date');
+    const fasong = document.querySelector('.fasong');
+
+
+    // ③把评论放在本地存储，防止刷新无
+    // 1-先获取本地存储的信息
+    const comObj = JSON.parse(localStorage.getItem('ComObj')) || [];
+    // console.log(comObj);
+    function render_message() {
+      const content_com = comObj.map(function (item, index) {
+        return `
+        <div class="Aname" style="border-top:solid 1px rgb(192, 192, 192)">铲屎官</div>
+        <div class="message">${item.message}</div>
+        <div class="date">
+          <span class="year">${item.year}</span>
+          <span class="time">${item.time}</span>
+          <span class="del"><a href="javascript:; "data-id=${index}>删除</a></span>
+        </div>
+        `
+      });
+      comment.innerHTML = content_com.join('');
+    }
+    render_message();
+    comment.style.display = 'block';
+
+    // 2-添加新的评论，存入本地
+    fasong.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (area.value === '') {
+        return alert('输入内容不能为空');
+      }
+      var myDate = new Date();
+      const newMessage = {
+        message: area.value,
+        year: myDate.toLocaleDateString(),
+        time: myDate.toLocaleTimeString(),
+      };
+      comment.style.display = 'block';
+
+      comObj.push(newMessage);
+      render_message();
+      area.value = '';
+      localStorage.setItem('ComObj', JSON.stringify(comObj));
+      // message.innerHTML = area.value;
+      // document.querySelector('.year').innerHTML = myDate.toLocaleDateString();
+      // document.querySelector('.time').innerHTML = myDate.toLocaleTimeString();
+    });
+    // ③删除某个评论
+    comment.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        console.log(e.target.dataset.id);
+        comObj.splice(e.target.dataset.id, 1);
+        render_message();
+        localStorage.setItem('ComObj', JSON.stringify(comObj));
+      }
+    })
+  </script>
+
+
+
 
   <br>
   <hr>
 
   <!-- 事件冒泡学习 -->
   <!-- 排他思想+冒泡 -->
+  <h4 style="text-align: center;" id="P104">以下包含了Tap切换案例🅿️104-🛑今日综合案例-Tab切换</h4>
   <h4>🅿️109-🛑排他思想+冒泡</h4>
   <ul class="father" style="cursor: pointer;">
     <li class="color">1</li>
@@ -490,7 +668,8 @@
 
   <hr>
   <!-- tab栏切换用浮动 -->
-  <h4>🅿️109-APIs-day3🛑排他思想(内容用li标签：display:none与block' none的话不占用空间，所以下一个就占据了原来的位置)+冒泡 tab栏切换；div也可以，因为display不占用位置；
+  <h4 id="p109">🅿️109-APIs-day3🛑排他思想(内容用li标签：display:none与block' none的话不占用空间，所以下一个就占据了原来的位置)+冒泡
+    tab栏切换；div也可以，因为display不占用位置；
   </h4>
   <div class="tab-box">
     <ul class="index">
@@ -513,12 +692,15 @@
 
 
   <script>
+    // 冒泡思想。给父元素加事件，判断是否触发子元素，再触发父事件；
     const index = document.querySelector('.index');
     index.addEventListener('click', function (e) {
       if (e.target.tagName === 'LI') {
+        // 排他思想
         document.querySelector(".index .color").classList.remove('color');
         e.target.classList.add('color');
 
+        // 排他思想
         // 获取tab标签的id
         const i = e.target.dataset.id;
         // console.log(i);
@@ -530,30 +712,150 @@
 
   <br>
   <hr>
-  <h4>🅿️125-APIs-day5-🛑学生信息表上下集</h4>
+
+  <h4 id="P113">🅿️113-🛑API-day3-112-小仙兔导航和返回顶部案例(排他思想不用默认选中第一个的方法；if(old))</h4>
+  <div class="elevator">
+    <ul class="elevator_list">
+      <li><a href="#P94" data-id="djtc">94点击弹窗</a></li>
+      <li><a href="#p94" data-id="gbgg">94关闭广告</a></li>
+      <li><a href="#P95" data-id='sjdm'>95随机点名</a></li>
+      <li><a href="#P97" data-id='lutp'>97轮播图片</a></li>
+      <li><a href="#P99" data-id='sskk'>99搜索框框</a></li>
+      <li><a href="#P100" data-id='srkk'>100输入评论</a></li>
+      <li><a href="#P102" data-id='fbpl'>102发布评论</a></li>
+      <li><a href="#P104" data-id='tabqh'>104Tab 切换</a></li>
+      <li><a href="#p109" data-id='tabll'>109 Tab栏</a></li>
+      <li><a href="#P113" data-id='dtdh'>113电梯导航</a></li>
+      <li><a href="#P125" data-id='xsxx'>125学生信息</a></li>
+      <li><a href="#P133" data-id='zd'>125字典app</a></li>
+      <li><a href="#P136" data-id='bdmp'>136表单冒泡</a></li>
+      <li><a href="#p136" data-id='sizelx'>136size练习</a></li>
+      <li><a href="javascript:;" class="back">^返回顶部</a></li>
+    </ul>
+  </div>
+  <script>
+    // ①显示电梯导航
+    const elevator = document.querySelector('.elevator');
+    window.addEventListener('scroll', function () {
+      if (document.documentElement.scrollTop >= 100) {
+        elevator.style.opacity = 1;
+      } else {
+        elevator.style.opacity = 0;
+      }
+    })
+    //  ②点击小盒子选项，跳转大盒子位置
+    const elevator_list = document.querySelector('.elevator_list');
+    elevator_list.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        console.log(e.target);
+        // 去除已有的effects效果
+        const old = document.querySelector('.effects');
+        if (old) {
+          old.classList.remove('effects');
+        }
+        // 给中选中的元素添加effects效果
+        e.target.classList.add('effects');
+      }
+    })
+
+    // ③返回顶部
+    const back = document.querySelector('.back');
+    back.addEventListener('click', function (event) {
+      document.documentElement.scrollTop = 0
+    })
+
+    // ④滚动大盒子，自动锁定某个小盒子
+    // 先移除既有的effect效果
+    // 我傻了，没写到scroll事件中
+    window.addEventListener('scroll', function (e) {
+      const old = document.querySelector('.effects');
+      if (old) {
+        old.classList.remove('effects');
+      }
+      // 获取列表里的大盒子内容们
+      const djtc = document.querySelector('[id="P94"]');
+      const gbgg = document.querySelector('[id="p94"]');
+      const sjdm = document.querySelector('[id="P95"]');
+      const lutp = document.querySelector('[id="P97"]');
+      const sskk = document.querySelector('[id="P99"]');
+      const srkk = document.querySelector('[id="P100"]');
+      const fbpl = document.querySelector('[id="P102"]');
+      const tabqh = document.querySelector('[id="P104"]');
+      const tabll = document.querySelector('[id="p109"]');
+      const dtdh = document.querySelector('[id="P113"]');
+      const xsxx = document.querySelector('[id="P125"]');
+      const zd = document.querySelector('[id="P133"]');
+      const bdmp = document.querySelector('[id="P136"]');
+      const sizelx = document.querySelector('[id="p136"]');
+      // 被卷去的页面部分
+      const n = document.documentElement.scrollTop;
+      if (n >= djtc.offsetTop && n < gbgg.offsetTop) {
+        document.querySelector('[data-id=djtc]').classList.add('effects');
+      } else if (n >= gbgg.offsetTop && n < sjdm.offsetTop) {
+        document.querySelector('[data-id=gbgg]').classList.add('effects');
+      } else if (n >= sjdm.offsetTop && n < lutp.offsetTop) {
+        document.querySelector('[data-id=sjdm]').classList.add('effects');
+      } else if (n >= lutp.offsetTop && n < sskk.offsetTop) {
+        document.querySelector('[data-id=lutp]').classList.add('effects');
+      } else if (n >= sskk.offsetTop && n < srkk.offsetTop) {
+        document.querySelector('[data-id=sskk]').classList.add('effects');
+      } else if (n >= srkk.offsetTop && n < fbpl.offsetTop) {
+        document.querySelector('[data-id=srkk]').classList.add('effects');
+      } else if (n >= fbpl.offsetTop && n < tabqh.offsetTop) {
+        document.querySelector('[data-id=fbpl]').classList.add('effects');
+      } else if (n >= tabqh.offsetTop && n < tabll.offsetTop) {
+        document.querySelector('[data-id=tabqh]').classList.add('effects');
+      } else if (n >= tabll.offsetTop && n < dtdh.offsetTop) {
+        document.querySelector('[data-id=tabll]').classList.add('effects');
+      } else if (n >= dtdh.offsetTop && n < xsxx.offsetTop) {
+        document.querySelector('[data-id=dtdh]').classList.add('effects');
+      } else if (n >= xsxx.offsetTop && n < zd.offsetTop) {
+        document.querySelector('[data-id=xsxx]').classList.add('effects');
+      } else if (n >= zd.offsetTop && n < xbdmpsxx.offsetTop) {
+        document.querySelector('[data-id=zd]').classList.add('effects');
+      } else if (n >= xbdmpsxx.offsetTop && n < sizelx.offsetTop) {
+        document.querySelector('[data-id=xbdmpsxx]').classList.add('effects');
+      } else if (n >= sizelx.offsetTop) {
+        document.querySelector('[data-id=sizelx]').classList.add('effects');
+      }
+    })
+
+
+  </script>
+
+  <br>
+  <hr>
+
+
+  <br>
+  <hr>
+  <h4 id="P125">🅿️125-APIs-day5-🛑学生信息表上下集（业务：新增和删除）（注意：减少dom增删操作，直接操作数组）🅿️133-APIs-day5-🛑读取本地存储数据</h4>
   <div class="day5">
     <h3>新增学员</h3>
-    <form action="" class="info" autocomplete="off">
+    <form action="" class="xinzeng" autocomplete="off">
       姓名:
-      <input type="text" class="name" name="name">
+      <input type="text" class="Sname" name="name">
       年龄:
       <input type="text" class="age" name="age">
       性别:
-      <select name="gender" id="" class=="gender">
-        <option value="boy">男</option>
-        <option value="girl">女</option>
+      <select name="gender" class="gender">
+        <option value="男">男</option>
+        <option value="女">女</option>
       </select>
       薪资:
       <input type="text" class="salary" name="salary">
       就业城市:
-      <select name="city" id="" class="city">
-        <option value="beijing">北京</option>
-        <option value="shanghai">上海</option>
+      <select name="city" class="city">
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="广州">广州</option>
+        <option value="深圳">深圳</option>
+        <option value="香港">香港</option>
       </select>
       <button class="add">录入</button>
     </form>
     <h3>就业榜</h3>
-    <table class="tab">
+    <table class="jiuyebang">
       <thead>
         <tr>
           <th>学号</th>
@@ -567,23 +869,217 @@
       </thead>
       <tbody>
         <tr>
-          <td>1001</td>
+          <!-- <td>1001</td>
           <td>欧阳霸天</td>
           <td>19</td>
           <td>男</td>
           <td>1500</td>
           <td>北京</td>
-          <td>操作</td>
+          <td>
+            <a href="">删除</a>
+          </td> -->
         </tr>
       </tbody>
     </table>
   </div>
+
+  <script>
+    // 刷新新增删除都是对本地存储的操作
+    // 获取tbody，添加冒泡事件
+    const tbody = document.querySelector('tbody')
+    // ①获取本地存储数据
+    const Stu = JSON.parse(localStorage.getItem('Studata')) || [];
+    function render() {
+      // 先清空旧有的数据，只用追加给tbody一次，不然会重复追加；
+      tbody.innerHTML = '';
+      // 遍历数组
+      for (let i = 0; i < Stu.length; i++) {
+        // 创建tr
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${Stu[i].stuId}</td>
+          <td>${Stu[i].name}</td>
+          <td>${Stu[i].age}</td>
+          <td>${Stu[i].gender}</td>
+          <td>${Stu[i].salary}</td>
+          <td>${Stu[i].city}</td>
+          <td>
+            <a href="javascript:" data-id=${i}>删除</a>
+          </td>
+        `;
+        //把tr追加给父元素tbody
+        tbody.appendChild(tr);
+      }
+    }
+    render()
+    // ②添加新用户
+    // 收集用户信息
+    const Sname = document.querySelector('.Sname')
+    const Sage = document.querySelector('.age')
+    const Sgender = document.querySelector('.gender')
+    const Ssalary = document.querySelector('.salary')
+    const Scity = document.querySelector('.city')
+
+    //收集有name属性的input表单，判断内容是否为空
+    const items = document.querySelectorAll('[name]');
+
+    // 创建空数组，用来存储用户信息对象
+    // const Stu_data = [];
+    // 提交表单
+    const xinzeng = document.querySelector('.xinzeng');
+    xinzeng.addEventListener('submit', function (e) {
+      // 阻止页面跳转的默认行为
+      e.preventDefault();
+      // console.log(11);
+      // 先判断是否为空
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].value === '') {
+          return alert('输入内容不能为空');
+        }
+      }
+      // 创建用户信息对象
+      const info = {
+        stuId: Stu.length ? Stu[Stu.length - 1].stuId + 1 : 0,
+        name: Sname.value,
+        age: Sage.value,
+        gender: Sgender.value,
+        salary: Ssalary.value,
+        city: Scity.value
+      };
+      // console.log(info)
+      // 把用户信息对象追加给数组Stu
+      Stu.push(info)
+      // 渲染数据
+      render();
+      // 清空表单信息
+      xinzeng.reset();
+
+      localStorage.setItem('Studata', JSON.stringify(Stu));
+    })
+    // ③删除本地存储
+    // 删除操作（冒泡写法，给tbody添加click事件）本质是删除数组，重新渲染数组；
+    tbody.addEventListener("click", function (e) {
+      if (e.target.tagName === "A") {
+        Stu.splice(e.target.dataset.id, 1);
+        render();
+        localStorage.setItem('Studata', JSON.stringify(Stu));
+      }
+    })
+  </script>
   <br>
   <hr>
-  <h4>🅿️133-APIs-day5-🛑读取本地存储数据</h4>
+  <h4 id="P133">🅿️133-APIs-day5-🛑读取本地存储数据,使用map和join（尝试写第一个字典app，显示单词，录入单词，删除单词）</h4>
+  <div class="dictionary">
+    <h3>单词表</h3>
+    <form action="" class="newwords">
+      <input type="text" class="words" placeholder="输入新单词：">
+      <button class="tianjia">添 加</button>
+    </form>
+    <table class="dictionaryList">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>单词</th>
+          <th>词义</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>dog</td>
+          <td></td>
+          <td>
+            <a href="javascript:">删除</a>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+    <h5 class="total">共计 5 个单词</h5>
+  </div>
+  <script>
+    // map只能遍历数组，不能遍历对象，可以遍历数组对象
+    // 已经没用了，数组对象为了Englishlist
+    const wordObj = [{
+      word: 'dog',
+    }];
+    // 本地存储第一个单词
+    // localStorage.setItem('Englishlist', JSON.stringify(wordObj));
+    // ①先渲染本地单词表（无则渲染空的）
+    // 获取本地单词数组对象englishList(这个就是你的单词数组对象了)
+    const englishList = JSON.parse(localStorage.getItem('Englishlist')) || [];
+    // console.log(englishList);
+    const table_2 = document.querySelector('.dictionaryList tbody');
+    function render_list() {
+      // map方法遍历List返回trList数组
+      const trList = englishList.map(function (item, index) {
+        return `
+          <tr>
+            <td>${index}</td>
+            <td>${item.word}</td>
+            <td></td>
+            <td>
+              <a href="javascript:" data-id=${index}>删除</a>
+            </td>
+          </tr>
+        `
+      });
+      // 把返回的trList数组join成字符串
+      table_2.innerHTML = trList.join('');
+      // 数组：console.log(trList);
+      // 字符串：console.log(trList.join(''));
+      // ④同步单词总数
+      document.querySelector('.total').innerHTML = `共计 ${englishList.length} 个单词`
+    }
+    render_list();
+
+    // ②新增本地单词表
+    // 获取用户输入的单词
+    const wordArea = document.querySelector('.words');
+    const sumbit = document.querySelector('.newwords');
+    sumbit.addEventListener('submit', function (e) {
+      // 组织form默认跳转事件
+      e.preventDefault();
+      console.log(wordArea.value);
+      // 判断单词输入是否为空，若为空就提示警告不能为空
+      if (wordArea.value === '') {
+        return alert('输入内容不能为空');
+      }
+      // 获取新的单词对象
+      const Obj = {
+        word: wordArea.value,
+      };
+      // 把新单词对象添加给数组获取来的englishList数组对象
+      englishList.push(Obj);
+      render_list();
+      this.reset();
+
+      // 存储新的Englishlistt到本地，覆盖之前的Englishlist数据
+      localStorage.setItem('Englishlist', JSON.stringify(englishList));
+      // ④同步单词总数
+      document.querySelector('.total').innerHTML = `共计 ${englishList.length} 个单词`
+    });
+
+    // ③删除本地单词表（给table添加事件委托）
+    table_2.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        console.log(e.target.dataset.id);
+        englishList.splice(e.target.dataset.id, 1);
+        render_list();
+
+        // 同步本地存储
+        localStorage.setItem('Englishlist', JSON.stringify(englishList));
+        // ④同步单词总数
+        document.querySelector('.total').innerHTML = `共计 ${englishList.length} 个单词`
+
+      }
+    })
+
+
+  </script>
   <br>
   <hr>
-  <h4>🅿️136-🛑提交表单为何要用冒泡,preventDefault()是Event方法，用event对象调用</h4>
+  <h4 id="P136">🅿️136-🛑提交表单为何要用冒泡,preventDefault()是Event方法，用event对象调用</h4>
   <form action="" class="info_form">
     姓名：<input required type="text" name="姓名" class="uname" value="谢龙"><br>
     密码：<input type="password" name="密码" class="pas" value="123"><br>
@@ -615,7 +1111,7 @@
   </script>
 
   <!-- required是提示请输入字段 -->
-  <h4>🅿️136-🛑input表单中required是提示请输入字段,autocomplete是关闭历史记录</h4>
+  <h4 id="p136">🅿️136-🛑input表单中required是提示请输入字段,autocomplete是关闭历史记录</h4>
   <form action="">
     <input type="text" required autocomplete="off">
     <button>提交</button>
@@ -630,7 +1126,6 @@
     }
     console.log(person);
   </script>
-
   <hr>
 
   <!-- 正则表达式 -->
@@ -652,11 +1147,9 @@
 
 
   <!-- background-img size -->
-  <h4>🅿️136-🛑background-img size 练习，size就是背景图的像素尺寸</h4>
+  <h4 id="p136">🅿️136-🛑background-img size 练习，size就是背景图的像素尺寸</h4>
   <div class="background">
   </div>
-
-
 
   <script>
     // 常规对象
