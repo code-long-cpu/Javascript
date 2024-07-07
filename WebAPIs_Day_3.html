@@ -109,14 +109,75 @@
         head.classList.add('fixed')
       } else {
         head.classList.remove('fixed')
-
-
       }
-
-
     });
   </script>
 
+  <br>
+  <hr>
+  <br>
+  <h4>✅子元素的offsetLeft是相对父级的边距距离，父级得加position：relative相对位置 </h4>
+  <h4>✅排他思想：默认选中第一个，删除第一个中的red，给其他添加red类 </h4>
+  <h4>✅小兔导航：不用默认选中第一个的方法:复习了old判断，判断是否有red类，没有的话就直接执行下一行给其他添加red，有就去掉red然后再给其他tag添加red； </h4>
+  <div class="bilibili">
+    <div class="back"></div>
+    <ul class="slide">
+      <li class="red" data-id="0">龙龙</li>
+      <li data-id="1">乐乐</li>
+      <li data-id="2">晨晨</li>
+      <li data-id="3">凤凤</li>
+    </ul>
+    <div class="stick"></div>
+    <!-- <div class="tupian">
+      <img src="./P97轮播图图片/1.JPG" alt="">
+    </div> -->
+  </div>
+  <script>
+    const data = [
+      {
+        url: "./P97轮播图图片/1.JPG",
+        title: "黄山游记,人生第一次说走就走的旅行",
+        color: "rgb(76, 70, 69,.7)"
+      },
+      {
+        url: "./P97轮播图图片/5.JPG",
+        title: "在泰国椰树池的露营，吃了很多",
+        color: "rgb(58, 57, 51, .7)"
+      },
+      {
+        url: "./P97轮播图图片/9.JPG",
+        title: "去年冬天在汉口的某个枫树下拍照",
+        color: "rgb(103, 66, 3 ,.7)"
+      },
+      {
+        url: "./P97轮播图图片/4.JPG",
+        title: "谢凤在许昌曹魏邺城的汉服拍照",
+        color: "rgb(107, 17, 11,.7)"
+      },]
+    const slide = document.querySelector('.slide');
+    const stick = document.querySelector('.stick');
+    const bilibili = document.querySelector('.bilibili');
+    slide.addEventListener('click', function (e) {
+      if (e.target.tagName === 'LI') {
+        // console.log(e.target.offsetLeft);
+        // console.log(e.target.offsetParent);//ul
+        stick.style.transform = `translateX(${e.target.offsetLeft}px)`;
+
+        // 排他思想：①剔除所有red，②点谁添加谁
+        document.querySelector('.slide .red').classList.remove('red');
+        e.target.classList.add('red');
+
+        // 小兔导航中：不需要默认选中第一个tab
+        // const old = document.querySelector('.slide .red');
+        // if (old) {
+        // document.querySelector('.slide .red').classList.remove('red');
+        // }
+        // console.log();
+        bilibili.style.backgroundImage = `url(${data[e.target.dataset.id].url})`;
+      }
+    })
+
+  </script>
   <br>
   <hr>
 
