@@ -621,6 +621,8 @@
       comObj.push(newMessage);
       render_message();
       area.value = '';
+      // 字数归零
+      zishu.innerHTML = `0/300字数`
       localStorage.setItem('ComObj', JSON.stringify(comObj));
       // message.innerHTML = area.value;
       // document.querySelector('.year').innerHTML = myDate.toLocaleDateString();
@@ -713,7 +715,7 @@
   <br>
   <hr>
 
-  <h4 id="P113">🅿️113-🛑API-day3-112-小仙兔导航和返回顶部案例(排他思想不用默认选中第一个的方法；if(old))</h4>
+  <h4 id="P113">🅿️113-116-🛑API-day3-112-小仙兔导航和返回顶部案例(排他思想不用默认选中第一个的方法；if(old))</h4>
   <div class="elevator">
     <ul class="elevator_list">
       <li><a href="#P94" data-id="djtc">94点击弹窗</a></li>
