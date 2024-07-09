@@ -11,22 +11,219 @@
 <body>
   <h4 id="P119">🅿️119-🛑API-day4-118-倒计时案例</h4>
   <div class="countdown">
-    <p class="data">今天是2024年7月8日</p>
-    <p class="ads">下班倒计时</p>
+    <p class="data">今天：</p>
+    <p class="ads">开业倒计时</p>
     <p class="clock">
+      <span id="day">00</span>
+      <i>天</i>
       <span id="hour">00</span>
       <i>:</i>
       <span id="min">25</span>
       <i>:</i>
       <span id="second">20</span>
     </p>
-    <p class="deadline">18:30:00下课</p>
+    <p class="deadline">2025-9-1 8:00:00 开学</p>
+    </form>
   </div>
+  <script>
+
+    // ①存入本地存储
+    // localStorage.setItem('Studata', JSON.stringify(Stu));
+    // ②获取本地存储数据
+    // const Stu = JSON.parse(localStorage.getItem('Studata')) || [];
+
+    const old_info = {
+      title: '开水倒计时',
+
+    }
+    const old_time = {
+      fTime: '2024-9-1 8:00:00'
+    }
+    const new_info = {};
+    const new_time = {};
+    // localStorage.setItem('local_info', JSON.stringify(old_info));
+    // localStorage.setItem('local_time', JSON.stringify(old_time));
+    // localStorage.setItem('local_time', JSON.stringify(new_time));
+
+    const localInfo = JSON.parse(localStorage.getItem('local_info')) || [];
+
+    console.log(localInfo.title)
+
+    // 获取元素
+    const ads = document.querySelector('.ads')
+    const day = document.querySelector('#day');
+    const hour = document.querySelector('#hour');
+    const min = document.querySelector('#min');
+    const second = document.querySelector('#second');
+    const data = document.querySelector('.data');
+    // 编写今日日期函数
+    const today = new Date();
+    console.log(today);
+    const y = today.getFullYear();
+    const m = today.getMonth();
+    const dd = today.getDate();
+    data.innerHTML = `今日：${y}年${m + 1}月${dd}日`;
+
+    //编写计划日期函数
+    // 还是点击事件创建input标签
+
+
+
+    // 添加自定义标题方法，标题click新增input标签
+    // 默认标题是来自本地存储的
+    ads.innerHTML = localInfo.title;
+    ads.addEventListener("click", function (e) {
+      const inputElement = document.createElement('input');
+      inputElement.type = 'text';
+      inputElement.value = localInfo.title;
+      console.log(inputElement)
+      // 用inputElement节点替换ads节点
+      ads.parentNode.replaceChild(inputElement, ads);
+      // focus事件在输入框捕获光标时候会产生推荐搜索结果
+      // inputElement.focus();
+      inputElement.addEventListener("blur", function (e) {
+        // ads标题赋值；
+        ads.innerHTML = inputElement.value;
+        // 换回ads节点；
+        inputElement.parentNode.replaceChild(ads, inputElement);
+
+        // 将新标题存入本地存储
+
+        new_info.title = inputElement.value;
+        // new_info.fTime = '2024/9/1 8:00:00';
+
+        // console.log(inputElement.value)
+        localStorage.setItem('local_info', JSON.stringify(new_info));
+        // console.log(local_info)
+      });
+    })
+
+    // 添加自定义时间方法 与标题一致，点击创建input输入框修改值；
+    const deadline = document.querySelector('.deadline');
+    const localtime = JSON.parse(localStorage.getItem('local_time')) || [];
+
+    // 从本地提取时间，初始化deadline时间；
+    deadline.innerHTML = localtime.fTime + '\xa0' + '到达';
+    deadline.addEventListener('click', function (e) {
+      const inputTime = document.createElement('input');
+      inputTime.type = 'datetime-local';
+      inputTime.step = 1;
+      // console.log(inputTime)
+      deadline.parentNode.replaceChild(inputTime, deadline);
+      inputTime.addEventListener('blur', function (e) {
+        var time = inputTime.value
+        // console.log(time)
+        // console.log(typeof time)
+        const time2 = time.replace('T', ' ');
+        console.log(time2)
+        deadline.innerHTML = time2 + '\xa0' + '到达';
+        // 换回deadline节点
+        inputTime.parentNode.replaceChild(deadline, inputTime);
+        // 得到将来日期的时间戳
+        // const time3 = +new Date(time2)
+        // console.log(time3);
+        // // 要把时间存在本地存储
+        new_time.fTime = time2;
+        localStorage.setItem('local_time', JSON.stringify(new_time));
+        // 执行第一次倒计时
+        getcount();
+        // 间隔函数执行每隔1秒自动执行倒计时函数
+        setInterval(getcount, 1000)
+      })
+    })
+    console.log(localtime.fTime)
+    const f = +new Date(localtime.fTime)
+    console.log(f)
+    const v = +new Date('2024-9-1 8:00:00')
+    console.log(v)
+
+    // 倒计时函数
+    function getcount() {
+      // 得到当前时间戳
+      const now = +new Date();
+      // 得到未来时间戳（本地存储）
+      const future = +new Date(localtime.fTime)
+      // console.log(now, future)
+      // 得到剩余的时间戳-毫秒数，把毫秒转换为秒
+      const count = (future - now) / 1000
+      // console.log(count)
+      // console.log(parseInt(1.2)) //1
+      // console.log(parseInt(1.9)) //1
+
+      let d = parseInt(count / 60 / 60 / 24)
+      let h = parseInt(count / 60 / 60 % 24)
+      h = h < 10 ? '0' + h : h
+      let m = parseInt(count / 60 % 60)
+      m = m < 10 ? '0' + m : m
+      let s = parseInt(count % 60)
+      s = s < 10 ? '0' + s : s
+
+      day.innerHTML = d;
+      hour.innerHTML = h;
+      min.innerHTML = m;
+      second.innerHTML = s;
+    }
+    // 执行第一次倒计时
+    getcount();
+    // 间隔函数执行每隔1秒自动执行倒计时函数
+    setInterval(getcount, 1000)
+
+  </script>
   <br>
   <hr>
   <h4 id="P125">✅Day2已做🅿️125-🛑API-day4-124-学生信息表综合案例上下集</h4>
   <br>
   <hr>
+  <h4 id="test">🟡获取input输入时间戳实验</h4>
+  <form action="" class="timecollect">
+    <input type="date" class="test">
+    <input type="time" class="test" step="1">
+    <button class="confirm">确认</button>
+  </form>
+
+  <script>
+    const items = document.querySelectorAll('[type]')
+    const date = document.querySelector('[type="date"]')
+    const time = document.querySelector('[type="time"]')
+    const confirm = document.querySelector('.confirm')
+    const timecollect = document.querySelector('.timecollect')
+    // form表单提交事件
+    timecollect.addEventListener('submit', function (e) {
+      console.log(e)
+      e.preventDefault();
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].value === '') {
+          return alert('日期时间不能为空')
+        }
+      }
+      const plantime = date.value + '\xa0' + time.value;
+      console.log(plantime)
+      console.log(typeof plantime)
+      const newPlan = +new Date(plantime);
+      console.log(newPlan);
+
+    })
+    // ❌wu2023-4-518:30 日期时间时间戳不行（中间无空格）
+    const text3 = +new Date("2023-4-5 18:30")
+    console.log(text3)  //NaN
+  </script>
+
+  <!-- ✅2023-4-5 18:30 日期时间时间戳成功（中间添加空格） -->
+  <input type="datetime-local" step="1" class="test4">
+  <script>
+    const test4 = document.querySelector(".test4")
+    test4.addEventListener("blur", function (e) {
+      var time = test4.value
+      console.log(time)
+      console.log(typeof time)
+      const time2 = time.replace('T', ' ');
+      console.log(time2)
+      const time3 = +new Date(time2)
+      console.log(time3);
+
+    })
+  </script>
+
 </body>
 
 </html>

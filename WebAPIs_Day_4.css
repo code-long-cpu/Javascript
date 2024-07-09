@@ -4,6 +4,7 @@
   border: solid 1px black;
   margin: auto;
   background-color: rgb(145, 29, 42);
+  border-radius: 10px;
 }
 
 /* .countdown .clock i {
@@ -28,6 +29,8 @@ i {
 }
 
 span {
+  display: inline-block;
+  width: 40px;
   background-color: black;
   padding: 3px;
   font-size: 30px;
@@ -40,5 +43,52 @@ i {
 
 .deadline {
   margin-top: 90px;
-  font-size: 25px;
+  font-size: 20px;
+}
+
+
+input[type="text"] {
+  display: block;
+  margin: 40px auto;
+  padding: 0;
+  height: 55px;
+  width: 80%;
+  background-color: rgb(145, 29, 42);
+  border: 1;
+  color: white;
+  text-align: center;
+  font-size: 40px;
+  border: 0;
+  outline: none;
+}
+
+input[type="datetime-local"] {
+  display: block;
+  width: 270px;
+  margin: auto;
+  margin-top: 90px;
+  font-size: 20px;
+  background-color: rgb(145, 29, 42);
+  border: 0;
+  color: white;
+}
+
+
+/* 实验 */
+.test {
+  width: 200px;
+  height: 40px;
+  background-color: rgb(145, 29, 42);
+  font-size: 20px;
+  border: solid 1px white;
+  border-radius: 5px;
+  color: white;
+}
+
+.timecollect {
+  /* border: solid 1px black; */
+  padding: 5px;
+  background-color: rgb(145, 29, 42);
+  border-radius: 10px;
+
 }
