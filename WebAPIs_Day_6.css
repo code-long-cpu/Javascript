@@ -1,0 +1,42 @@
+/* 实验 */
+.test0 {
+  margin: auto;
+  border: 1px solid black;
+  width: 400px;
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+.test1 {
+  background: url('/icon/帐户.png')no-repeat;
+}
+
+.test2 {
+  background: url('/icon/信息.png')no-repeat;
+}
+
+.test3 {
+  background: url('/icon/标签.png')no-repeat;
+}
+
+.test1,
+.test2,
+.test3 {
+  background-position: 1px;
+  background-size: 10%;
+  padding-left: 20px;
+  margin-top: 10px;
+  border: 1px solid rgb(123, 123, 123);
+  height: 20px;
+  border-radius: 5px;
+}
+
+.test4 {
+  display: block;
+  margin-right: 10px;
+  /* margin: auto; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 225px;
+}

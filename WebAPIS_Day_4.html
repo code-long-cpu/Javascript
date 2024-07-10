@@ -161,6 +161,11 @@
     // const v = +new Date('2024-9-1 8:00:00')
     // console.log(v)
 
+
+    // 执行第一次倒计时
+    getcount();
+    // 间隔函数执行每隔1秒自动执行倒计时函数
+    let timeID = setInterval(getcount, 1000)
     // 倒计时函数
     function getcount() {
       // console.log(13);
@@ -172,8 +177,21 @@
       // 得到剩余的时间戳-毫秒数，把毫秒转换为秒
       let count = parseInt((future - now) / 1000)
       // console.log(count)
-      count = count <= 0 ? 0 : count;
+      // count = count <= 0 ? 0 : count;
       // ⚠️修改标题：倒计时结束
+      if (future <= now) {
+        count = 0;
+        day.innerHTML = '00';
+        hour.innerHTML = '00';
+        min.innerHTML = '00';
+        second.innerHTML = '00';
+        clearInterval(timeID)
+        return alert('输入日期不合法')
+      }
+      if (count === 0) {
+        ads.innerHTML = '倒计时结束'
+        clearInterval(timeID)
+      }
 
       // console.log(parseInt(1.2)) //1
       // console.log(parseInt(1.9)) //1
@@ -191,10 +209,7 @@
       min.innerHTML = m;
       second.innerHTML = s;
     }
-    // 执行第一次倒计时
-    getcount();
-    // 间隔函数执行每隔1秒自动执行倒计时函数
-    setInterval(getcount, 1000)
+
 
   </script>
 
