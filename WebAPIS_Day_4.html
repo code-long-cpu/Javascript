@@ -107,7 +107,6 @@
         inputElement.parentNode.replaceChild(ads, inputElement);
 
         // 将新标题存入本地存储
-
         new_info.title = inputElement.value;
         // new_info.fTime = '2024/9/1 8:00:00';
 
@@ -136,7 +135,7 @@
         // console.log(time)
         // console.log(typeof time)
         const time2 = time.replace('T', ' ');
-        console.log(time2)
+        // console.log(time2)
         deadline.innerHTML = time2;
         // 换回deadline节点
         inputTime.parentNode.replaceChild(deadline, inputTime);
@@ -146,12 +145,15 @@
         // // 要把时间存在本地存储
         new_time.fTime = time2;
         localStorage.setItem('local_time', JSON.stringify(new_time));
-        // 执行第一次倒计时
-        getcount();
-        // 间隔函数执行每隔1秒自动执行倒计时函数
-        setInterval(getcount, 1000)
-      })
 
+        // 刷新页面，重新加载倒计时
+        location.reload();
+        // 执行第一次倒计时
+        // getcount();
+        // 间隔函数执行每隔1秒自动执行倒计时函数
+        // setInterval(getcount, 1000)
+        // console.log(12)
+      })
     })
     // console.log(localtime.fTime)
     // const f = +new Date(localtime.fTime)
@@ -161,6 +163,7 @@
 
     // 倒计时函数
     function getcount() {
+      // console.log(13);
       // 得到当前时间戳
       const now = +new Date();
       // 得到未来时间戳（本地存储）
@@ -174,7 +177,6 @@
 
       // console.log(parseInt(1.2)) //1
       // console.log(parseInt(1.9)) //1
-
 
       let d = parseInt(count / 60 / 60 / 24)
       let h = parseInt(count / 60 / 60 % 24)
@@ -195,6 +197,9 @@
     setInterval(getcount, 1000)
 
   </script>
+
+
+
   <br>
   <hr>
   <h4 id="P125">✅Day2已做🅿️125-🛑API-day4-124-学生信息表综合案例上下集</h4>
@@ -233,7 +238,9 @@
     const text3 = +new Date("2023-4-5 18:30")
     console.log(text3)  //NaN
 
-    test.addEventListener("click", function (event) {
+    const test = document.querySelector('.test')
+    test.addEventListener("blur", function (event) {
+      // console.log(11)
       dayin()
     })
     function dayin() {
