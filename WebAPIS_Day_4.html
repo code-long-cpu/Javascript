@@ -22,7 +22,8 @@
       <i>:</i>
       <span id="second">20</span>
     </p>
-    <p class="deadline">2025-9-1 8:00:00 开学</p>
+    <p class="aim">结束时间</p>
+    <p class="deadline">2025-9-1 8:00:00 </p>
     </form>
   </div>
   <script>
@@ -57,12 +58,30 @@
     const second = document.querySelector('#second');
     const data = document.querySelector('.data');
     // 编写今日日期函数
-    const today = new Date();
-    console.log(today);
-    const y = today.getFullYear();
-    const m = today.getMonth();
-    const dd = today.getDate();
-    data.innerHTML = `今日：${y}年${m + 1}月${dd}日`;
+    function today() {
+      const today = new Date();
+      // console.log(today);
+      let y = today.getFullYear();
+
+      let m = today.getMonth();
+      m = m < 10 ? '0' + (m + 1) : m + 1
+
+      let dd = today.getDate();
+      dd = dd < 10 ? '0' + dd : dd
+
+      let hh = today.getHours();
+      hh = hh < 10 ? '0' + hh : hh
+      let mm = today.getMinutes();
+      mm = mm < 10 ? '0' + mm : mm
+      let ss = today.getSeconds();
+      ss = ss < 10 ? '0' + ss : ss
+
+      data.innerHTML = `NOW：${y}-${m}-${dd} ${hh}:${mm}:${ss}`;
+    }
+    today();
+    setInterval(today, 1000);
+
+
 
     //编写计划日期函数
     // 还是点击事件创建input标签
@@ -103,11 +122,13 @@
     const localtime = JSON.parse(localStorage.getItem('local_time')) || [];
 
     // 从本地提取时间，初始化deadline时间；
-    deadline.innerHTML = localtime.fTime + '\xa0' + '到达';
+    deadline.innerHTML = localtime.fTime;
+    console.log(localtime.fTime)
     deadline.addEventListener('click', function (e) {
       const inputTime = document.createElement('input');
       inputTime.type = 'datetime-local';
       inputTime.step = 1;
+      inputTime.value = localtime.fTime;
       // console.log(inputTime)
       deadline.parentNode.replaceChild(inputTime, deadline);
       inputTime.addEventListener('blur', function (e) {
@@ -116,7 +137,7 @@
         // console.log(typeof time)
         const time2 = time.replace('T', ' ');
         console.log(time2)
-        deadline.innerHTML = time2 + '\xa0' + '到达';
+        deadline.innerHTML = time2;
         // 换回deadline节点
         inputTime.parentNode.replaceChild(deadline, inputTime);
         // 得到将来日期的时间戳
@@ -126,16 +147,17 @@
         new_time.fTime = time2;
         localStorage.setItem('local_time', JSON.stringify(new_time));
         // 执行第一次倒计时
-        // getcount();
+        getcount();
         // 间隔函数执行每隔1秒自动执行倒计时函数
-        // setInterval(getcount, 1000)
+        setInterval(getcount, 1000)
       })
+
     })
-    console.log(localtime.fTime)
-    const f = +new Date(localtime.fTime)
-    console.log(f)
-    const v = +new Date('2024-9-1 8:00:00')
-    console.log(v)
+    // console.log(localtime.fTime)
+    // const f = +new Date(localtime.fTime)
+    // console.log(f)
+    // const v = +new Date('2024-9-1 8:00:00')
+    // console.log(v)
 
     // 倒计时函数
     function getcount() {
@@ -145,10 +167,14 @@
       const future = +new Date(localtime.fTime)
       // console.log(now, future)
       // 得到剩余的时间戳-毫秒数，把毫秒转换为秒
-      const count = (future - now) / 1000
+      let count = parseInt((future - now) / 1000)
       // console.log(count)
+      count = count <= 0 ? 0 : count;
+      // ⚠️修改标题：倒计时结束
+
       // console.log(parseInt(1.2)) //1
       // console.log(parseInt(1.9)) //1
+
 
       let d = parseInt(count / 60 / 60 / 24)
       let h = parseInt(count / 60 / 60 % 24)
@@ -197,15 +223,22 @@
         }
       }
       const plantime = date.value + '\xa0' + time.value;
-      console.log(plantime)
-      console.log(typeof plantime)
+      // console.log(plantime)
+      // console.log(typeof plantime)
       const newPlan = +new Date(plantime);
-      console.log(newPlan);
+      // console.log(newPlan);
 
     })
     // ❌wu2023-4-518:30 日期时间时间戳不行（中间无空格）
     const text3 = +new Date("2023-4-5 18:30")
     console.log(text3)  //NaN
+
+    test.addEventListener("click", function (event) {
+      dayin()
+    })
+    function dayin() {
+      console.log(11)
+    }
   </script>
 
   <!-- ✅2023-4-5 18:30 日期时间时间戳成功（中间添加空格） -->
