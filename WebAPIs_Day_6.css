@@ -1,3 +1,48 @@
+.P142 {
+  border: solid 1px black;
+  width: 400px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.P142 input {
+  display: block;
+  margin: 30px auto;
+  width: 300px;
+  height: 50px;
+  padding-left: 30px;
+  border: solid 1px rgb(141, 141, 141);
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.P142 ::placeholder {
+  color: rgb(167, 167, 167);
+}
+
+.P142 p,
+button {
+  display: block;
+  width: 330px;
+  height: 50px;
+  margin: auto;
+}
+
+.next {
+  margin-bottom: 30px;
+  background-color: rgb(68, 171, 142);
+  border: 0;
+  font-size: 20px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.agree a {
+  text-decoration: none;
+  color: rgb(68, 171, 142);
+}
+
 /* 实验 */
 .test0 {
   margin: auto;
@@ -18,6 +63,7 @@
 
 .test3 {
   background: url('/icon/标签.png')no-repeat;
+
 }
 
 .test1,
@@ -30,6 +76,12 @@
   border: 1px solid rgb(123, 123, 123);
   height: 20px;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+
 }
 
 .test4 {
@@ -39,4 +91,8 @@
   margin-top: 10px;
   margin-bottom: 10px;
   width: 225px;
+  cursor: pointer;
+
 }
+
+h4 {}
