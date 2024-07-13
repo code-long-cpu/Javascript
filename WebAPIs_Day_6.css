@@ -14,13 +14,23 @@
   margin-bottom: 20px;
 }
 
+.checkCode {
+  position: relative;
+}
+
+.code {
+  position: absolute;
+  top: 15px;
+  right: 40px;
+}
+
 .P142 input {
   display: block;
   margin: 20px auto;
   margin-bottom: 6px;
   width: 300px;
   height: 50px;
-  padding-left: 30px;
+  padding-left: 50px;
   border: solid 1px rgb(141, 141, 141);
   font-size: 18px;
   border-radius: 5px;
@@ -30,12 +40,53 @@
   color: rgb(167, 167, 167);
 }
 
-.P142 p,
-button {
+.name {
+  background: url('/icon/people.png') no-repeat;
+
+}
+
+.tel {
+  background: url('/icon/phone.png') no-repeat;
+}
+
+.message {
+  background: url('/icon/tips.png') no-repeat;
+}
+
+.password {
+  background: url('/icon/lock.png') no-repeat;
+}
+
+.again {
+  background: url('/icon/lock.png') no-repeat;
+
+}
+
+.name,
+.tel,
+.message,
+.password,
+.again {
+  background-position: 10px;
+  background-size: 8%;
+}
+
+.agreeBOx .gouxuan {
+  height: 15px;
+  width: 20px;
+  display: inline;
+  margin-left: 20px;
+}
+
+.agreeBOx .agree {
+  display: inline;
+}
+
+.P142 button {
   display: block;
   width: 330px;
   height: 50px;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .next {
