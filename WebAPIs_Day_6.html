@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h4 id="P143">🅿️142-🛑API-day6-142-注册页面-短信验证码</h4>
+  <h4 id="P143">🅿️142-🛑API-day6-142-注册页面-短信验证码 （flag节流阀）</h4>
   <form action="" class="P142">
     <div class="nameInfo">
       <input type="text" class="name" placeholder="设置用户名称">
@@ -38,6 +38,36 @@
     </div>
     <button class="next">下 一 步</button>
   </form>
+  <script>
+    //  获取验证码
+    const code = document.querySelector('.code');
+    let flag = true;
+    code.addEventListener('click', function (event) {
+      if (flag) {
+        flag = false;
+        let i = 5;
+        code.innerHTML = `${i}秒后重新获取`
+        const time = setInterval(function () {
+          i--;
+          code.innerHTML = `${i}秒后重新获取`
+          if (i == 0) {
+            clearInterval(time);
+            code.innerHTML = `发送验证码`
+            flag = true;
+          }
+        }, 1000)
+      }
+    })
+  </script>
+
+  <script>
+    // 时间函数
+    console.log(1);
+    // setInterval(function () { console.log(2) }, 5000)
+    console.log(3);
+
+  </script>
+
   <br>
   <hr>
   <h4 id="P144">🅿️134-🛑API-day6-143-注册页面-验证用户名模块</h4>
@@ -69,6 +99,8 @@
     </label>
     <button class="test4">提交</button>
   </form>
+
+
 
 </body>
 

@@ -22,6 +22,8 @@
   position: absolute;
   top: 15px;
   right: 40px;
+  text-decoration: none;
+  color: rgb(68, 171, 142);
 }
 
 .P142 input {
