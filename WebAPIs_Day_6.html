@@ -13,7 +13,7 @@
   <form action="" class="P142">
     <div class="nameInfo">
       <input type="text" class="name" placeholder="设置用户名称">
-      <span class="msg">姓名格式有误</span>
+      <span class="msg"></span>
     </div>
     <div class="telInfo">
       <input type="text" class="tel" placeholder="输入手机号">
@@ -58,6 +58,32 @@
         }, 1000)
       }
     })
+
+    // 检查出入格式 用check点击事件
+    // 先获name取元素
+    const name = document.querySelector('.name');
+    name.addEventListener('change', verifynamne);
+    function verifynamne() {
+      // console.log(11);
+      // 获取span元素
+      const span = name.nextElementSibling;
+      // 制定正则规则
+      const reg = /^[a-zA-Z0-9-_]{6,10}$/
+      // 验证input与正则是否相等
+      if (!reg.test(name.value)) {
+        console.log(11);
+        span.innerHTML = '输入不合法，请输入6～10位'
+        return false;
+      } else {
+        span.innerHTML = ''
+        return true;
+      }
+
+    }
+
+
+
+
   </script>
 
   <script>

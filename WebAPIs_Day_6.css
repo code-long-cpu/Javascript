@@ -3,15 +3,19 @@
   width: 400px;
   margin: auto;
   border-radius: 10px;
+  padding: 20px 0;
 }
 
 .msg {
   display: block;
   color: red;
   /* border: solid 1px black; */
-  width: 200px;
+  width: 500px;
+  height: 20px;
+  margin: 0;
+  margin-top: 10px;
   margin-left: 50px;
-  margin-bottom: 20px;
+  /* margin-bottom: 10px; */
 }
 
 .checkCode {
@@ -28,7 +32,7 @@
 
 .P142 input {
   display: block;
-  margin: 20px auto;
+  margin: 10px auto;
   margin-bottom: 6px;
   width: 300px;
   height: 50px;
@@ -77,6 +81,8 @@
   height: 15px;
   width: 20px;
   display: inline;
+
+  margin-top: 30px;
   margin-left: 20px;
 }
 
@@ -86,7 +92,7 @@
 
 .P142 button {
   display: block;
-  width: 330px;
+  width: 360px;
   height: 50px;
   margin: 20px auto;
 }
