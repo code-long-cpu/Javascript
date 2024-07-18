@@ -17,20 +17,20 @@
     </div>
     <div class="telInfo">
       <input type="text" class="tel" placeholder="输入手机号">
-      <span class="msg">号码格式有误</span>
+      <span class="msg"></span>
     </div>
     <div class="checkCode">
       <input type="text" class="message" placeholder="短信验证码">
-      <span class="msg">验证码格式有误</span>
+      <span class="msg"></span>
       <a class='code' href="javascript:;">发送验证码</a>
     </div>
     <div class="passWordInfo">
       <input type="text" class="password" placeholder="设置6至20位字母、数字和符号组合">
-      <span class="msg">密码格式有误</span>
+      <span class="msg"></span>
     </div>
     <div class="Agree">
       <input type="text" class="again" placeholder="请再次输入上面密码">
-      <span class="msg">再次输入密码格式有误</span>
+      <span class="msg"></span>
     </div>
     <div class="agreeBOx">
       <input type="checkbox" class="gouxuan">
@@ -39,7 +39,8 @@
     <button class="next">下 一 步</button>
   </form>
   <script>
-    //  获取验证码
+
+    //  0-获取验证码
     const code = document.querySelector('.code');
     let flag = true;
     code.addEventListener('click', function (event) {
@@ -59,13 +60,14 @@
       }
     })
 
-    // 检查出入格式 用check点击事件
+    // 1-检查用户名字输入格式 用check点击事件
     // 先获name取元素
     const name = document.querySelector('.name');
     name.addEventListener('change', verifynamne);
+    // 封装verifynamne函数
     function verifynamne() {
       // console.log(11);
-      // 获取span元素
+      // 获取span元素,使用兄弟选择器
       const span = name.nextElementSibling;
       // 制定正则规则
       const reg = /^[a-zA-Z0-9-_]{6,10}$/
@@ -78,7 +80,90 @@
         span.innerHTML = ''
         return true;
       }
+    }
 
+    // 2-检查用户手机号输入格式 用check点击事件
+    // 先获取元素
+    const tel = document.querySelector('.tel');
+    tel.addEventListener('change', verifyPhone);
+    // 封装verifyPhone函数
+    function verifyPhone() {
+      // console.log(11);
+      // 获取span元素,使用兄弟选择器
+      const span = tel.nextElementSibling;
+      // 制定正则规则
+      const reg = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
+      // 验证input与正则是否相等
+      if (!reg.test(tel.value)) {
+        // console.log(11);
+        span.innerHTML = '输入不合法，请输入11位手机号'
+        return false;
+      } else {
+        span.innerHTML = ''
+        return true;
+      }
+    }
+
+    // 3-检查验证码
+    const codeInput = document.querySelector('.message');
+    codeInput.addEventListener('change', verifyCode);
+    // 封装verifyCode函数
+    function verifyCode() {
+      // console.log(11);
+      // 获取span元素,使用兄弟选择器
+      const span = codeInput.nextElementSibling;
+      // 制定正则规则
+      const reg = /^\d{6}$/
+      // 验证input与正则是否相等
+      if (!reg.test(codeInput.value)) {
+        // console.log(11);
+        span.innerHTML = '输入不合法，请输入6位验证码'
+        return false;
+      } else {
+        span.innerHTML = ''
+        return true;
+      }
+    }
+
+    // 4-检查密码
+    const passWord = document.querySelector('.password');
+    passWord.addEventListener('change', verifyPassWord);
+    // 封装verifyPassWord函数
+    function verifyPassWord() {
+      // console.log(11);
+      // 获取span元素,使用兄弟选择器
+      const span = passWord.nextElementSibling;
+      // 制定正则规则
+      const reg = /^[a-zA-Z0-9-_]{6,20}$/
+      // 验证input与正则是否相等
+      if (!reg.test(passWord.value)) {
+        // console.log(11);
+        span.innerHTML = '输入不合法，请输入6-20密码'
+        return false;
+      } else {
+        span.innerHTML = ''
+        return true;
+      }
+    }
+    // 5-再次验证密码
+    const again = document.querySelector('.again');
+    again.addEventListener('change', verifyAgain);
+    // 封装verifyPassWord函数
+    function verifyAgain() {
+      // console.log(11);
+      // 获取span元素,使用兄弟选择器
+      const span = again.nextElementSibling;
+      // 制定正则规则
+      // const reg = /^[a-zA-Z0-9-_]{6,20}$/
+      // 验证input与正则是否相等
+      if (again.value !== passWord.value) {
+        // console.log(11);
+        span.innerHTML = '两次输入密码不一致'
+        return false;
+      } else {
+        span.innerHTML = ''
+        return true;
+      }
     }
 
 
