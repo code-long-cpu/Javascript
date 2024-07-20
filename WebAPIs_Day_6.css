@@ -77,6 +77,12 @@
   background-size: 8%;
 }
 
+.agreeBOx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .agreeBOx .gouxuan {
   height: 15px;
   width: 20px;
@@ -96,6 +102,51 @@
   height: 50px;
   margin: 20px auto;
 }
+
+.unChecked {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  /* border: solid 1px black; */
+  cursor: pointer;
+}
+
+.unChecked::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  /* border: solid 1px black; */
+  background: url('/icon/勾选框-未勾选.png')no-repeat;
+  background-size: contain;
+}
+
+.Checked::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  /* border: solid 1px black; */
+  background: url('/icon/勾选框-勾选.png')no-repeat;
+  background-size: contain;
+}
+
+/* .checkRound::after {
+  content: '';
+  background: url('/icon/勾选框-未勾选.png')no-repeat;
+  background-size: 100%;
+} */
+
+/* .checkRound::before,
+.checkRound::after {
+  content: '';
+  width: 100px;
+  height: 100px;
+  background-size: 100%;
+} */
+
+
 
 .next {
   margin-bottom: 30px;
