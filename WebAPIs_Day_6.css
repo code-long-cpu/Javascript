@@ -163,7 +163,70 @@
   color: rgb(68, 171, 142);
 }
 
-/* 实验 */
+/* <h4 id="P144">🅿️134-🛑API-day6-143-注册页面-验证用户名模块</h4> */
+.P144 {
+  width: 100%;
+  height: 600px;
+  background: radial-gradient(#9be9cf, #59a38d);
+  /* border: solid 10px black; */
+  padding-top: 10px;
+}
+
+.box {
+  width: 500px;
+  height: 400px;
+  background-color: rgb(255, 255, 255);
+  margin: auto;
+  margin-top: 50px;
+  box-shadow: 1px 1px 2px rgba(255, 255, 255);
+  padding: 40px;
+
+}
+
+.tab_bar {
+  height: 40px;
+  /* border-bottom: solid 1px black; */
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.tab_bar::before {
+  content: "|";
+  position: absolute;
+  left: 50%;
+  font-size: 30px;
+  font-weight: 10;
+  color: rgb(136, 136, 136);
+}
+
+.tab_bar a {
+  display: block;
+  /* flex: 1; */
+  text-decoration: none;
+  /* outline: none; */
+  color: inherit;
+  font-size: 25px;
+  /* border: solid 1px black; */
+}
+
+
+
+.tab_bar a:last-child {
+  text-align: end;
+}
+
+.active {
+  border-bottom: solid 3px rgb(68, 171, 142);
+  ;
+
+}
+
+
+
+
+
+/* <h4 id="Ptest">🟡input中的icon实验</h4> */
 .test0 {
   margin: auto;
   border: 1px solid black;
