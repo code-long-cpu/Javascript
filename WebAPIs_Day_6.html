@@ -208,17 +208,17 @@
     <div class="box">
       <div class="tab_bar">
         <a href="javascript:;" class="active" data-id="0">账户登录</a>
-        <a href="javascript:;" data-id="0">二维码登录</a>
+        <a href="javascript:;" data-id="1">二维码登录</a>
       </div>
-      <div class="tab_pane">
+      <div class="tab_pane_1">
         <a href="javascript:;" class="telCode">手机验证码登录</a>
         <form action="" class="denglu">
           <div class="userName">
-            <input type="text" class="Name" name="UserName" placeholder="设置用户名称">
+            <input type="text" class="Name" name="UserName" placeholder="设置用户名称" autocomplete="off" required>
             <span class="tip">输入用户名格式错误</span>
           </div>
           <div class="userPassword">
-            <input type="text" class="Pass" name="UserPass" placeholder="请输入密码">
+            <input type="text" class="Pass" name="UserPass" placeholder="请输入密码" autocomplete="off" required>
             <span class="tip">输入密码格式不正确</span>
           </div>
           <div class="tongyi">
@@ -233,10 +233,51 @@
         </form>
 
       </div>
-      <div class="tab_pane"></div>
+      <div class="tab_pane_2">
+        <div class="image">
+          <img src="/icon/Long.jpg" alt="">
+        </div>
+        <p>请用手机扫码登录</p>
+      </div>
     </div>
   </div>
+  <script>
+    // 1-账户登录与二维码登录切换
+    const tab_bar = document.querySelector(".tab_bar")
+    const tab_pane_1 = document.querySelector(".tab_pane_1")
+    const tab_pane_2 = document.querySelector(".tab_pane_2")
+    tab_bar.addEventListener("click", function (e) {
+      if (e.target.tagName === 'A') {
+        tab_bar.querySelector(".active").classList.remove("active");
+        e.target.classList.add("active");
 
+        tab_pane_1.style.display = "none";
+        tab_pane_2.style.display = "none";
+        if (e.target.dataset.id === "0") tab_pane_1.style.display = "block";
+        if (e.target.dataset.id === "1") tab_pane_2.style.display = "block";
+      }
+    })
+    // 2-勾选框
+    const AGree = document.querySelector(".AGree");
+    AGree.addEventListener("click", function (e) {
+      this.classList.toggle('AGreed')
+    });
+
+    //3-提交判断勾选框是否勾选,存储用户名
+    const denglu = document.querySelector(".denglu");
+    const Name = document.querySelector(".Name");
+    denglu.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!AGree.classList.contains("AGreed")) {
+        return alert("请勾选《服务协议》和《用户协议》")
+      }
+      localStorage.setItem("user", Name.value);
+      location.href = 'https://www.google.com'
+
+    });
+
+
+  </script>
 
   <br>
   <hr>
