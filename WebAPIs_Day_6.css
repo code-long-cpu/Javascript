@@ -4,6 +4,7 @@
   margin: auto;
   border-radius: 10px;
   padding: 20px 0;
+
 }
 
 .msg {
@@ -370,6 +371,150 @@
   text-align: center;
   color: rgb(68, 171, 142);
 }
+
+
+/* <h4 id="P148">🅿️148-🛑API-day6-147-阶段案例-首页制作</h4> */
+.shouye {
+  /* height: 100px; */
+  width: 100%;
+  background-color: #333235;
+  /* border: solid 1px rgb(0, 0, 0); */
+
+}
+
+.caidan {
+  height: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  padding-right: 30px;
+}
+
+.caidan li {
+  display: block;
+  list-style: none;
+  padding: 0 20px;
+  margin: 0;
+  border-right: solid 1px #ffffff;
+  /* border: solid 1px white; */
+
+}
+
+.caidan li:last-child {
+  border-right: none;
+  /* width: 70px; */
+  /* border: solid 1px white; */
+  text-align: right;
+  background: url('/icon/手机\ \(1\).png') no-repeat;
+  background-size: 20%;
+  background-position: 15px;
+  padding-left: 35px;
+
+}
+
+
+.caidan li a {
+  text-decoration: none;
+  color: rgb(216, 216, 216);
+  /* border: solid 1px red; */
+
+}
+
+.caidan li a:hover {
+  color: rgb(103, 205, 176);
+}
+
+
+.main {
+  height: 500px;
+  width: 100%;
+  background-color: #e7e7e7;
+  padding-top: 50px;
+  /* border: solid 1px red; */
+  /* background: radial-gradient(#9be9cf, #59a38d); */
+}
+
+.imgBox {
+  width: 484px;
+  height: 400px;
+  /* border: solid 1px red; */
+  margin: auto;
+  /* margin-top: 50px; */
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.leftImg {
+  flex-shrink: 0;
+  width: 400px;
+  height: 400px;
+  /* border: solid 1px rgb(85, 0, 255); */
+  /* overflow: hidden; */
+}
+
+.leftImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rightImg {
+  flex-shrink: 0;
+  width: 70px;
+  height: 100%;
+  /* border: solid 1px rgb(0, 255, 34); */
+}
+
+
+.imgss {
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imgss li {
+  height: 70px;
+  width: 70px;
+  display: block;
+
+  /* box-sizing: border-box; */
+}
+
+.activee {
+  border: solid 3px rgb(68, 171, 142);
+}
+
+.imgss li:hover {
+  cursor: pointer;
+  border: solid 3px rgb(68, 171, 142);
+  /* border-color: #59a38d; */
+}
+
+.imgss img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.bigImg {
+  width: 400px;
+  height: 400px;
+  border: solid 1px rgb(247, 11, 50);
+  position: absolute;
+  left: 413px;
+  /* top: 50px; */
+  display: none;
+}
+
 
 
 /* <h4 id="Ptest">🟡input中的icon实验</h4> */

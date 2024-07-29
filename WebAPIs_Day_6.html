@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h4 id="P143">🅿️142-🛑API-day6-142-注册页面-短信验证码 （①flag节流阀，②icon占位符Background方法，③::before伪类切换自定义icon勾选框）</h4>
+  <h4 id="P143">🅿️143-🛑API-day6-142-注册页面-短信验证码 （①flag节流阀，②icon占位符Background方法，③::before伪类切换自定义icon勾选框）</h4>
   <form action="" class="P142">
     <div class="nameInfo">
       <input type="text" class="name" placeholder="设置用户名称" name="uname" autocomplete="off">
@@ -188,6 +188,8 @@
       if (!verifyCode()) e.preventDefault();
       if (!verifyPassWord()) e.preventDefault();
       if (!verifyAgain()) e.preventDefault();
+
+      // location.href = '#P147'
     })
 
 
@@ -203,7 +205,18 @@
 
   <br>
   <hr>
-  <h4 id="P144">🅿️134-🛑API-day6-143-注册页面-验证用户名模块</h4>
+  <!-- <h4 id="P144">🅿️144-🛑API-day6-143-注册页面-验证用户名模块</h4>
+  <br>
+  <hr>
+  <h4 id="P145">🅿️145-🛑API-day6-144-综合案例-注册页面-手机号密码</h4>
+  <br>
+  <hr>
+  <h4 id="P146">🅿️146-🛑API-day6-145-综合案例-注册页面-我同意模块</h4>
+  <br>
+  <hr> -->
+
+
+  <h4 id="P147">🅿️147-🛑API-day6-146-阶段案例-登录页面</h4>
   <div class="P144">
     <div class="box">
       <div class="tab_bar">
@@ -272,25 +285,72 @@
         return alert("请勾选《服务协议》和《用户协议》")
       }
       localStorage.setItem("user", Name.value);
-      location.href = 'https://www.google.com'
+      location.href = '#P148'
 
     });
-
-
   </script>
 
   <br>
   <hr>
-  <h4 id="P145">🅿️144-🛑API-day6-144-综合案例-注册页面-手机号密码</h4>
-  <br>
-  <hr>
-  <h4 id="P146">🅿️145-🛑API-day6-145-综合案例-注册页面-我同意模块</h4>
-  <br>
-  <hr>
-  <h4 id="P147">🅿️146-🛑API-day6-146-阶段案例-登录页面</h4>
-  <br>
-  <hr>
-  <h4 id="P148">🅿️147-🛑API-day6-147-阶段案例-首页制作</h4>
+  <h4 id="P148">🅿️148-🛑API-day6-147-阶段案例-首页制作</h4>
+  <div class="shouye">
+    <ul class="caidan">
+      <li><a href="javascript:;">请先登录</a></li>
+      <li><a href="javascript:;">免费注册</a></li>
+      <li><a href="javascript:;">我的订单</a></li>
+      <li><a href="javascript:;">会员中心</a></li>
+      <li><a href="javascript:;">手机版</a></li>
+    </ul>
+    <div class="main">
+      <div class="imgBox">
+        <div class="leftImg">
+          <img src="/new_imgs/1.jpeg" alt="">
+        </div>
+        <div class="rightImg">
+          <ul class="imgss">
+            <li class="activee"><img src="/new_imgs/1.jpeg" alt=""></li>
+            <li><img src="" alt=""></li>
+            <li><img src="" alt=""></li>
+            <li><img src="" alt=""></li>
+            <li><img src="" alt=""></li>
+          </ul>
+        </div>
+        <div class="bigImg"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // ①图片资源集
+    const tupian = ['/new_imgs/1.jpeg', '/new_imgs/2.jpeg', '/new_imgs/3.jpeg', '/new_imgs/4.jpeg', '/new_imgs/5.jpeg'];
+
+    const imgss = document.querySelectorAll('.imgss li img')
+
+    for (let i = 0; i < tupian.length; i++) {
+      imgss[i].src = tupian[i];
+    }
+
+    // ②鼠标经过事件:冒泡加排他，绿框框选中小图片们
+    const rightImg = document.querySelector('.rightImg');
+    const leftImg = document.querySelector('.leftImg');
+    rightImg.addEventListener("mouseover", function (e) {
+      if (e.target.tagName === 'IMG') {
+        console.log(11)
+        // 去除所有既有的active
+        this.querySelector('.activee').classList.remove('activee');
+        // 当前元素添加新的active
+        e.target.parentNode.classList.add('activee');
+
+        // console.log(e.target.src)
+        leftImg.querySelector('img').src = `${e.target.src}`;
+      }
+    })
+
+
+
+
+    // 以下代码失效：2024-7-29 background不能参与交互时间，只是装饰不是内容，img是内容，可以参与交互事件
+
+  </script>
   <br>
   <hr>
 
