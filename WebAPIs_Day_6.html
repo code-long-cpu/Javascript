@@ -305,6 +305,7 @@
       <div class="imgBox">
         <div class="leftImg">
           <img src="/new_imgs/1.jpeg" alt="">
+          <div class="layer"></div>
         </div>
         <div class="rightImg">
           <ul class="imgss">
@@ -329,21 +330,93 @@
       imgss[i].src = tupian[i];
     }
 
-    // ②鼠标经过事件:冒泡加排他，绿框框选中小图片们
+    // ②小图片选中，鼠标经过事件:冒泡加排他，绿框框选中小图片们，用mouseover（有事件冒泡）
     const rightImg = document.querySelector('.rightImg');
     const leftImg = document.querySelector('.leftImg');
+    const bigImg = document.querySelector('.bigImg');
     rightImg.addEventListener("mouseover", function (e) {
       if (e.target.tagName === 'IMG') {
-        console.log(11)
+        // console.log(11)
         // 去除所有既有的active
         this.querySelector('.activee').classList.remove('activee');
         // 当前元素添加新的active
         e.target.parentNode.classList.add('activee');
-
         // console.log(e.target.src)
+        // 中盒子图片等于小盒子 
         leftImg.querySelector('img').src = `${e.target.src}`;
+        // 大盒子图片等于小盒子
+        bigImg.style.backgroundImage = `url(${e.target.src})`
       }
     })
+
+    // ③中等图片选中，显示大图片（mouseenter和mouseleave）
+    // 获取大图片
+
+    leftImg.addEventListener('mouseenter', show);
+    leftImg.addEventListener('mouseleave', hide);
+
+    let timeID = 0;
+    function show() {
+      // console.log(11);
+      clearTimeout(timeID)
+      bigImg.style.display = 'block';
+    }
+    function hide() {
+      timeID = setTimeout(function () {
+        bigImg.style.display = 'none';
+      }, 200)
+    }
+
+    // ④大图片选中，等待一小会儿消失
+    bigImg.addEventListener('mouseenter', show)
+    bigImg.addEventListener('mouseleave', hide)
+
+    // ⑤显示黑色遮罩层
+    const layer = document.querySelector('.layer');
+    leftImg.addEventListener('mouseenter', function () {
+      layer.style.display = 'block';
+    });
+    leftImg.addEventListener('mouseleave', function () {
+      layer.style.display = 'none';
+    });
+
+    // ⑥移动黑色遮罩层（黑色盒子移动的距离=鼠标位置-左侧盒子的边缘）
+    // e.pageX得到鼠标在页面的位置（最大）
+    // Bounding得到的是距离窗口可视区的距离（次之）
+    // scrollTop是卷去页面的距离（不见的尺寸）
+    leftImg.addEventListener("mousemove", function (e) {
+      // console.log(e.pageX);
+      // console.log(leftImg.getBoundingClientRect().left)
+      let x = e.pageX - leftImg.getBoundingClientRect().left;
+      let y = e.pageY - leftImg.getBoundingClientRect().top - document.documentElement.scrollTop;
+      // console.log(x, y);
+      // 黑色遮罩层的移动范围(0至400)
+      if (x >= 0 && x <= 400 && y >= 0 && y <= 400) {
+
+        let mx = 0;
+        let my = 0;
+        if (x < 100) mx = 0;
+        if (x > 100 && x <= 300) mx = x - 100;
+        if (x > 300) mx = 300 - 100;
+
+        if (y < 100) my = 0;
+        if (y > 100 && y <= 300) my = y - 100;
+        if (y > 300) my = 300 - 100;
+
+        layer.style.left = mx + 'px';
+        layer.style.top = my + 'px';
+
+        // 移动大盒子背景图
+        bigImg.style.backgroundPositionX = -2 * mx + 'px';
+        bigImg.style.backgroundPositionY = -2 * my + 'px';
+
+
+      }
+
+
+    })
+
+
 
 
 
