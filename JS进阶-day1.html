@@ -8,7 +8,151 @@
 </head>
 
 <body>
-  <h4 id="P162">🅿️161 JS进阶 day1-161-渲染商品案例</h4>
+  <h4 id="P158">P158 JS进阶-day1-157箭头函数的使用，箭头函数是替代函数表达式的一种写法</h4>
+  <script>
+    // ①普通函数
+    function hanshu_1() {
+      console.log(1);
+    }
+    hanshu_1(); //1
+
+    // ②函数表达式（箭头函数的作用是取代这种写法）
+    const hanshu_2 = function () {
+      console.log(2);
+    }
+    hanshu_2(); //2
+
+    // ③箭头函数,取代函数表达式写法，省略了function关键字
+    const hanshu_3 = () => {
+      console.log(3);
+    }
+    hanshu_3(); //3
+
+    // ④箭头函数传递参数
+    const hanshu_4 = (x) => {
+      console.log(x);
+    }
+    hanshu_4(4); //4
+
+    // ⑤箭头函数:只有一个形参，可以省略小括号
+    const hanshu_5 = x => {
+      console.log(x);
+    }
+    hanshu_5(5); //5
+
+    // ⑥箭头函数:只有一个行代码，可以省略大括号；
+    const hanshu_6 = x => console.log(x);
+    hanshu_5(6); //6
+
+    // ⑦箭头函数:return；
+    const hanshu_7 = x => {
+      return x + x;
+    }
+    console.log(hanshu_7(8)); //16
+
+    // ⑧箭头函数:只有一行代码，可省略return；
+    const hanshu_8 = x => x + x;
+    console.log(hanshu_8(8)); //16
+
+    // ⑨箭头函数：返回一个对象，对象大括号和函数大括号会冲突，所以采用箭头函数返回对象得用小括号包裹；
+    const hanshu_9 = (uname) => ({ name: uname });
+    console.log(hanshu_9("xielong")); //{name: 'xielong'}
+
+    // ⑩this指向：对象的方法sayHi中没有this，沿用上一级obj的this，window调用obj，所以this指向window
+  </script>
+  <p style="white-space: pre-line">
+    ①普通函数
+    function hanshu_1() {
+    console.log(1);
+    }
+    hanshu_1(); //1
+
+    ②函数表达式（箭头函数的作用是取代这种写法）
+    const hanshu_2 = function () {
+    console.log(2);
+    }
+    hanshu_2(); //2
+
+    ③箭头函数,取代函数表达式写法，省略了function关键字
+    const hanshu_3 = () => {
+    console.log(3);
+    }
+    hanshu_3(); //3
+
+    ④箭头函数传递参数
+    const hanshu_4 = (x) => {
+    console.log(x);
+    }
+    hanshu_4(4); //4
+
+    ⑤箭头函数:只有一个形参，可以省略小括号
+    const hanshu_5 = x => {
+    console.log(x);
+    }
+    hanshu_5(5); //5
+
+    ⑥箭头函数:只有一个行代码，可以省略大括号；
+    const hanshu_6 = x => console.log(x);
+    hanshu_5(6); //6
+
+    ⑦箭头函数:return；
+    const hanshu_7 = x => {
+    return x + x;
+    }
+    console.log(hanshu_7(8)); //16
+
+    ⑧箭头函数:只有一行代码，可省略return；
+    const hanshu_8 = x => x + x;
+    console.log(hanshu_8(8)); //16
+
+    ⑨箭头函数：返回一个对象，对象大括号和函数大括号会冲突，所以采用箭头函数返回对象得用小括号包裹；
+    const hanshu_9 = (uname) => ({ name: uname });
+    console.log(hanshu_9("xielong")); //{name: 'xielong'}
+
+    ⑩this指向：箭头函数中无this；普通函数中，this指向函数调用者；（）对象的方法sayHi中没有this，沿用上一级obj的this，window调用obj，所以this指向window；（我悟了 普通函数找老爹
+    箭头函数找牛爷爷）；DOM事件回调函数中不太推荐箭头函数（用到this时候），this指向的是window；
+  </p>
+  <br>
+  <hr>
+
+  <h4 id="P162">🅿️161 JS进阶 day1-161-渲染商品案例 (箭头函数+对象解构+foreach())</h4>
+  <div class="P162">
+
+  </div>
+
+
+  <script>
+    const data = [
+      {
+        id: "1",
+        name: '不知道去哪里玩了',
+        date: '2024-5-3',
+        picture: '/images/1.JPG'
+      },
+      {
+
+      },
+      {
+
+      },
+      {
+
+      },
+      {
+
+      },
+      {
+
+      },
+      {
+
+      }]
+  </script>
+
+
+
+
+
   <br>
   <hr>
   <h4 id="P163">🅿️162 JS进阶 day1-162-渲染案例-案例筛选</h4>
