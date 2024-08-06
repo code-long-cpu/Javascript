@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS进阶day1</title>
+  <link rel="stylesheet" href="/JS进阶-day1.css">
 </head>
 
 <body>
@@ -117,7 +118,48 @@
 
   <h4 id="P162">🅿️161 JS进阶 day1-161-渲染商品案例 (箭头函数+对象解构+foreach())</h4>
   <div class="P162">
-
+    <div class="list">
+      <!-- <div class="item">
+        <img src="" alt="">
+        <p class="name">今日去哪儿玩</p>
+        <p class="">price</p>
+      </div>
+      <div class="item">
+        <img src="" alt="">
+        <p class="name"></p>
+        <p class="">price</p>
+      </div>
+      <div class="item">
+        <img src="" alt="">
+        <p class="name"></p>
+        <p class="">price</p>
+      </div>
+      <div class="item">
+        <img src="" alt="">
+        <p class="name"></p>
+        <p class="">price</p>
+      </div>
+      <div class="item">
+        <img src="" alt="">
+        <p class="name"></p>
+        <p class="">price</p>
+      </div>
+      <div class="item">
+        <img src="" alt="">
+        <p class="name"></p>
+        <p class="">price</p>
+      </div>
+      <div class="item">
+        <img src="" alt="">
+        <p class="name"></p>
+        <p class="">price</p>
+      </div>
+      <div class="item">
+        <img src="" alt="">
+        <p class="name"></p>
+        <p class="">price</p>
+      </div> -->
+    </div>
   </div>
 
 
@@ -130,23 +172,60 @@
         picture: '/images/1.JPG'
       },
       {
-
+        id: "2",
+        name: '不知道去哪里玩了',
+        date: '2024-5-3',
+        picture: '/images/2.JPG'
       },
       {
-
+        id: "3",
+        name: '不知道去哪里玩了',
+        date: '2024-5-3',
+        picture: '/images/3.jpeg'
       },
       {
-
+        id: "4",
+        name: '不知道去哪里玩了',
+        date: '2024-5-3',
+        picture: '/images/4.jpeg'
       },
       {
-
+        id: "5",
+        name: '不知道去哪里玩了',
+        date: '2024-5-3',
+        picture: '/images/5.jpg'
       },
       {
-
+        id: "6",
+        name: '不知道去哪里玩了',
+        date: '2024-5-3',
+        picture: '/images/6.jpeg'
       },
       {
-
+        id: "7",
+        name: '不知道去哪里玩了',
+        date: '2024-5-3',
+        picture: '/images/7.jpeg'
       }]
+
+    // const img = document.querySelector('.item img');
+    // img.src = data[0].picture;
+
+    // ①声明一个字符串变量
+    let str = '';
+    // ②遍历数组
+    data.forEach(item => {
+      const { name, date, picture } = item;
+      str += `
+      <div class="item">
+        <img src="${picture}" alt="">
+        <p class="">${name}</p>
+        <p class="">${date}</p>
+      </div>
+      `
+    })
+    document.querySelector('.list').innerHTML = str
+
   </script>
 
 
