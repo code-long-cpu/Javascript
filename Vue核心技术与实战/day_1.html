@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue_day1</title>
+  <link rel="stylesheet" href="/Vue核心技术与实战/day_1.css">
+</head>
+
+<body>
+
+  <br>
+  <hr>
+  <h3>🟢P4-004创建一个Vue实例：</h3>
+  <!-- 1-准备容器 -->
+  <div id="app">
+    <h1>
+      标题中的：{{msg}}；
+    </h1>
+    正文中的：{{msg}}；
+  </div>
+
+  <!-- 2-引入官网开发版本包 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        msg: "Hello vue"
+      }
+    })
+  </script>
+
+  <hr>
+  <h3>🟢P5-005插值表达式：</h3>
+  <div id="app_2">
+    <p>名字：{{msg}}</p>
+    <p>大写：{{msg.toUpperCase()}}</p>
+    <p>拼接字符串：{{msg+'你好'}}</p>
+    <p>比较运算符：{{msg}}是{{age>=18?'成年':'未成年'}}人</p>
+    <p>对象的值：{{msg}}的朋友是{{friend.name}}</p>
+    <p>对象的值：{{friend.name}}喜欢{{friend.hobby}}</p>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_2 = new Vue({
+      el: "#app_2",
+      data: {
+        msg: "xielong",
+        age: 10,
+        friend: {
+          name: 'lele',
+          hobby: '热爱学习',
+        }
+      }
+    })
+  </script>
+
+  <hr>
+  <h3>🟢P6-006vue响应式特征</h3>
+  <p>(响应式：console控制带修改实例属性值，页面自动渲染更新)</p>
+  <div id="app_3">
+    <p>响应式特点，console值改变，试图自动重新渲染：{{msg}}</p>
+    <p>响应式特点，console值改变，试图自动重新渲染：{{count}}</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_3 = new Vue({
+      el: '#app_3',
+      data: {
+        msg: "hello world",
+        count: 1,
+      }
+    });
+
+  </script>
+
+  <hr>
+  <h3>🟢P7-007开发者工具安装</h3>
+  <p>给chrome浏览器安装了vue插件，这样通过控制台的vue修改对象值就方便了</p>
+
+  <hr>
+  <h3>🟢P8-08指令初识和v-html:解析标签</h3>
+  <p>v-html是动态解析标签元素，就是innerHtml</p>
+  <div id="app_4">
+    ❌错误解析：{{}}插值表达式不具备解析标签的能力，会以文本的形式渲染msg
+    <div>{{msg}}</div>
+    <br>
+    ✅正确解析：v-html可以解析标签
+    <div v-html="msg">{{msg}}</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_4 = new Vue({
+      el: '#app_4',
+      data: {
+        msg: `
+        <a href="http://www.itheima.com">黑马程序员</a>
+        `
+      }
+    })
+  </script>
+
+  <hr>
+  <h3>🟢P9-09指令-v-show和v-if</h3>
+  <p>v-show是显示与隐藏元素（开销小）底层是display：none</p>
+  <p>v-if是创建与移除元素（开销大）</p>
+
+  <div id="app_5">
+    <div class="box" v-show="flag">我是v-show盒子</div>
+    <div class="box" v-if="flag">我是v-if盒子</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_5 = new Vue({
+      el: '#app_5',
+      data: {
+        flag: true,
+      }
+    })
+  </script>
+
+  <hr>
+  <h3>🟢P10-10 v-else指令-v-else-if</h3>
+  <div id="app_6">
+    <p v-if="gender===1">性别：♂男</p>
+    <p v-else>性别：♀女</p>
+    <p v-if="score>=90">成绩评定A：奖励电脑一台</p>
+    <p v-else-if="score>=70">成绩评定B：奖励周末两天</p>
+    <p v-else-if="score>=60">成绩评定C：奖励零食一带</p>
+    <p v-else>成绩评定D：一周不玩手机</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_6 = new Vue({
+      el: '#app_6',
+      data: {
+        gender: 1,
+        score: 80
+      }
+    })
+  </script>
+
+
+  <hr>
+  <h3>🟢P11-11 指令v-on注册事件-语法1-内联语句：v-on可替换为@</h3>
+  <div id="app_7">
+    <button v-on:click="count--">-</button>
+    <span>{{count}}</span>
+    <button @click="count++">+</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_7 = new Vue({
+      el: "#app_7",
+      data: {
+        count: 100
+      }
+    })
+
+  </script>
+
+  <hr>
+  <h3>🟢P12-12 指令v-on注册事件-语法2-method中的函数名</h3>
+  <div id="app_8">
+    <button @click="toggle()">点击显示/隐藏</button>
+    <h1 v-show="flag">{{msg}}</h1>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_8 = new Vue({
+      el: "#app_8",
+      data: {
+        msg: "Long can twinkle.",
+        flag: true,
+      },
+      methods: {
+        toggle() {
+          this.flag = !this.flag
+        }
+      },
+    })
+  </script>
+
+  <hr>
+  <h3>🟢P13-13 指令 v-on-调用传参</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+</body>
+
+</html>
