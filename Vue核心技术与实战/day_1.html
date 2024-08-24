@@ -9,9 +9,67 @@
 </head>
 
 <body>
+  <h3>🟣P20-20 综合案例-小黑记事本</h3>
+  <div class="jishiben" id="note">
+    <h2>小黑记事本</h2>
+    <section class="main">
+      <div class="header">
+        <input class="write" type="text" placeholder="请输入任务" /><button class="add">添加任务</button>
+      </div>
+      <div class="seciton">
+        <ul class="todolist">
+          <li class="todo" v-for="(item,index) in plan" :k="item.id">
+            <div class="view">
+              <span class="index">{{item.id}}.<label>{{item.name}}</label></span>
+              <button class="destory">X</button>
+            </div>
+          </li>
+          <!-- <li class="todo">
+            <div class="view">
+              <span class="index">1. <label>跑步20分钟</label></span>
+              <button class="destory">X</button>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+      <div class="footer">
+        <section>
+          <span>合计：<span>2</span></span>
+          <button>清空任务</button>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const note = new Vue({
+      el: "#note",
+      data: {
+        plan: [
+          { id: 1, name: '跑步一公里' },
+          { id: 2, name: '写码一小时' },
+          { id: 3, name: '学英语2小时' },
+          { id: 3, name: '学英语2小时' },
+        ]
+      }
+
+
+    })
+
+  </script>
+
+
+
+
+
 
   <br>
   <hr>
+
+
+
   <h3>🟢P4-004创建一个Vue实例：</h3>
   <!-- 1-准备容器 -->
   <div id="app">
@@ -32,9 +90,10 @@
       }
     })
   </script>
-
   <hr>
-  <h3>🟢P5-005插值表达式：</h3>
+
+
+  <h3>🟢P5-005插值表达式：{{}}</h3>
   <div id="app_2">
     <p>名字：{{msg}}</p>
     <p>大写：{{msg.toUpperCase()}}</p>
@@ -59,8 +118,9 @@
       }
     })
   </script>
-
   <hr>
+
+
   <h3>🟢P6-006vue响应式特征</h3>
   <p>(响应式：console控制带修改实例属性值，页面自动渲染更新)</p>
   <div id="app_3">
@@ -78,14 +138,15 @@
         count: 1,
       }
     });
-
   </script>
-
   <hr>
+
+
   <h3>🟢P7-007开发者工具安装</h3>
   <p>给chrome浏览器安装了vue插件，这样通过控制台的vue修改对象值就方便了</p>
-
   <hr>
+
+
   <h3>🟢P8-08指令初识和v-html:解析标签</h3>
   <p>v-html是动态解析标签元素，就是innerHtml</p>
   <div id="app_4">
@@ -108,8 +169,9 @@
       }
     })
   </script>
-
   <hr>
+
+
   <h3>🟢P9-09指令-v-show和v-if</h3>
   <p>v-show是显示与隐藏元素（开销小）底层是display：none</p>
   <p>v-if是创建与移除元素（开销大）</p>
@@ -129,8 +191,9 @@
       }
     })
   </script>
-
   <hr>
+
+
   <h3>🟢P10-10 v-else指令-v-else-if</h3>
   <div id="app_6">
     <p v-if="gender===1">性别：♂男</p>
@@ -152,9 +215,9 @@
       }
     })
   </script>
-
-
   <hr>
+
+
   <h3>🟢P11-11 指令v-on注册事件-语法1-内联语句：v-on可替换为@</h3>
   <div id="app_7">
     <button v-on:click="count--">-</button>
@@ -173,8 +236,9 @@
     })
 
   </script>
-
   <hr>
+
+
   <h3>🟢P12-12 指令v-on注册事件-语法2-method中的函数名</h3>
   <div id="app_8">
     <button @click="toggle()">点击显示/隐藏</button>
@@ -197,12 +261,205 @@
       },
     })
   </script>
-
   <hr>
-  <h3>🟢P13-13 指令 v-on-调用传参</h3>
 
 
+  <h3>🟢P13-13 指令 v-on 方法传参</h3>
+  <div id="app_9">
+    <div class="box_2">
+      <h3>小黑自动售货机</h3>
+      <button @click="price(5)">可乐5元</button>
+      <button @click="price(8)">雪碧8元</button>
+      <p>余额{{count}}元</p>
+      <button @click="renew">重新计算</button>
+    </div>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_9 = new Vue({
+      el: "#app_9",
+      data: {
+        count: 100,
+      },
+      methods: {
+        price(x) {
+          this.count -= x;
+        },
+        renew() {
+          this.count = 100;
+        }
+      }
+    });
+  </script>
+  <hr>
+
+
+  <h3>🟢P14-14 指令 v-bind (src绑定图片地址)</h3>
+  <div id="app_10">
+    <img v-bind:src="imgUrl_1" v-bind:title="title_1">
+    <img :src="imgUrl_2" :title="title_2">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_10 = new Vue({
+      el: "#app_10",
+      data: {
+        imgUrl_1: '/images/1.JPG',
+        imgUrl_2: '/images/3.jpeg',
+        title_1: "xielong",
+        title_2: "longlong",
+      }
+    });
+  </script>
+  <hr>
+
+
+  <h3>🟣P15 案例-波仔的学习之旅(上下切换图片)</h3>
+  <div id="app_11">
+    <button v-show="index>0" @click="index--">上一张</button>
+    <div class="image">
+      <img :src="list[index]" alt="">
+    </div>
+    <button v-show="index<list.length-1" @click="index++">下一张</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_11 = new Vue({
+      el: "#app_11",
+      data: {
+        index: 0,
+        list: [
+          '/new_imgs/1.jpeg',
+          '/new_imgs/2.jpeg',
+          '/new_imgs/3.jpeg',
+          '/new_imgs/4.jpeg',
+          '/new_imgs/5.jpeg',
+        ]
+      }
+    })
+  </script>
+  <hr>
+
+
+  <h3>🟢P16-16 指令 v-for 循环</h3>
+  <div id="app_12">
+    <h3>照片</h3>
+    <div class="big">
+      <div class="img" v-for="(item,index) in list">
+        <img v-bind:src="item" alt="" v-bind:title="index">
+        <h4>{{index}}</h4>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_123 = new Vue({
+      el: '#app_12',
+      data: {
+        list: [
+          '/new_imgs/1.jpeg',
+          '/new_imgs/2.jpeg',
+          '/new_imgs/3.jpeg',
+          '/new_imgs/4.jpeg',
+          '/new_imgs/5.jpeg',
+        ]
+      }
+    })
+  </script>
+  <br>
+  <hr>
+
+  <h3>🟢P17-17 小黑的书架-谢龙的照片墙</h3>
+  <div id="app_13">
+    <h4>照片墙</h4>
+    <div class="bigbox">
+      <div class="group" v-for="(item,index) in info" :key="item.id">
+        <p>{{item.name}}</p>
+        <img v-bind:src="item.src" alt="">
+        <button v-on:click="delet(item.id)">删除</button>
+      </div>
+    </div>
+    <button v-on:click="renew">重置</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_13 = new Vue({
+      el: "#app_13",
+      data: {
+        info: [
+          { id: 0, name: "Long", src: '/P97轮播图图片/1.JPG' },
+          { id: 1, name: "Le", src: '/P97轮播图图片/2.JPG' },
+          { id: 2, name: "Nick", src: '/P97轮播图图片/3.JPG' },
+          { id: 3, name: "Feng", src: '/P97轮播图图片/4.JPG' },
+        ]
+      },
+      methods: {
+        delet(id) {
+          console.log(id);
+          this.info = this.info.filter(item => item.id !== id);
+        },
+        renew() {
+          this.info = [
+            { id: 0, name: "Long", src: '/P97轮播图图片/1.JPG' },
+            { id: 1, name: "Le", src: '/P97轮播图图片/2.JPG' },
+            { id: 2, name: "Nick", src: '/P97轮播图图片/3.JPG' },
+            { id: 3, name: "Feng", src: '/P97轮播图图片/4.JPG' },
+          ]
+        }
+      }
+    })
+
+  </script>
+  <br>
+  <hr>
+
+
+  <h3>🟢P18-18 指令-v-for的key 标签唯一标识符 :key="item.id"</h3>
+  <br>
+  <hr>
+
+  <h3>🟢P19-19 指令-v-model=“变量” 数据与视图行程双向绑定，可以快速获取和设置表单内容</h3>
+  <div id="app_14">
+    账号：<input type="text" v-model="account"><br><br>
+    密码：<input type="password" v-model="password"><br><br>
+    <button @click="login">登陆</button>
+    <button @click="reset">重置</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_14 = new Vue({
+      el: "#app_14",
+      data: {
+        account: '',
+        password: '',
+      },
+      methods: {
+        login() {
+          console.log(this.account, this.password);
+        },
+        reset() {
+          this.account = '';
+          this.password = '';
+        }
+      }
+    })
+  </script>
+  <br>
+  <hr>
+
+
+  <h3>🟣P20-20 综合案例-小黑记事本</h3>
 
 
 
