@@ -11,17 +11,18 @@
 <body>
   <h3>🟣P20-20 综合案例-小黑记事本</h3>
   <div class="jishiben" id="note">
-    <h2>小黑记事本</h2>
+    <h2>小🐲记事本</h2>
     <section class="main">
       <div class="header">
-        <input class="write" type="text" placeholder="请输入任务" /><button class="add">添加任务</button>
+        <input @keyup.enter="addnew" v-model.trim="todoname" class="write" type="text" placeholder="请输入任务" /><button
+          class="add" @click="addnew">添加任务</button>
       </div>
       <div class="seciton">
         <ul class="todolist">
           <li class="todo" v-for="(item,index) in plan" :k="item.id">
             <div class="view">
-              <span class="index">{{item.id}}.<label>{{item.name}}</label></span>
-              <button class="destory">X</button>
+              <span class="index">{{index+1}}.<label>{{item.name}}</label></span>
+              <button class="destory" @click="delet(item.id)">X</button>
             </div>
           </li>
           <!-- <li class="todo">
@@ -33,9 +34,9 @@
         </ul>
       </div>
       <div class="footer">
-        <section>
-          <span>合计：<span>2</span></span>
-          <button>清空任务</button>
+        <section v-show="plan.length>0">
+          <span>合计：<span>{{plan.length}}</span></span>
+          <button @click="clear">清空任务</button>
         </section>
       </div>
     </section>
@@ -47,15 +48,40 @@
     const note = new Vue({
       el: "#note",
       data: {
+        todoname: '',
         plan: [
           { id: 1, name: '跑步一公里' },
           { id: 2, name: '写码一小时' },
           { id: 3, name: '学英语2小时' },
-          { id: 3, name: '学英语2小时' },
         ]
+      },
+      methods: {
+        // ①添加任务
+        addnew() {
+          // ①判断
+          if (this.todoname.trim() === '') {
+            alert("请输入你的计划")
+            return
+          }
+          // ②给数组第一位添加元素
+          this.plan.unshift({
+            id: +new Date(),
+            name: this.todoname,
+          });
+          // ③清空输入框
+          this.todoname = '';
+        },
+        // ②删除任务
+        delet(x) {
+          this.plan = this.plan.filter(item => item.id !== x);
+        },
+        // ③清空任务
+        clear() {
+          this.plan = [];
+        },
+        // ④无任务时候隐藏底部信息
+
       }
-
-
     })
 
   </script>

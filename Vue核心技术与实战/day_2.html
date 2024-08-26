@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue_day2</title>
+  <link rel="stylesheet" href="./day_2.css">
+</head>
+
+<body>
+
+  <h3>🟣P34-水果购物车-基本渲染</h3>
+
+
+
+  <hr>
+
+  <h3>🟢P24-指令的修饰符</h3>
+  <p>
+    绑定事件是v-on:事件名=“函数方法”->缩写为 @事件名=“函数方法”<br>
+    以下方法在day1中的小龙事件中得到完善<br>
+    ① @keyup.enter->键盘回车监听(完整写法v-on:keyup.enter="函数方法")<br>
+    ② v-model.trim->去除首位空格<br>
+    ③ v-model.number-> 转数字<br>
+    ④ @事件名.stop ->阻止冒泡<br>
+    ⑤ @事件名.prevent ->阻止默认行为（a标签页面跳转）<br>
+  </p>
+  <hr>
+
+  <h3>🟢P25-v-bind操作class</h3>
+  <h4>---------tab栏切换-------------</h4>
+  <div class="daohang" id="app_25">
+    <ul class="xuanxiang">
+      <li v-for="(item,index) in titles" :key="item.id" @click="activeindex=index">
+        <a href="" :class="{active:index===activeindex}" @click.prevent>{{item.title}}</a>
+      </li>
+    </ul>
+    <div class="photos">
+      <img v-for="(item,index) in titles" :key="item.id" v-bind:src="item.src" alt="" v-show="item.id-1===activeindex">
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_25 = new Vue({
+      el: '#app_25',
+      data: {
+        activeindex: 0,
+        titles: [
+          { id: 1, title: '谢龙自拍', src: '/new_imgs/1.jpeg', },
+          { id: 2, title: '王玉摩托', src: '/new_imgs/2.jpeg', },
+          { id: 3, title: '乐乐照片', src: '/new_imgs/3.jpeg', },
+        ]
+      }
+    })
+  </script>
+
+  <h4>---------进度条百分比-------------</h4>
+  <div id="app_25_2">
+    <div class="jindutiao">
+      <div class="black">
+        <div class="blue" :style="{width: percent + '%' }">
+          <span>{{percent}}%</span>
+        </div>
+      </div>
+      <div class="buttons">
+        <button @click="percent='0'">设置0%</button>
+        <button @click="percent='25'">设置25%</button>
+        <button @click="percent='50'">设置50%</button>
+        <button @click="percent='75'">设置75%</button>
+        <button @click="percent='100'">设置100%</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_25_2 = new Vue({
+      el: '#app_25_2',
+      data: {
+        percent: 25,
+      }
+    })
+  </script>
+
+  <h4>---------背单词1000遍app初步实验-------------</h4>
+  <div class="dicitionary" id="dicit">
+    <h2>小🐲背单词100遍</h2>
+    <div class="sction">
+      <div class="header">
+        <input type="text" class="shuru" placeholder="请输入单词" v-model.trim="newWords" @keyup.enter="addnew"><button
+          @click="addnew">添加单词</button>
+      </div>
+      <div class="body">
+        <ul class="lists">
+          <li class="todo" v-for="(item,index) in words" :key="item.id">
+            <div class="one">
+              <span class="index">{{index}}. <span>{{item.name}}</span></span>
+              <div class="jindu">
+                <div class="back" @click="item.present<100?item.present++:100">
+                  <div class="yanse" :style="{width: item.present + '%' }">
+                    <span v-show="item.present>15">{{item.present}}次</span>
+                  </div>
+                </div>
+              </div>
+              <button class="destory" @click="delet(item.id)">X</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="footer" v-show="words.length>0">
+        <span>合计：<span>{{words.length}}</span></span>
+        <button @click="clear">清空单词表</button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const dicit = new Vue({
+      el: "#dicit",
+      data: {
+        newWords: '',
+        words: [
+          { id: 0, name: "pharmacy", present: 35, },
+          { id: 1, name: "crumble", present: 30, },
+          { id: 2, name: "pediatrics", present: 20, },
+          { id: 3, name: "dog", present: 50, },
+
+        ]
+      },
+      methods: {
+        // ①添加新单词
+        addnew() {
+          // ①判断输入是否为空
+          if (this.newWords.trim() === '') {
+            alert("请输入你的计划")
+            return
+          }
+          // ②添加新单词
+          this.words.unshift({
+            id: +new Date(),
+            name: this.newWords,
+            present: 0,
+          })
+          // ③清空输入框
+          this.newWords = '';
+        },
+        // ②删除单词
+        delet(x) {
+          this.words = this.words.filter(item => item.id !== x);
+        },
+        // ③清空所有单词
+        clear() {
+          this.words = [];
+        }
+
+      }
+
+
+    })
+  </script>
+  <hr>
+
+  <h3>🟢P26-v-model应用于其他表单元素</h3>
+
+
+
+  <hr>
+
+  <h3>🟢P27-计算属性</h3>
+
+
+
+  <hr>
+
+  <h3>🟢P28-computed计算属性vs方法medthods</h3>
+
+
+
+  <hr>
+
+  <h3>🟢P29-计算属性的完整写法</h3>
+
+
+
+  <hr>
+
+  <h3>🟣P30-成绩案例</h3>
+
+
+
+  <hr>
+
+  <h3>🟢P30-watch-简写-语法</h3>
+
+
+
+  <hr>
+
+  <h3>🟢P30-watch-简写-业务实现</h3>
+
+
+
+  <hr>
+
+  <h3>🟢P30-watch-简写-完整写法</h3>
+
+
+
+  <hr>
+
+  <h3>🟣P34-水果购物车-基本渲染</h3>
+
+
+</body>
+
+</html>

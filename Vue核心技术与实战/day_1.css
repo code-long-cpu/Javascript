@@ -113,6 +113,12 @@ body {
   padding: 10px 5px;
   /* padding-left: 0; */
   font-size: 20px;
+  cursor: pointer;
+  /* border: solid 1px black; */
+}
+
+.todolist :hover {
+  background-color: rgb(235, 235, 235);
 }
 
 .todo .view {
@@ -124,13 +130,32 @@ body {
   cursor: pointer;
 }
 
+.todo .view .index,
+label {
+  cursor: pointer;
+}
+
 label {
   padding-left: 20px;
 }
 
+.destory {
+  display: none;
+  font-size: 15px;
+  background-color: transparent !important;
+  border: 0;
+  color: rgb(144, 0, 0);
+}
+
+
+
+.todo :hover .destory {
+  display: block;
+}
+
 .footer {
   width: 100%;
-  padding: 5px 0;
+  /* padding: 5px 0; */
   /* border: solid 1px black; */
 }
 
