@@ -147,8 +147,6 @@ label {
   color: rgb(144, 0, 0);
 }
 
-
-
 .todo :hover .destory {
   display: block;
 }

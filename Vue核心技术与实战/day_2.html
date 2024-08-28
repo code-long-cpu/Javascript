@@ -11,13 +11,76 @@
 <body>
 
   <h3>🟣P34-水果购物车-基本渲染</h3>
+  <h2>小🐲购物车</h2>
+  <div class="cart" id="app_34">
+    <div class="image">
+      <img src="/images/8.jpg" alt="">
+    </div>
+    <div class="main_section">
+      <div class="content">
+        <table>
+          <thead>
+            <tr>
+              <th>选中</th>
+              <th>图片</th>
+              <th>单价</th>
+              <th>个数</th>
+              <th>小计</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody v-if="cart.length>0">
+            <tr v-for="(item,index) in cart" :key="item.id">
+              <td><input type="checkbox"></td>
+              <td class="fruit_iamge"><img src="/images/9.jpg" alt=""></td>
+              <td>6</td>
+              <td>
+                <div>
+                  <button>-</button><span>2</span><button>+</button>
+                </div>
+              </td>
+              <td>12</td>
+              <td><a @click.prevent href="">删除</a></td>
+            </tr>
+          </tbody>
+          <tbody v-else class="empty">
+            <tr>
+              <td colspan="6">没有商品</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>全选</td>
+              <td>总价：<span>24</span></td>
+              <td><button>结算(10)</button></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 
+  <script>
+    const app_34 = new Vue({
+      el: '#app_34',
+      data: {
+        cart: [
+          { id: 1, image: "/images/9.jpg", price: 9, num: 3, idChecked: true },
+          { id: 2, image: "/images/10.jpg", price: 4, num: 5, idChecked: false },
+          { id: 2, image: "/images/11.jpg", price: 2, num: 6, idChecked: true },
+          { id: 1, image: "/images/12.jpg", price: 6, num: 8, idChecked: false },
+        ]
+      }
+    })
+  </script>
 
   <hr>
 
   <h3>🟢P24-指令的修饰符</h3>
-  <p>
+  <p class="biji">
     绑定事件是v-on:事件名=“函数方法”->缩写为 @事件名=“函数方法”<br>
     以下方法在day1中的小龙事件中得到完善<br>
     ① @keyup.enter->键盘回车监听(完整写法v-on:keyup.enter="函数方法")<br>
@@ -103,9 +166,10 @@
               <div class="jindu">
                 <div class="back" @click="item.present<100?item.present++:100">
                   <div class="yanse" :style="{width: item.present + '%' }">
-                    <span v-show="item.present>15">{{item.present}}次</span>
+                    <span v-show="item.present>16">{{item.present}}次</span>
                   </div>
                 </div>
+                <span class="victory" v-show="item.present>95">🚩</span>
               </div>
               <button class="destory" @click="delet(item.id)">X</button>
             </div>
@@ -140,7 +204,7 @@
         addnew() {
           // ①判断输入是否为空
           if (this.newWords.trim() === '') {
-            alert("请输入你的计划")
+            alert("请输入你的单词")
             return
           }
           // ②添加新单词
@@ -169,24 +233,81 @@
   <hr>
 
   <h3>🟢P26-v-model应用于其他表单元素</h3>
+  <div class="dicitionary" id="app_26">
+    <h2>小🐲注册表</h2>
+    <div class="sction sction_2">
+      <form action="" class="biaodan">
+        <label class="" for="name">
+          姓名：<input type="text" id="name" autocomplete="off" v-model="username"><br>
+        </label>
+        <label for="single">
+          是否单身：<input type="checkbox" id="single" v-model="isSingle"><br>
+        </label>
+
+        <label for="nan">
+          性别：
+          <input v-model="gender" type="radio" name="gender" id="nan" value="1">男
+        </label>
+        <label for="nv"><input v-model="gender" type="radio" name="gender" id="nv" value="2">女</label>
+
+        <br>
+        <label for="city">
+          所在城市：
+          <select name="" id="city" v-model="cityId">
+            <option value="101" value="">加州</option>
+            <option value="102" value="">洛杉矶</option>
+            <option value="103" value="">西雅图</option>
+          </select>
+        </label>
+
+        <br>
+        <label for="miaoshu">
+          自我描述：
+          <br>
+          <textarea name="" id="miaoshu" v-model="describe"></textarea>
+        </label>
+        <br>
+        <button @click.prevent="print">提 交</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_26 = new Vue({
+      el: '#app_26',
+      data: {
+        username: '',
+        isSingle: true,
+        gender: '2',
+        cityId: '103',
+        describe: '',
+      },
+      methods: {
+        print() {
+          console.log(this)
+        }
+
+      }
+    })
+  </script>
+
+  <hr>
+
+  <h3>🟢P27-计算属性(缓存计算，速度快)</h3>
 
 
 
   <hr>
 
-  <h3>🟢P27-计算属性</h3>
+  <h3>🟢P28-computed计算属性vs方法medthods(methods每次都计算，速度慢)</h3>
 
 
 
   <hr>
 
-  <h3>🟢P28-computed计算属性vs方法medthods</h3>
-
-
-
-  <hr>
-
-  <h3>🟢P29-计算属性的完整写法</h3>
+  <h3>🟢P29-计算属性的完整写法（get可以从1+1推出2，set也可从2反推1+1）</h3>
 
 
 
@@ -194,30 +315,227 @@
 
   <h3>🟣P30-成绩案例</h3>
 
+  <h2>小🐲成绩单</h2>
+  <div id="app_30" class="sction section_30">
+    <form class="add" action="">
+      <div class="subject">
+        科目：<input type="text" class="subj" placeholder="请输入科目" v-model.trim="subject">
+      </div>
+      <div class="score">
+        分数：<input type="text" class="sco" placeholder="请输入成绩" v-model.number="score">
+      </div>
+      <button @click.prevent="add">提 交</button>
+    </form>
+    <table class="tables">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>科目</th>
+          <th>成绩</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody class="datas" v-if="lists.length>0">
+        <tr v-for="(item,index) in lists">
+          <td>{{index+1}}</td>
+          <td>{{item.name}}</td>
+          <td :class="{red:item.score<60}">{{item.score}}</td>
+          <td><a href="" @click.prevent="delet(item.id)">删除</a></td>
+        </tr>
+        <!-- <tr>
+          <td>2</td>
+          <td>数学</td>
+          <td>88</td>
+          <td><a href="" @click.prevent>删除</a></td>
+        </tr> -->
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td colspan="4" class="emptydata">暂无数据</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            <span>总分：{{totalScore}}</span>
+            <span style="margin-left: 30px;">平均分：{{averageScore}}</span>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_30 = new Vue({
+      el: '#app_30',
+      data: {
+        lists: [
+          { id: "1", name: "语文", score: 59 },
+          { id: "2", name: "数学", score: 99 },
+          { id: "3", name: "历史", score: 70 },
+        ],
+        subject: '',
+        score: '',
+      },
+      methods: {
+        // ①删除某项成绩
+        delet(id) {
+          this.lists = this.lists.filter(item => item.id !== id);
+        },
+
+        // ②添加成绩
+        add() {
+          // 判断科目是否为空
+          if (!this.subject) {
+            alert("请输入科目");
+            return;
+          }
+          //判断成绩是否为数字
+          if (typeof this.score !== 'number') {
+            alert("请输入成绩");
+            return;
+          }
+          //满足以上，就在表头添加成绩
+          this.lists.unshift({
+            id: +new Date(),
+            name: this.subject,
+            score: this.score,
+          })
+          // 输入完成后，清空输入框
+          this.subject = ''
+          this.score = ''
+        },
+
+      },
+      // ③成绩汇总与平均分
+      computed: {
+        // ①计算总分
+        totalScore() {
+          return this.lists.reduce((sum, item) => sum + item.score, 0)
+        },
+        // ②计算平均分
+        averageScore() {
+          // 判断是否有成绩
+          if (this.lists.length === 0) {
+            return 0;
+          }
+          return (this.totalScore / this.lists.length).toFixed(2);
+        }
+      }
+    })
+  </script>
+
+  <hr>
+  <h3>🟢P31-watch-简写-语法（时时检测文本框变化）</h3>
+
+
+  <hr>
+  <h3>🟢P32-watch-简写-业务实现（翻译软件）</h3>
+  <h4>0️⃣asncy和await异步请求</h4>
+  <h4>①不懂得可以理解成还没发送出去就被再次调用清空计时器，在新的计时器内发动异步请求；</h4>
+  <h4>②timer可以不用设置，下面this.timer赋值，可以当做是给对象app_32挂在的一个timer属性，再清除，提高系统性能；即：非响应式，直接挂载在实例对象上</h4>
+  <h2>小🐲翻译</h2>
+  <div class="sction sction_32" id="P_32">
+    <div class="select">
+      翻译语言选择：
+      <select name="" id="" v-model="obj.lang">
+        <option value="italy">矮人语言</option>
+        <option value="english">精灵语言</option>
+        <option value="german">虫族语言</option>
+      </select>
+    </div>
+    <div class="language">
+      <textarea name="" id="" class="original" v-model="obj.words" placeholder="请输入翻译内容…"></textarea>
+      <p name="" id="">{{result}}</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    const app_32 = new Vue({
+      el: '#P_32',
+      data: {
+        obj: {
+          words: '',
+          lang: 'italy',
+        },
+        result: '',
+        // timer可以不用设置，下面this.timer赋值，可以当做是给对象app_32挂在的一个timer属性，再清除，提高系统性能；
+        // 非响应式，直接挂载在实例对象上
+        // timer: null,
+      },
+      watch: {
+        // 深度监视
+        obj: {
+          deep: true,
+          immediate: true,
+          handler(newValue) {
+            clearTimeout(this.timer)
+            this.timer = setTimeout(async () => {
+              const res = await axios({
+                url: "https://applet-base-api-t.itheima.net/api/translate",
+                params: newValue
+              })
+              // console.log(res.data.data)
+              this.result = res.data.data;
+            }, 300)
+          }
+        }
+        // 'obj.orignal'(newValue) {
+        //   // 不懂得可以理解成还没发送出去就被再次调用清空计时器
+        //   clearTimeout(this.timer)
+        //   this.timer = setTimeout(async () => {
+        //     const res = await axios({
+        //       url: "https://applet-base-api-t.itheima.net/api/translate",
+        //       params: {
+        //         words: newValue
+        //       }
+        //     })
+        //     // console.log(res.data.data)
+        //     this.result = res.data.data;
+        //   }, 1000)
+        // }
+      }
+
+    })
+  </script>
+
+  <hr>
+
+  <h3>🟢P33-watch-简写-完整写法（翻译与语言选择）</h3>
+
 
 
   <hr>
 
-  <h3>🟢P30-watch-简写-语法</h3>
+  <h3>🟣P34-水果购物车-基本渲染(案例置顶🔝)</h3>
 
 
 
-  <hr>
-
-  <h3>🟢P30-watch-简写-业务实现</h3>
-
-
-
-  <hr>
-
-  <h3>🟢P30-watch-简写-完整写法</h3>
-
-
-
-  <hr>
-
-  <h3>🟣P34-水果购物车-基本渲染</h3>
-
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
 </body>
 
