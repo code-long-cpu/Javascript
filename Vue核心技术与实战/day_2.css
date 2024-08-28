@@ -31,37 +31,42 @@ body {
 
 .main_section {
   /* background-color: #f4f4f4; */
-  width: 700px;
+  /* width: 700px; */
   /* height: 350px; */
   /* border: solid 1px black; */
-  border-radius: 0 0 10px 10px;
+  /* border-radius: 0 0 10px 10px; */
 }
 
 .content {
   width: 95%;
   /* height: 90%; */
-  border: solid 1px black;
+  /* border: solid 1px black; */
   margin: auto;
-  transform: translateY(5%);
+  padding: 20px 0;
+  /* transform: translateY(5%); */
 }
 
 .content table {
-  border: solid 1px black;
+  /* border: solid 1px black; */
   width: 100%;
   margin: auto;
   border-collapse: collapse;
   table-layout: fixed;
   word-wrap: break-word;
+
 }
 
 .content table thead {
-  border: solid 1px black;
+  /* border: solid 1px black; */
+
 }
 
 .content table thead th {
-  border: solid 1px black;
+  border: solid 1px rgb(198, 198, 198);
   height: 40px;
-  background-color: #d0e5ff;
+  border-left: 0;
+  border-right: 0;
+  background-color: #f0f0f0;
 }
 
 .content table tbody {
@@ -71,12 +76,20 @@ body {
 
 .content table tbody td {
   height: 60px;
-  border: solid 1px black;
+  border: solid 1px rgb(198, 198, 198);
+  border-left: 0;
+  border-right: 0;
   text-align: center;
 }
 
 .content table tbody tr:hover {
-  background-color: aliceblue;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.content table tbody tr.activeid {
+  background-color: #f8f8f8;
+
 }
 
 .content table tbody tr td img {
@@ -123,12 +136,66 @@ body {
   height: 240px;
 }
 
+.content table tfoot tr {
+  border: solid 1px rgb(198, 198, 198);
+  /* height: 60px; */
+  border-left: 0;
+  border-right: 0;
+  background-color: #f8f8f8;
+}
 
-.content table tfoot td input {
+.content table tfoot tr td {
+  /* border: solid 1px rgb(198, 198, 198); */
+  text-align: center;
+}
+
+.content table tfoot tr td input {
+
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
+
+
+.discrip {
+  display: block;
+  width: 40px;
+  /* border: solid 1px black; */
+  transform: translate(-30px, -2px);
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.total {
+  display: block;
+  /* border: solid 1px rgb(255, 0, 0); */
+  text-align: right;
+  font-size: 25px;
+  padding-left: 100px;
+  font-weight: 500;
+  /* background-color: white; */
+  transform: translateX(40px);
+
+}
+
+.check {
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  border: solid 1px rgb(198, 198, 198);
+  border-radius: 10px;
+  margin: 5px 0;
+  transform: translateX(20px);
+  background-color: #ffffff;
+}
+
+.check:hover {
+  background-color: #f1f1f1;
+}
+
+
 
 
 /* 🟢P24-指令的修饰符 */

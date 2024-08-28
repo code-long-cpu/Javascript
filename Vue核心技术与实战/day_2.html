@@ -30,16 +30,16 @@
             </tr>
           </thead>
           <tbody v-if="cart.length>0">
-            <tr v-for="(item,index) in cart" :key="item.id">
-              <td><input type="checkbox"></td>
-              <td class="fruit_iamge"><img src="/images/9.jpg" alt=""></td>
-              <td>6</td>
+            <tr v-for="(item,index) in cart" :key="item.id" :class="{activeid:item.idChecked}">
+              <td><input type="checkbox" v-model="item.idChecked"></td>
+              <td class="fruit_iamge"><img :src="item.image" alt=""></td>
+              <td>{{item.price}}</td>
               <td>
                 <div>
-                  <button>-</button><span>2</span><button>+</button>
+                  <button>-</button><span>{{item.num}}</span><button>+</button>
                 </div>
               </td>
-              <td>12</td>
+              <td>{{item.price*item.num}}</td>
               <td><a @click.prevent href="">删除</a></td>
             </tr>
           </tbody>
@@ -51,9 +51,9 @@
           <tfoot>
             <tr>
               <td><input type="checkbox"></td>
-              <td>全选</td>
-              <td>总价：<span>24</span></td>
-              <td><button>结算(10)</button></td>
+              <td><span class="discrip">全选</span></td>
+              <td colspan="2"><span class="total">总价：24</span></td>
+              <td colspan="2"><button class="check">结算(10件)</button></td>
             </tr>
           </tfoot>
         </table>
