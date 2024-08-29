@@ -23,9 +23,9 @@
             <tr>
               <th>选中</th>
               <th>图片</th>
-              <th>单价</th>
-              <th>个数</th>
-              <th>小计</th>
+              <th>单价(斤/元)</th>
+              <th>个数(个)</th>
+              <th>小计(元)</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -36,11 +36,12 @@
               <td>{{item.price}}</td>
               <td>
                 <div>
-                  <button>-</button><span>{{item.num}}</span><button>+</button>
+                  <button @click="item.num<=1?0:item.num--"
+                    :disabled="item.num<=1">-</button><span>{{item.num}}</span><button @click="item.num++">+</button>
                 </div>
               </td>
               <td>{{item.price*item.num}}</td>
-              <td><a @click.prevent href="">删除</a></td>
+              <td><a @click.prevent="delet(item.id)" href="">删除</a></td>
             </tr>
           </tbody>
           <tbody v-else class="empty">
@@ -50,10 +51,12 @@
           </tbody>
           <tfoot>
             <tr>
-              <td><input type="checkbox"></td>
+              <td><input type="checkbox" v-model="isAll"></td>
               <td><span class="discrip">全选</span></td>
-              <td colspan="2"><span class="total">总价：24</span></td>
-              <td colspan="2"><button class="check">结算(10件)</button></td>
+              <td colspan="2">
+                <div class="jiage"><span class="total">总价：￥</span><span class="shuzi">{{total_price}}</span></div>
+              </td>
+              <td colspan="2"><button class="check">结算({{total}}件)</button></td>
             </tr>
           </tfoot>
         </table>
@@ -64,15 +67,69 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 
   <script>
+    const defult_cartlist = [
+      { id: 1, image: "/images/9.jpg", price: 9, num: 3, idChecked: true },
+      { id: 2, image: "/images/10.jpg", price: 4, num: 5, idChecked: false },
+      { id: 3, image: "/images/11.jpg", price: 2, num: 6, idChecked: true },
+      { id: 4, image: "/images/12.jpg", price: 6, num: 8, idChecked: false },
+    ]
     const app_34 = new Vue({
       el: '#app_34',
       data: {
-        cart: [
-          { id: 1, image: "/images/9.jpg", price: 9, num: 3, idChecked: true },
-          { id: 2, image: "/images/10.jpg", price: 4, num: 5, idChecked: false },
-          { id: 2, image: "/images/11.jpg", price: 2, num: 6, idChecked: true },
-          { id: 1, image: "/images/12.jpg", price: 6, num: 8, idChecked: false },
-        ]
+        // 购物车列表，获取本地存储的cartlist
+        cart: JSON.parse(localStorage.getItem('cartlist')) || defult_cartlist,
+      },
+      methods: {
+        delet(id) {
+          this.cart = this.cart.filter(item => item.id !== id);
+        },
+      },
+      // 计算件数，总价
+      computed: {
+        // 简单写法。只能单向控制结果
+        // isAll() {
+        //   return this.cart.every(item => item.idChecked);
+        // }
+        // ①完整写法，set（）与get（）
+        isAll: {
+          get() {
+            return this.cart.every(item => item.idChecked);
+          },
+          set(value) {
+            this.cart.forEach(item => item.idChecked = value);
+          }
+        },
+        // ②计算总件数
+        total() {
+          return this.cart.reduce((sum, item) => {
+            if (item.idChecked) {
+              return sum + item.num;
+            } else {
+              return sum
+            }
+          }, 0)
+        },
+        // ③计算总价格
+        total_price() {
+          return this.cart.reduce((sum, item) => {
+            if (item.idChecked) {
+              return sum + (item.num * item.price);
+            } else {
+              return sum
+            }
+          }, 0)
+        },
+
+      },
+      // ④深度监视数据变化，变化后储存本地
+      watch: {
+        cart: {
+          deep: true,
+          handler(newValue) {
+            // 把变化后的newValue储存到本地
+            localStorage.setItem("cartlist", JSON.stringify(newValue));
+          }
+        }
       }
     })
   </script>
@@ -187,17 +244,18 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 
   <script>
+    const daful_list = [
+      { id: 0, name: "pharmacy", present: 35, },
+      { id: 1, name: "crumble", present: 30, },
+      { id: 2, name: "pediatrics", present: 20, },
+      { id: 3, name: "dog", present: 50, },
+
+    ];
     const dicit = new Vue({
       el: "#dicit",
       data: {
         newWords: '',
-        words: [
-          { id: 0, name: "pharmacy", present: 35, },
-          { id: 1, name: "crumble", present: 30, },
-          { id: 2, name: "pediatrics", present: 20, },
-          { id: 3, name: "dog", present: 50, },
-
-        ]
+        words: JSON.parse(localStorage.getItem('wordslist')) || daful_list,
       },
       methods: {
         // ①添加新单词
@@ -224,9 +282,15 @@
         clear() {
           this.words = [];
         }
-
+      },
+      watch: {
+        words: {
+          deep: true,
+          handler(newValue) {
+            localStorage.setItem('wordslist', JSON.stringify(newValue));
+          }
+        }
       }
-
 
     })
   </script>
@@ -368,14 +432,15 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
 
   <script>
+    const defult_chengji = [
+      { id: "1", name: "语文", score: 59 },
+      { id: "2", name: "数学", score: 99 },
+      { id: "3", name: "历史", score: 70 },
+    ]
     const app_30 = new Vue({
       el: '#app_30',
       data: {
-        lists: [
-          { id: "1", name: "语文", score: 59 },
-          { id: "2", name: "数学", score: 99 },
-          { id: "3", name: "历史", score: 70 },
-        ],
+        lists: JSON.parse(localStorage.getItem('chengjilists')) || defult_chengji,
         subject: '',
         score: '',
       },
@@ -383,6 +448,8 @@
         // ①删除某项成绩
         delet(id) {
           this.lists = this.lists.filter(item => item.id !== id);
+          // 储存本地
+          localStorage.setItem('chengjilists', JSON.stringify(this.lists));
         },
 
         // ②添加成绩
@@ -403,6 +470,8 @@
             name: this.subject,
             score: this.score,
           })
+          // 储存本地
+          localStorage.setItem('chengjilists', JSON.stringify(this.lists));
           // 输入完成后，清空输入框
           this.subject = ''
           this.score = ''
@@ -422,8 +491,18 @@
             return 0;
           }
           return (this.totalScore / this.lists.length).toFixed(2);
-        }
-      }
+        },
+
+      },
+      // ❌深度监视
+      // watch: {
+      //   lists: {
+      //     deep: true,
+      //     hanlder(newValue) {
+      //       localStorage.setItem('chengjilists', JSON.stringify(newValue));
+      //     }
+      //   }
+      // }
     })
   </script>
 
