@@ -1,0 +1,186 @@
+h4 {
+  width: 600px;
+  text-align: center;
+  color: red;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+  font-weight: 200;
+}
+
+/* 🟢P36-生命周期和生命周期的四个阶段 */
+.jietu {
+  width: 600px;
+  border: solid 1px black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.jietu img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.jishiqi {
+  border: solid 1px black;
+  width: 600px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px 0;
+}
+
+.jishiqi h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+}
+
+.jishiqi button {
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.jishiqi span {
+  display: inline-block;
+  font-size: 30px;
+  width: 80px;
+  border: solid 1px rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+/* 🟢P37-生命周期两个例子-初始化渲染created()和自动获取焦点mounted() */
+.P37 {
+  width: 600px;
+  height: 300px;
+  border: solid 1px black;
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+
+}
+
+.left,
+.right {
+  width: 50%;
+  height: 100%;
+  /* border: solid 1px black; */
+}
+
+.left {
+  border-right: solid 1px black;
+  overflow: scroll;
+}
+
+.left ul {
+  padding: 0;
+  margin: 0;
+}
+
+.left ul li {
+  height: 80px;
+  width: 90%;
+  list-style: none;
+  border-bottom: solid 1px rgb(179, 179, 179);
+  margin: auto;
+  padding: 10px 0;
+  display: flex;
+  /* box-sizing: border-box; */
+}
+
+.left ul li:hover {
+  background-color: antiquewhite;
+}
+
+.left ul li .left_content {
+  width: 70%;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: antiquewhite; */
+}
+
+.title {
+  width: 90%;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+
+
+.left ul li .left_content .zhujiao {
+  /* display: flex; */
+  width: 100%;
+  font-size: 11px;
+  /* padding-bottom: 10px; */
+}
+
+.left ul li .right_content {
+  width: 30%;
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+.left ul li .right_content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  ;
+}
+
+.right {
+  background-color: rgba(235, 239, 246, 1);
+  box-sizing: border-box;
+  border: solid 5px white;
+  border-radius: 0 12px 12px 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.right img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.right .search_area {
+  /* border-bottom: solid 1px black; */
+  display: flex;
+  justify-content: center;
+}
+
+.right .search_area input {
+  padding: 0;
+  height: 0;
+  width: 180px;
+  height: 35px;
+  box-sizing: border-box;
+  /* border: solid 1px black; */
+  border-radius: 10px 0 0 10px;
+  border-right: 0;
+  font-size: 20px;
+  padding-left: 10px;
+
+
+}
+
+.right .search_area button {
+  padding: 0;
+  height: 0;
+  width: 80px;
+  height: 35px;
+  box-sizing: border-box;
+  font-size: 15px;
+  /* border: solid 1px black; */
+  border-radius: 0 10px 10px 0;
+  background-color: rgba(124, 198, 176, 1);
+  color: white;
+  cursor: pointer;
+
+}

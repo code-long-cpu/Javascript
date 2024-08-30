@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Vue核心技术与实战/day_3.css">
+  <title>day_3</title>
+</head>
+
+<body>
+  <hr>
+  <h3>🟢P35-第三天课程介绍</h3>
+
+
+  <hr>
+  <h3>🟢P36-生命周期和生命周期的四个阶段</h3>
+  <div class="jietu">
+    <!-- <img src="../lesson_images/1.png" alt=""> -->
+    <br>
+    <img src="../lesson_images/2.png" alt="">
+  </div>
+
+  <br>
+  <h4>小🐲代码操作（8个钩子函数）</h4>
+  <span>beforeCreate()/created()/beforeMount()/mounted()</span>
+  <span>beforeUpdate()/updated()/beforeDestroy()/destroyed()</span>
+  <div class="jishiqi" id="app_36">
+    <h3>{{title}}</h3>
+    <button @click="count--">-</button>
+    <span>{{count}}</span>
+    <button @click="count++">+</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+
+  <script>
+    const app_36 = new Vue({
+      el: '#app_36',
+      data: {
+        title: '计时器',
+        count: 100,
+      },
+      // 1.（检测数据）创建阶段准备数据
+      beforeCreate() {
+        console.log('beforeCreat数据创建前:', this.title);
+      },
+      created() {
+        console.log('Created数据创建后:', this.title);
+
+      },
+      // 2.（检测dom）挂在阶段渲染模板
+      beforeMount() {
+        console.log('beforeMount模板创建前:', document.querySelector('.jishiqi h3').innerHTML);
+      },
+      mounted() {
+        console.log('mounted模板创建后:', document.querySelector('.jishiqi h3').innerHTML);
+
+      },
+      // 3.（检测dom）更新阶段，修改数据，dom更新，更新视图
+      beforeUpdate() {
+        console.log('bbeforeUpdate数据更新前:', document.querySelector('.jishiqi span').innerHTML)
+      },
+      updated() {
+        console.log('updated数据更新后:', document.querySelector('.jishiqi span').innerHTML)
+
+      },
+      // 4.销毁阶段，销毁实例
+      beforeDestroy() {
+        // 在console中用 app_36.$destroy()操作
+        console.log('beforeDestroy')
+      },
+      destroyed() {
+        console.log('destroyed')
+
+      }
+    })
+  </script>
+
+
+  <hr>
+  <h3>🟢P37-生命周期两个例子-初始化渲染created()和自动获取焦点mounted()</h3>
+
+  <h4>小🐲写案例</h4>
+  <div class="P37" id="app_P37">
+    <div class="left">
+
+      <ul>
+        <li v-for="(item,index) in list" :key="item.id">
+          <div class="left_content">
+            <div class="title">{{item.title}}</div>
+            <div class="zhujiao">
+              <span>{{item.source}}</span>
+              <span>{{item.time}}</span>
+            </div>
+          </div>
+          <div class="right_content">
+            <img :src="item.img" alt="">
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <div class="right">
+      <img src="/icon/icon-password.png" alt="">
+      <div class="search_area">
+        <input type="text" class="inp"><button>搜索一下</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    const app_P37 = new Vue({
+      el: '#app_P37',
+      data: {
+        list: [],
+      },
+      // ①created项目启动前，数据加载后，请求数据
+      async created() {
+        const res = await axios({ url: 'http://hmajax.itheima.net/api/news' });
+        console.log(res.data.data);
+        this.list = res.data.data;
+      },
+
+      // ②mounted自动获取焦点,dom模板创建后，可以操作dom元素input，再进行焦点锁定。
+      mounted() {
+        document.querySelector('.inp').focus();
+      }
+
+
+    })
+  </script>
+
+
+
+  <hr>
+  <h3>🟣P38-小黑记账清单-渲染&添加&删除</h3>
+
+  <hr>
+  <h3>🟣P39-小黑记账清单-饼图渲染</h3>
+
+  <hr>
+  <h3>🟢P40-工程化开发和脚手架</h3>
+
+  <hr>
+  <h3>🟢P41-项目目录介绍和运行流程</h3>
+
+  <hr>
+  <h3>🟢P42-组件化开发和根组件</h3>
+
+  <hr>
+  <h3>🟢P43-普通组件的注册-局部注册</h3>
+
+  <hr>
+  <h3>🟢P44-普通组件的注册-全局注册</h3>
+
+  <hr>
+  <h3>🟣P45-小兔仙首页-拆分模块组件-局部注册</h3>
+
+  <hr>
+  <h3>🟣P46-小兔仙首页-实现结构和样式并拆分样式</h3>
+
+</body>
+
+</html>
