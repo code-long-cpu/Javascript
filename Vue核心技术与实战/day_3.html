@@ -138,6 +138,148 @@
 
   <hr>
   <h3>🟣P38-小黑记账清单-渲染&添加&删除</h3>
+  <h4>小🐲记账清单</h4>
+  <div class="p38" id="app_38">
+    <div class="jizhang">
+      <div class="shuru">
+        <input v-model.trim="name" type="text" name="" id="" placeholder="消费名称">
+        <input v-model.number="price" type="text" name="" id="" placeholder="消费价格">
+        <button @click="add">添加账单</button>
+      </div>
+      <div class="biaoge_head">
+        <table>
+          <thead>
+            <tr>
+              <th>编号</th>
+              <th>消费名称</th>
+              <th>消费价格</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <div class="biaoge_body">
+        <table>
+
+          <tbody v-if="zhangdan.length>0">
+            <tr v-for="(item,index) in zhangdan" :key="item.id">
+              <td>{{item.id}}</td>
+              <td>{{item.name}}</td>
+              <td :class="{red:item.price>500}">{{item.price.toFixed(2)}}</td>
+              <td><a href="" @click.prevent>删除</a></td>
+            </tr>
+
+          </tbody>
+          <tbody v-else class="zanwushuju">
+            <tr>
+              <td>暂无数据</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="biaoge_foot">
+        <table>
+          <tbody>
+            <tr>
+              <td>消费总计：{{totalPrice.toFixed(2)}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="chart"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- 接口文档： -->
+  <!-- https://www.apifox.cn/apidoc/shared-24459455-ebb1-4fdc-8df8-0aff8dc317a8/api-53371058 -->
+
+
+  <script>
+    const app_38 = new Vue({
+      el: '#app_38',
+      data: {
+        zhangdan: [],
+        // zhangdan: [
+        //   { id: 1, name: '手表', price: '4000' },
+        //   { id: 2, name: '手机', price: '453' },
+        //   { id: 3, name: '电视', price: '563' },
+        //   { id: 4, name: '沙发', price: '23' },
+        //   { id: 5, name: '电脑', price: '4352' },
+        //   { id: 6, name: '笔记本', price: '3435' },
+        //   { id: 7, name: '牛奶', price: '23' },
+        //   { id: 8, name: '塑料袋', price: '323' },
+        // ]
+        name: '',
+        price: '',
+      },
+      // 计算属性-计算总价
+      computed: {
+        totalPrice() {
+          return this.zhangdan.reduce((sum, item) => sum + item.price, 0)
+        }
+      },
+      // ①数据初始化后就发送get请求，获取账单列表
+      created() {
+        // 需要封装起来，多次调用：1-页面启动调用，2-添加数据调用
+        // const res = await axios(
+        //   {
+        //     url: 'https://applet-base-api-t.itheima.net/bill',
+        //     params: { creator: '龙龙' }
+        //   })
+        // console.log(res)
+        // this.zhangdan = res.data.data;
+        this.getlist();
+      },
+
+      methods: {
+        // 发请求get拉取数据
+        async getlist() {
+          const res = await axios(
+            {
+              url: 'https://applet-base-api-t.itheima.net/bill',
+              params: { creator: '龙龙' }
+            })
+          console.log(res)
+          this.zhangdan = res.data.data;
+        },
+        // ①发送添加数据请求post
+        async add() {
+          // 1验证消费名称
+          if (this.name === '') {
+            alert("请输入消费名称")
+            return
+          }
+          // 2验证消费价格
+          if (this.price === '') {
+            alert("请输入消费价格")
+            return
+          }
+          // 3发送添加数据请求post
+          const res = await axios(
+            {
+              url: 'https://applet-base-api-t.itheima.net/bill',
+              method: 'post',
+              data: {
+                creator: '龙龙',
+                name: this.name,
+                price: this.price,
+              }
+            });
+          // ②后端数据post已修改，重新拉取get数据
+          this.getlist();
+        }
+      }
+    })
+  </script>
+
+
+
+
+
 
   <hr>
   <h3>🟣P39-小黑记账清单-饼图渲染</h3>
@@ -163,6 +305,31 @@
   <hr>
   <h3>🟣P46-小兔仙首页-实现结构和样式并拆分样式</h3>
 
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </body>
 
 </html>
