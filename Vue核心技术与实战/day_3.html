@@ -167,7 +167,7 @@
               <td>{{item.id}}</td>
               <td>{{item.name}}</td>
               <td :class="{red:item.price>500}">{{item.price.toFixed(2)}}</td>
-              <td><a href="" @click.prevent>删除</a></td>
+              <td><a href="" @click.prevent="delet(item.id)">删除</a></td>
             </tr>
 
           </tbody>
@@ -189,13 +189,23 @@
       </div>
 
     </div>
-    <div class="chart"></div>
+    <div class="chart_box" id="main_chart"></div>
   </div>
+
+
+  <!-- <div class="big">
+    <div class="a"></div>
+    <div class="chart-box" id="main_chart"></div>
+  </div> -->
+
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <!-- 接口文档： -->
   <!-- https://www.apifox.cn/apidoc/shared-24459455-ebb1-4fdc-8df8-0aff8dc317a8/api-53371058 -->
+  <!-- 图标echart包 -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <!-- <script src="../echarts.min.js"></script> -->
 
 
   <script>
@@ -234,6 +244,56 @@
         // this.zhangdan = res.data.data;
         this.getlist();
       },
+      mounted() {
+        this.mychart = echarts.init(document.querySelector('#main_chart'));
+        this.mychart.setOption({
+          title: {
+            text: "小🐲记账请打",
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'item'
+          },
+          legend: {
+            top: '5%',
+            left: 'center'
+          },
+          series: [
+            {
+              name: '小🐲记账清单',
+              type: 'pie',
+              radius: ['30%', '60%'],
+              avoidLabelOverlap: false,
+              itemStyle: {
+                borderRadius: 5,
+                borderColor: '#fff',
+                borderWidth: 3
+              },
+              label: {
+                show: false,
+                position: 'center'
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  fontSize: 40,
+                  fontWeight: 'bold'
+                }
+              },
+              labelLine: {
+                show: false
+              },
+              data: [
+                { value: 1048, name: 'Search Engine' },
+                { value: 735, name: 'Direct' },
+                { value: 580, name: 'Email' },
+                { value: 484, name: 'Union Ads' },
+                { value: 300, name: 'Video Ads' }
+              ]
+            }
+          ]
+        })
+      },
 
       methods: {
         // 发请求get拉取数据
@@ -245,6 +305,7 @@
             })
           console.log(res)
           this.zhangdan = res.data.data;
+
         },
         // ①发送添加数据请求post
         async add() {
@@ -259,6 +320,7 @@
             return
           }
           // 3发送添加数据请求post
+          // 这里创建的res的变量其实没啥用
           const res = await axios(
             {
               url: 'https://applet-base-api-t.itheima.net/bill',
@@ -269,7 +331,21 @@
                 price: this.price,
               }
             });
+
           // ②后端数据post已修改，重新拉取get数据
+          this.getlist();
+          this.name = '';
+          this.price = '';
+
+        },
+        // ③发送删除数据据请求delet
+        async delet(id) {
+          // console.log(id)
+          const res = await axios(
+            {
+              url: `https://applet-base-api-t.itheima.net/bill/${id}`,
+              method: 'delete',
+            })
           this.getlist();
         }
       }
