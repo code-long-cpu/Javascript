@@ -301,6 +301,10 @@ button {
   color: black;
 }
 
+.biaoge_body table tbody tr {
+  cursor: pointer;
+}
+
 .biaoge_body table tbody tr td {
   height: 30px;
   text-align: center;
@@ -357,4 +361,34 @@ button {
   /* border: solid 1px black; */
   /* z-index: 100; */
   /* position: absolute; */
+}
+
+.box {
+  /* width: 500px; */
+  height: 200px;
+  background-color: aqua;
+}
+
+/* <h3>🟢P44-普通组件的注册-全局注册</h3> */
+.aa {
+  /* display: inline-block; */
+  font-size: 50px;
+  border: solid 1px black;
+
+}
+
+.bb {
+  font-size: 20px;
+  border: solid 1px black;
+  vertical-align: middle;
+}
+
+/* padding盒子实验 */
+
+.pad {
+  width: 300px;
+  height: 200px;
+  border: solid 1px black;
+  box-sizing: border-box;
+  padding: 20px;
 }
